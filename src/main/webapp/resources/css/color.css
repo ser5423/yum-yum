@@ -1,3 +1,21 @@
 .bg-redred{
     background-color: firebrick;
 }
+
+#ul-gray{
+	position: inline-block;
+/* 	background-color: #f1f2f5; */
+	text-align:center;
+	height: 133px;
+	width: 100%;
+	display: block;
+	list-style:none;
+	
+}
+#pont-sizea{
+	font-weight: bold;
+	font-size : 85px;
+	decoration : none;
+	color : #000000;
+	font-family: arial;
+}
