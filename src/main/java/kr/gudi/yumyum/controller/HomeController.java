@@ -1,3 +1,5 @@
+// 애들아 욜씨미하자 by.1004
+
 package kr.gudi.yumyum.controller;
 
 import java.text.DateFormat;
@@ -33,7 +35,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+		//asdasd
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
