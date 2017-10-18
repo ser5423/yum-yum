@@ -46,7 +46,7 @@ public class HttpUtil {
                /*
                 * parameters[0] = parameters[0].replaceAll("%", "%25");
                 * parameterMap.put(paramName,
-                * URLDecoder.decode(parameters[0],"UTF-8")); // 인코더해서 받아온게 있으면 디코더로 풀어서 보내야됨 그대로 인코더안하고 보낼 거면 이거 안써도 됨
+                * URLDecoder.decode(parameters[0],"UTF-8")); // 인코더해서 받아온게 있으면 디코더로 풀어서 보내야됨 그대로 인코더안하고 보낼 거면 이거 안써도 됨ㅁㄴㅇㅁㄴㅇ
                 */
                parameterMap.put(paramName, parameters[0]);
 
