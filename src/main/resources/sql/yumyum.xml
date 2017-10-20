@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yumyum">
+	<select id="recipe1" resultType="hashmap">
+		select * from 한식 name;
+	</select>
+	<select id="recipe2" resultType="hashmap">
+		select * from 일식 name;
+	</select>
+	<select id="recipe3" resultType="hashmap">
+		select * from 중식 name;
+	</select>
+	<select id="recipe4" resultType="hashmap">
+		select * from 양식 name;
+	</select>
+</mapper>
