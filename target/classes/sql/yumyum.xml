@@ -13,6 +13,6 @@
 		select * from 중식 name;
 	</select>
 	<select id="recipe4" resultType="hashmap">
-		select * from 양식 name;
+		select * from 양식 name; 
 	</select>
 </mapper>
