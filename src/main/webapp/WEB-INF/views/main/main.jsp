@@ -46,6 +46,10 @@ $(document).ready(function(){
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
       <div class="container">
         <a class="navbar-brand" href="Main">Food Factory</a>
+        <!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
+        <button class="navbar-toggler navbar-toggler-right" type="button" style="cursor:pointer" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -65,7 +69,7 @@ $(document).ready(function(){
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                 <a class="dropdown-item" href="/yumyum/resources/html/Review.html">우수 리뷰</a>
-                <a class="dropdown-item">리뷰</a>
+                <a class="dropdown-item" href="/yumyum/resources/html/Review.html">리뷰</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -73,16 +77,13 @@ $(document).ready(function(){
                 Board
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> <!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-                <a class="dropdown-item">공지사항</a>
+                <a class="dropdown-item" href="/yumyum/resources/html/Board.html">공지사항</a>
                 <a class="dropdown-item" href="/yumyum/resources/html/Board.html">자유게시판</a>
-                <a class="dropdown-item">QnA</a>
+                <a class="dropdown-item" href="/yumyum/resources/html/Board.html">QnA</a>
               </div>
             </li>
               <li data-toggle="modal" data-target="#loginPop">
               <a id="navbarDropdownBlog" class="nav-link" href="#">login</a>
-            </li>
-              <li data-toggle="modal" data-target="#signPop">
-              <a class="nav-link" href="#">membership</a>
             </li>
           </ul>
         </div>
@@ -97,27 +98,27 @@ $(document).ready(function(){
           <li style="cursor:pointer" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <div class="carousel-item active" style="background-image: url(/yumyum/resources/img/korea.jpg)">
+          <div class="carousel-item active" style="background-image: url(/yumyum/resources/img/korea.jpg)" onclick="location.href='/yumyum/resources/html/re1.html';">
             <div class="carousel-caption d-none d-md-block">
               <h3>한식</h3>
               <p>소개글</p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url(/yumyum/resources/img/jp.jpg)">
+          <div class="carousel-item" style="background-image: url(/yumyum/resources/img/jp.jpg)" onclick="location.href='/yumyum/resources/html/re1.html';">
             <div class="carousel-caption d-none d-md-block">
               <h3>일식</h3>
               <p>소개글</p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url(/yumyum/resources/img/ch.jpg)">
+          <div class="carousel-item" style="background-image: url(/yumyum/resources/img/ch.jpg)" onclick="location.href='/yumyum/resources/html/re1.html';">
             <div class="carousel-caption d-none d-md-block">
               <h3>중식</h3>
               <p>소개글</p>
             </div>
           </div>
-            <div class="carousel-item" style="background-image: url(/yumyum/resources/img/us.jpg)">
+            <div class="carousel-item" style="background-image: url(/yumyum/resources/img/us.jpg)" onclick="location.href='/yumyum/resources/html/re1.html';">
             <div class="carousel-caption d-none d-md-block">
               <h3>양식</h3>
               <p>소개글</p>
@@ -142,15 +143,9 @@ $(document).ready(function(){
             <a href="#KF"><img class="card-img-top" src="/yumyum/resources/img/korea2.jpg" data-toggle="modal" data-target="#KF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">한국</a>
+                <a href="#KF" data-toggle="modal" data-target="#KF">한국</a>
               </h4>
-              <div id="cardne">
-              <p class="card-text">소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글
-              소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글
-              소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글
-              소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글소개글</p>
-              </div>
-              
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#KF">...</button>
             </div>
           </div>
         </div>
@@ -159,9 +154,9 @@ $(document).ready(function(){
             <a href="#JF"><img class="card-img-top" src="/yumyum/resources/img/jp2.jpg" data-toggle="modal" data-target="#JF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">일식</a>
+                <a href="#JF" data-toggle="modal" data-target="#JF">일식</a>
               </h4>
-              <p id="cardne" class="card-text">소개글</p>
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#JF">...</button>
             </div>
           </div>
         </div>
@@ -170,9 +165,9 @@ $(document).ready(function(){
             <a href="#CF"><img class="card-img-top" src="/yumyum/resources/img/ch2.jpg" data-toggle="modal" data-target="#CF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">중식</a>
+                <a href="#CF" data-toggle="modal" data-target="#CF">중식</a>
               </h4>
-              <p id="cardne" class="card-text">소개글</p>
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#CF">...</button>
             </div>
           </div>
         </div>
@@ -181,9 +176,9 @@ $(document).ready(function(){
             <a href="#EF"><img class="card-img-top" src="/yumyum/resources/img/us2.jpg" data-toggle="modal" data-target="#EF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">양식</a>
+                <a href="#EF" data-toggle="modal" data-target="#EF">양식</a>
               </h4>
-              <p id="cardne" class="card-text">소개글</p>
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#EF">...</button>
             </div>
           </div>
         </div>
@@ -192,9 +187,9 @@ $(document).ready(function(){
             <a href="#BF"><img class="card-img-top" src="/yumyum/resources/img/review.png" data-toggle="modal" data-target="#BF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">우수리뷰</a>
+                <a href="#BF" data-toggle="modal" data-target="#BF">우수리뷰</a>
               </h4>
-              <p id="cardne" class="card-text">소개글</p>
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#BF">...</button>
             </div>
           </div>
         </div>
@@ -203,9 +198,9 @@ $(document).ready(function(){
             <a href="#MF"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target="#MF"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">관리자 추천</a>
+                <a href="#MF" data-toggle="modal" data-target="#MF">관리자 추천</a>
               </h4>
-              <p id="cardne" class="card-text">소개글</p>
+              <p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p><button id="plusbtn" type="button" data-toggle="modal" data-target="#MF">...</button>
             </div>
           </div>
         </div>
@@ -217,8 +212,8 @@ $(document).ready(function(){
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      	<h4 class="modal-title">로그인</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">로그인</h4>
       </div>
       <div class="modal-body">
 		<form>
@@ -258,16 +253,17 @@ $(document).ready(function(){
 <!-- Modal --> 
           <div class="modal fade" id="KF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
               <div class="modal-dialog"> 
-                  <div class="modal-content"> 
-                      <div class="modal-header"> 
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">한식</h4> 
+                  <div class="modal-content" id="modalsize"> 
+                      <div class="modal-header">
+                      	<h4 class="modal-title" id="myModalLabel">한식</h4> 
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/korea2.jpg" class="img-responsive card-img-top"></p> 
-                          <p>한식 한식</p> 
-                        </div> 
-                  </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/korea2.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">한식</p>
+                  	</div>
+               </div> 
             </div> 
           </div>
           <!-- Modal --> 
@@ -275,13 +271,14 @@ $(document).ready(function(){
               <div class="modal-dialog"> 
                   <div class="modal-content"> 
                       <div class="modal-header"> 
+                      	  <h4 class="modal-title" id="myModalLabel">일식</h4> 
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">일식</h4> 
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/jp2.jpg" class="img-responsive card-img-top"></p> 
-                          <p>일식</p> 
-                        </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/jp2.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">일식</p>
+                  	</div>
                   </div> 
             </div> 
           </div>
@@ -290,13 +287,14 @@ $(document).ready(function(){
               <div class="modal-dialog"> 
                   <div class="modal-content"> 
                       <div class="modal-header"> 
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">중식</h4> 
+                      	  <h4 class="modal-title" id="myModalLabel">중식</h4>
+                      	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/ch2.jpg" class="img-responsive card-img-top"></p> 
-                          <p>중식</p> 
-                        </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/ch2.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">중식</p>
+                  	</div>
                   </div> 
             </div> 
           </div>
@@ -305,13 +303,14 @@ $(document).ready(function(){
               <div class="modal-dialog"> 
                   <div class="modal-content"> 
                       <div class="modal-header"> 
+                      	  <h4 class="modal-title" id="myModalLabel">양식</h4>
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">양식</h4> 
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/us2.jpg" class="img-responsive card-img-top"></p> 
-                          <p>양식</p> 
-                        </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/us2.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">양식</p>
+                  	</div> 
                   </div> 
             </div> 
           </div>
@@ -319,14 +318,14 @@ $(document).ready(function(){
           <div class="modal fade" id="BF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
               <div class="modal-dialog"> 
                   <div class="modal-content"> 
-                      <div class="modal-header"> 
+                      <div class="modal-header">
+                      	  <h4 class="modal-title" id="myModalLabel">우수리뷰</h4> 
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">우수리뷰</h4> 
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/review.png" class="img-responsive card-img-top"></p> 
-                          <p>우수리뷰</p> 
-                        </div> 
+                      <div class="modal-body reviewmodal">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/review.png" class="img-responsive card-img-top"></p></div>
+                  		<p class="modalradius">우수리뷰</p>
+                  	</div>
                   </div> 
             </div> 
           </div>
@@ -335,13 +334,14 @@ $(document).ready(function(){
               <div class="modal-dialog"> 
                   <div class="modal-content"> 
                       <div class="modal-header"> 
+                      	  <h4 class="modal-title" id="myModalLabel">관리자 추천</h4> 
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                          <h4 class="modal-title" id="myModalLabel">관리자 추천</h4> 
                       </div> 
-                      <div class="modal-body"> 
-                          <p><img src="/yumyum/resources/img/manager.jpg" class="img-responsive card-img-top"></p> 
-                          <p>관리자 추천</p> 
-                        </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/manager.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">관리자 추천</p>
+                  	</div> 
                   </div> 
             </div> 
           </div>
@@ -349,6 +349,10 @@ $(document).ready(function(){
     <footer class="py-4 bg-redred">
       <div class="container">
         <p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
+        <div id="navbarDropdownBlog" class="nav-link reviewmodal managerbtn">
+        	<a class="managerbtn" href="#" data-toggle="modal" data-target="#loginPop">manager login</a>
+        	<a class="managerbtn" href="/yumyum/resources/html/manager.html">manager page</a>
+        </div>
       </div>
     </footer>
   </body>

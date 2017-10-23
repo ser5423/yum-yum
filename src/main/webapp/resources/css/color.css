@@ -20,9 +20,52 @@
 	font-family: arial;
 }
 #cardne {
-	   width: 50%;
-	   white-space: nowrap;
-	   overflow: hidden;
-	   text-overflow: ellipsis;
-
+	width:85%;
+	padding:5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: clip;
+	display: inline-block;
+}
+#plusbtn {
+	width:15%;
+	background-color: white;
+	display: inline-block;
+	border : 0;
+	outline : 0;
+	cursor : pointer;
+}
+#modalsize{
+	width:100%;
+}
+#modalimagesize{
+	width:60%;
+	display:inline-block;
+}
+#modalimagesize2{
+	width:100%;
+	display:inline-block;
+}
+#modaltextsize{
+	height:297.59px;
+	width:35%;
+	display:inline-block;
+	margin-bottom:0;
+	position: absolute;
+	right:25px;
+}
+.modalradius{
+	border-radius: 1em;
+	padding : 5px;
+	border : 1em;
+	border: 1px solid #dededf;
+	text-align:left;
+}
+.reviewmodal{
+	text-align:center;
+}
+.managerbtn{
+	color : rgba(255,255,255,.5);
+	text-decoration:none;
+	hover : text-decoration:none;
 }
