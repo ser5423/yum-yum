@@ -30,5 +30,4 @@ public class yumyumDao implements yumyumDaoInterface {
 	public List<HashMap<String, Object>> select4(HashMap<String, Object> param) {
 		return session.selectList("yumyum.recipe4", param);
 	}
-
 }

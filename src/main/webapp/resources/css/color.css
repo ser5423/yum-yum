@@ -69,3 +69,13 @@
 	text-decoration:none;
 	hover : text-decoration:none;
 }
+#writebtn {
+	width:70px;
+	background-color: white;
+	display: inline-block;
+	cursor : pointer;
+}
+#writbtn2{
+	text-align : right;
+	width:100%;
+}
