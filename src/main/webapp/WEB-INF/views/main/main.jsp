@@ -1,24 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>Food Factory</title>
     <script src="/yumyum/resources/js/jquery.min.js"></script>
     <script src="/yumyum/resources/js/popper.min.js"></script>
     <script src="/yumyum/resources/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/yumyum/resources/css/color.css">
+    <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-   <style>
-</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#img1").load("/yumyum/resources/html/1016/img1.html");
@@ -50,9 +44,6 @@ $(document).ready(function(){
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
       <div class="container">
         <a class="navbar-brand" href="Main">Food Factory</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -79,7 +70,7 @@ $(document).ready(function(){
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Board
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> <!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
                 <a class="dropdown-item">공지사항</a>
                 <a class="dropdown-item" href="/yumyum/resources/html/Board.html">자유게시판</a>
                 <a class="dropdown-item">QnA</a>
@@ -96,7 +87,7 @@ $(document).ready(function(){
       </div>
     </nav>
     <header>
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"> <!-- carousel = 이미지 슬라이드 하는 기능 -->
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -104,7 +95,6 @@ $(document).ready(function(){
           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url(/yumyum/resources/img/korea.jpg)">
             <div class="carousel-caption d-none d-md-block">
               <h3>한식</h3>
@@ -142,7 +132,6 @@ $(document).ready(function(){
         </a>
       </div>
     </header>
-    <!-- Page Content -->
     <div class="container">
         <h2>Best Recipe</h2>
       <div class="row">
@@ -217,7 +206,6 @@ $(document).ready(function(){
     <!-- Modal -->
 <div class="modal fade" id="loginPop" role="dialog">
   <div class="modal-dialog">
-  
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -244,7 +232,6 @@ $(document).ready(function(){
 <!-- Modal -->
 <div class="modal fade" id="signPop" role="dialog">
   <div class="modal-dialog">
-  
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
