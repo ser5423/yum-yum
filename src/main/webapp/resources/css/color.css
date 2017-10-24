@@ -1,139 +1,163 @@
-.bg-redred{
-    background-color: firebrick;
+.bg-redred {
+	background-color: firebrick;
 }
 
-#ul-gray{
+#ul-gray {
 	position: inline-block;
-	text-align:center;
+	text-align: center;
 	height: 133px;
 	width: 100%;
 	display: block;
-	list-style:none;
-	
+	list-style: none;
 }
-#pont-sizea{
+
+#pont-sizea {
 	font-weight: bold;
-	font-size : 85px;
-	decoration : none;
-	color : #000000;
+	font-size: 85px;
+	decoration: none;
+	color: #000000;
 	font-family: arial;
 }
+
 #cardne {
-	width:85%;
-	padding:5px;
+	width: 85%;
+	padding: 5px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: clip;
 	display: inline-block;
 }
+
 #plusbtn {
-	width:15%;
+	width: 15%;
 	background-color: white;
 	display: inline-block;
-	border : 0;
-	outline : 0;
-	cursor : pointer;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
 }
-#modalsize{
-	width:100%;
+
+#modalsize {
+	width: 100%;
 }
-#modalimagesize{
-	width:60%;
-	display:inline-block;
-}
-#modalimagesize2{
-	width:100%;
-	display:inline-block;
-}
-#modaltextsize{
-	height:297.59px;
-	width:35%;
-	display:inline-block;
-	margin-bottom:0;
-	position: absolute;
-	right:25px;
-}
-.modalradius{
-	border-radius: 1em;
-	padding : 5px;
-	border : 1em;
-	border: 1px solid #dededf;
-	text-align:left;
-}
-.reviewmodal{
-	text-align:center;
-}
-.managerbtn{
-	color : rgba(255,255,255,.5);
-	text-decoration:none;
-	hover : text-decoration:none;
-}
-#writebtn {
-	width:70px;
+
+#modalimagesize {
+	width: 60%;
 	display: inline-block;
-	cursor : pointer;
 }
-.writbtn2{
-	text-align : right;
-	width:100%;
-	cursor : pointer;
+
+#modalimagesize2 {
+	width: 100%;
+	display: inline-block;
 }
-.writbtn3{
-	position : relative;
-	cursor : pointer;
+
+#modaltextsize {
+	height: 297.59px;
+	width: 35%;
+	display: inline-block;
+	margin-bottom: 0;
+	position: absolute;
+	right: 25px;
 }
-.writbtn3-1{
-	position : relative;
-	width:100%;
-	text-align : right;
-}
-#managertable{
-	height : 500px;
+
+.modalradius {
 	border-radius: 1em;
-	padding : 5px;
-	border : 1em;
+	padding: 5px;
+	border: 1em;
+	border: 1px solid #dededf;
+	text-align: left;
+}
+
+.reviewmodal {
+	text-align: center;
+}
+
+.managerbtn {
+	color: rgba(255, 255, 255, .5);
+	text-decoration: none;
+	hover: text-decoration:none;
+}
+
+#writebtn {
+	width: 70px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.writbtn2 {
+	text-align: right;
+	width: 100%;
+	cursor: pointer;
+}
+
+.writbtn3 {
+	position: relative;
+	cursor: pointer;
+}
+
+.writbtn3-1 {
+	position: relative;
+	width: 100%;
+	text-align: right;
+}
+
+#managertable {
+	height: 500px;
+	border-radius: 1em;
+	padding: 5px;
+	border: 1em;
 	border: 1px solid #dededf;
 }
-.managerul{
-	list-style:none;
+
+.managerul {
+	list-style: none;
 }
-.inputform{
-	width:100%;
+
+.inputform {
+	width: 100%;
 }
-.inputformne{
-	width:30%;
+
+.inputformne {
+	width: 30%;
 }
-.inputformne2{
-	width:100%;
+
+.inputformne2 {
+	width: 100%;
 }
-#modalloginimage { 
-  position: fixed; 
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: blur(3px);
+
+#modalloginimage {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	filter: blur(3px);
 }
-#myModal{
-	position:absolute;
-  	top:30%;
-  	left:50%;
-	transform:translate(-50%, -50%);
-	width : 300px;
-	height : 300px;
+
+#myModal {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 300px;
 }
-.myModalsize{
-	width : 225px;
-	height : 200px;
+
+.myModalsize {
+	width: 225px;
+	height: 200px;
 }
-#managerlogin{
+
+#managerlogin {
 	max-width: 400px;
 	margin: 30px auto;
 }
-.managerlogin{
-	width : 400px;
-	height : 300px;
+
+.managerlogin {
+	width: 400px;
+	height: 300px;
 }
-.yellowgreen{
+
+.yellowgreen {
 	background-color: #1EC800;
 }
