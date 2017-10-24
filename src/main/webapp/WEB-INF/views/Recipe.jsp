@@ -174,7 +174,7 @@ $(document).ready(function(){
 
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="KF" tabindex="-1" role="dialog"
+	<div class="modal fade" id="${item.NO}" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content" id="modalsize">
