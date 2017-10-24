@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+	String type = request.getParameter("type");
+	
+	if(type == null){
+		response.sendRedirect("Main");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +27,57 @@
 
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	var hash = location.hash; 
+	
+	$("#recipeset a").on("click", function(){
+		hash = $(this).attr("href"); 
+		htmlLoad(); 
+	});
+	function htmlLoad(){
 
+		var url = "/yum-yum/resources/html/" + hash.substr(1, hash.length) + ".html";
+	}
+	htmlLoad(); 
+	
+	function getData(){
+		var type = '<%=type%>';
+		$.ajax({url:"RE_Data", 
+				data: {"type": type}, 
+				datetype:"json"
+		}).done(function(result){
+			var data = result.list;
+			var food = result.food;
+			
+			$(".container h1").text(food);
+			$(".breadcrumb li").eq(1).text(food);
+			$(".container .row").empty();
+			
+			for(var i = 0; i < data.length; i++){
+				var tag = "";
+				tag += '<div class="col-lg-6 portfolio-item">';
+				tag += '<div class="card h-100">';
+				if(data[i].IMAGE != ""){
+					tag += '<a href="#"><img class="card-img-top" src="/yumyum2test/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
+				}else {
+					tag += '<a href="#"><img class="card-img-top" src="/yumyum2test/resources/img/manager.jpg"></a>';
+				}
+				tag += '<div class="card-body">';
+				tag += '<h4 class="card-title">';
+				tag += '<a href="#">'+data[i].NAME+'</a>';
+				tag += '</h4>';
+				tag += '<p class="card-text">'+data[i].INTRO+'</p>';
+				tag += '</div>';
+				tag += '</div>';
+				tag += '</div>';
+				$(".container .row").append(tag);
+			}
+		});
+	}
+	getData();
+});
+</script> 
 </head>
 
 <body>
@@ -28,7 +85,7 @@
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="Main">Food Factory</a>
+			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				style="cursor: pointer" data-toggle="collapse"
@@ -44,10 +101,10 @@
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="Recipe">한식</a>
-							<a class="dropdown-item" href="Recipe">일식</a>
-							<a class="dropdown-item" href="Recipe">중식</a>
-							<a class="dropdown-item" href="Recipe">양식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -90,79 +147,13 @@
 		</ol>
 
 		<div class="row">
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#KF"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg" data-toggle="modal"
-						data-target="#KF"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#KF" data-toggle="modal" data-target="#KF">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 portfolio-item">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top"
-						src="/yumyum/resources/img/korea2.jpg"></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">한식</a>
-						</h4>
-						<p class="card-text">가벼운 음식 소개</p>
-					</div>
-				</div>
-			</div>
+			<div class="col-xs-2">${item.NO}</div>
+			<div class="col-xs-2">${item.NAME }</div>
+			<div class="col-xs-2">${item.image}</div>
+			<div class="col-xs-2">${item.INTRO}</div>
+			<div class="col-xs-2">${item.RECIPE}</div>
+			<div class="col-xs-2">${item.type}</div>
+			<div class="col-xs-2">${item.INGREDIENT}</div>
 		</div>
 		<!-- /.row -->
 

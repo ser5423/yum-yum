@@ -42,7 +42,7 @@
 					<div class="modal-content myModalsize">
 						<div class="modal-header">
 							<h4 class="modal-title">Login</h4>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<button type="button" class="close" onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
 							<form>

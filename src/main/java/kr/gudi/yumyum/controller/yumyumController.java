@@ -50,9 +50,24 @@ public class yumyumController {
 	}
 	@RequestMapping("/Recipe")
 	public ModelAndView recipe(ModelAndView mav){
+		
 		mav.setViewName("/Recipe");
 		return mav;
 	}
+	
+	@RequestMapping("/RE_Data")
+	public void selectItem(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.recipeSelectOne(paramMap));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/ReInput")
 	public ModelAndView reinput(ModelAndView mav){
 		mav.setViewName("/ReInput");

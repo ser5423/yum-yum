@@ -51,7 +51,7 @@
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="Main">Food Factory</a>
+			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				style="cursor: pointer" data-toggle="collapse"
@@ -67,10 +67,10 @@
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="Recipe">한식</a>
-							<a class="dropdown-item" href="Recipe">일식</a>
-							<a class="dropdown-item" href="Recipe">중식</a>
-							<a class="dropdown-item" href="Recipe">양식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
