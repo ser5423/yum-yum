@@ -4,7 +4,6 @@
 
 #ul-gray{
 	position: inline-block;
-/* 	background-color: #f1f2f5; */
 	text-align:center;
 	height: 133px;
 	width: 100%;
@@ -104,6 +103,9 @@
 .inputformne{
 	width:30%;
 }
+.inputformne2{
+	width:100%;
+}
 #modalloginimage { 
   position: fixed; 
   top: 0; 
@@ -113,9 +115,25 @@
   filter: blur(3px);
 }
 #myModal{
-	position : absoulte;
-	left : 848px;
-	top : 200px;
-	width : 220px;
+	position:absolute;
+  	top:30%;
+  	left:50%;
+	transform:translate(-50%, -50%);
+	width : 300px;
 	height : 300px;
+}
+.myModalsize{
+	width : 225px;
+	height : 200px;
+}
+#managerlogin{
+	max-width: 400px;
+	margin: 30px auto;
+}
+.managerlogin{
+	width : 400px;
+	height : 300px;
+}
+.yellowgreen{
+	background-color: #1EC800;
 }

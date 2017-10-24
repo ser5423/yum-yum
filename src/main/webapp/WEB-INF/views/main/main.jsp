@@ -84,11 +84,8 @@ $(document).ready(function(){
                 <a class="dropdown-item" href="/yumyum/resources/html/Board.html">QnA</a>
               </div>
             </li>
-              <li data-toggle="modal" data-target="#loginPop">
-              <a id="navbarDropdownBlog" class="nav-link" href="#">login</a>
-            </li>
             <li >
-              <a id="navbarDropdownBlog" class="nav-link" href="/yumyum/resources/html/modallogin.html">loginmodalpage</a>
+              <a id="navbarDropdownBlog" class="nav-link" href="/yumyum/resources/html/modallogin.html">login</a>
             </li>
           </ul>
         </div>
@@ -230,37 +227,6 @@ $(document).ready(function(){
 			    </div>
 			  </div>
 			</div>
-		<!-- 네이버 로그인 창 제어부분 -->
-		 <script type="text/javascript">
-		  	var naver_id_login = new naver_id_login("5pRw5lS7lYqvs0xHnEv4", "http://localhost:9090/yumyum/resources/html/callback.html");
-		  	var state = naver_id_login.getUniqState();
-		  	naver_id_login.setButton("green", 3,40);
-		  	naver_id_login.setDomain("http://localhost:9090");
-		  	naver_id_login.setState(state);
-		  	naver_id_login.setPopup();
-		  	naver_id_login.init_naver_id_login();
-		  </script>
-		  
-		  <!-- 관리자 로그인로그인창  -->
-			<div class="modal fade" id="managerlogin" role="dialog">
-			  <div class="modal-dialog">
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			      	<h4 class="modal-title">로그인</h4>
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			      </div>
-			      <div class="modal-body">
-					<form>
-					  <div class="form-group">
-					    
-					  </div>
-					</form>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-
 <!-- Modal -->
 <div class="modal fade" id="signPop" role="dialog">
   <div class="modal-dialog">
@@ -370,6 +336,38 @@ $(document).ready(function(){
                       	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/manager.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
                         <p id="modaltextsize" class="modalradius">설명</p>
                   		<p class="modalradius">관리자 추천</p>
+                  	</div> 
+                  </div> 
+            </div> 
+          </div>
+          <!-- Modal --> 
+          <div class="modal fade" id="managerlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+              <div class="modal-dialog"> 
+                  <div class="modal-content managerlogin"> 
+                      <div class="modal-header"> 
+                      	  <h4 class="modal-title" id="myModalLabel">관리자 로그인</h4> 
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+                      </div> 
+                      <div class="modal-body">
+                        <form class="form-horizontal inputform">
+						  <div class="form-group">
+						    <label for="inputEmail3" class="col-xs-6 control-label">아이디</label>
+						    <div class="col-xs-6">
+						      <input type="text" class="form-control inputformne2" id="inputEmail3" placeholder="아이디를 입력하세요">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-xs-6 control-label">비밀번호</label>
+						    <div class="col-xs-6">
+						      <input type="password" class="form-control inputformne2" id="inputPassword3" placeholder="비밀번호를 입력하세요">
+						    </div>
+						  </div>
+						  <div class="form-group writbtn3-1">
+						    <div class="col-xs-3">
+						      <button type="submit" class="btn btn-default text-white bg-redred writbtn3">login</button>
+						    </div>
+						  </div>
+						</form>
                   	</div> 
                   </div> 
             </div> 
