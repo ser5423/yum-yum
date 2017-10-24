@@ -23,7 +23,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/yumyum/Main">Food Factory</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" style="cursor:pointer" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -62,11 +62,9 @@
         </div>
       </div>
     </nav>
-    
-    
     <!-- 게시판 -->
     <div class="container">
-    <ul id="ul-gray"><li><a id="pont-sizea" href="/yumyum/resources/html/manager.html">Manager Page</a></li></ul>
+    <ul id="ul-gray"><li><a id="pont-sizea" href="/yumyum/resources/html/manager.html">Manager</a></li></ul>
       <h1 class="mt-4 mb-3">Manager Page</h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -75,29 +73,42 @@
         	<li class="breadcrumb-item active">Manager Page</li>
       	</ol>
       <div class="row">
-      		<ul>
+      		<ul class="managerul">
       			<li>
-	      			<input type="checkbox">한식
-	      			<input type="checkbox">일식
-	      			<input type="checkbox">중식
-	      			<input type="checkbox">양식
+      				<h3>Recipe</h3>
       			</li>
-      				
       			<li>
-      				<input type="checkbox">리뷰
-      				<input type="checkbox">우수리뷰
+      				<input type="checkbox"> 한식
+	      			&nbsp;
+	      			<input type="checkbox"> 일식
+	      			&nbsp;
+	      			<input type="checkbox"> 중식
+	      			&nbsp;
+	      			<input type="checkbox"> 양식
       			</li>
-      			
       			<li>
-      				<input type="checkbox">공지사항
-      				<input type="checkbox">게시판
-      				<input type="checkbox">Q&A
+      				<h3>Review</h3>
+      			</li>
+      			<li>
+      				<input type="checkbox"> 리뷰
+      				&nbsp;
+      				<input type="checkbox"> 우수리뷰
+      			</li>
+      			<li>
+      				<h3>Board</h3>
+      			</li>
+      			<li>
+      				<input type="checkbox"> 공지사항
+      				&nbsp;
+      				<input type="checkbox"> 게시판
+      				&nbsp;
+      				<input type="checkbox"> QnA
       			</li>
       		</ul>
-      		<div>
-      		
-      		
-      		</div>      
+      		<!-- 결과 화면 창 -->
+      		<div id="managertable" class="table">
+      			
+      		</div>
       </div>
     </div>
     <!-- Footer -->

@@ -22,7 +22,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/yumyum/Main">Food Factory</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" style="cursor:pointer" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -60,11 +60,6 @@
               <li class="nav-item dropdown">
               <a id="navbarDropdownBlog" class="nav-link" href="#" onclick="window.open('login.html', 'login', 'top=200px, left=700px, height=620px, width=510px')">login</a>
             </li>
-              <li class="nav-item dropdown">
-              <a class="nav-link" href="#" id="navbarDropdownBlog">
-                membership
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -82,8 +77,8 @@
         	<li class="breadcrumb-item active">공지사항</li>
       	</ol>
       	<!-- 게시판 메인 부분 -->
-      <div class="row ">
-      	<table class="table table-hover table-bordered">
+      <div class="row">
+      	<table class="table table-hover ">
       		<thead>
       			<tr>
       				<th>No</th>
@@ -98,7 +93,7 @@
       			<tr>
       				<td>1</td>
       				<td>맛있는 요리</td>
-      				<td>곽희주</td>
+      				<td>매니저</td>
       				<td>2017-10-23</td>
       				<td>10</td>
       				<td>24</td>
@@ -106,7 +101,7 @@
       			<tr>
       				<td>2</td>
       				<td>맛있는 요리</td>
-      				<td>곽희주</td>
+      				<td>매니저</td>
       				<td>2017-10-23</td>
       				<td>10</td>
       				<td>24</td>
@@ -114,14 +109,14 @@
       			<tr>
       				<td>3</td>
       				<td>맛있는 요리</td>
-      				<td>곽희주</td>
+      				<td>매니저</td>
       				<td>2017-10-23</td>
       				<td>10</td>
       				<td>24</td>
       			</tr>
       		</tbody>
       	</table>
-      	<div id="writbtn2"><button id="writebtn" type="button" onclick="location.href='#'">글쓰기</button></div>
+      	<div class="writbtn2"><button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='/yumyum/resources/html/BoInput.html'">글쓰기</button></div>
       </div>
       
       <!-- Pagination -->

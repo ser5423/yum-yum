@@ -71,11 +71,36 @@
 }
 #writebtn {
 	width:70px;
-	background-color: white;
 	display: inline-block;
 	cursor : pointer;
 }
-#writbtn2{
+.writbtn2{
 	text-align : right;
 	width:100%;
+	cursor : pointer;
+}
+.writbtn3{
+	position : relative;
+	cursor : pointer;
+}
+.writbtn3-1{
+	position : relative;
+	width:100%;
+	text-align : right;
+}
+#managertable{
+	height : 500px;
+	border-radius: 1em;
+	padding : 5px;
+	border : 1em;
+	border: 1px solid #dededf;
+}
+.managerul{
+	list-style:none;
+}
+.inputform{
+	width:100%;
+}
+.inputformne{
+	width:30%;
 }

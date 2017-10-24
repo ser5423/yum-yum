@@ -78,9 +78,6 @@ $(document).ready(function(){
             <li data-toggle="modal" data-target="#loginPop">
             <a id="navbarDropdownBlog" class="nav-link" href="#">login</a>
           </li>
-            <li data-toggle="modal" data-target="#signPop">
-            <a class="nav-link" href="#">membership</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -103,10 +100,10 @@ $(document).ready(function(){
     <div class="row">
       <div class="col-lg-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="/yumyum/resources/img/korea2.jpg"></a>
+          <a href="#KF"><img class="card-img-top" src="/yumyum/resources/img/korea2.jpg" data-toggle="modal" data-target="#KF"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">한식</a>
+              <a href="#KF" data-toggle="modal" data-target="#KF">한식</a>
             </h4>
             <p class="card-text">가벼운 음식 소개</p>
           </div>
@@ -196,7 +193,22 @@ $(document).ready(function(){
     </ul>
 
   </div>
-  <!-- /.container -->
+  <!-- Modal --> 
+          <div class="modal fade" id="KF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+              <div class="modal-dialog"> 
+                  <div class="modal-content" id="modalsize"> 
+                      <div class="modal-header">
+                      	<h4 class="modal-title" id="myModalLabel">한식</h4> 
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+                      </div> 
+                      <div class="modal-body">
+                      	<div id="modalimagesize"> <p><img src="/yumyum/resources/img/korea2.jpg" class="img-responsive card-img-top" id="modalimagesize2"></p></div> 
+                        <p id="modaltextsize" class="modalradius">설명</p>
+                  		<p class="modalradius">한식</p>
+                  	</div>
+               </div> 
+            </div> 
+          </div>
 
   <!-- Footer -->
   <footer class="py-4 bg-redred">
