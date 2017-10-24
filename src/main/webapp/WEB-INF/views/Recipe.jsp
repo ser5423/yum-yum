@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -18,34 +20,20 @@
 
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-<script type="text/javascript">
-$(document).ready(function(){
-	var hash = location.hash; 
-	
-	$("#recipeset a").on("click", function(){
-		hash = $(this).attr("href"); 
-		htmlLoad(); 
-	});
-	function htmlLoad(){
 
-		var url = "/yum-yum/resources/html/" + hash.substr(1, hash.length) + ".html";
-	}
-	htmlLoad(); 
-});
-</script>
 </head>
 
 <body>
-
-	<!-- Navigation -->
+<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/yumyum/Main">Food Factory</a>
+			<a class="navbar-brand" href="Main">Food Factory</a>
+			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
+				style="cursor: pointer" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -56,10 +44,10 @@ $(document).ready(function(){
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="/yumyum/resources/html/re1.html">한식</a>
-							<a class="dropdown-item" href="/yumyum/resources/html/re1.html">일식</a>
-							<a class="dropdown-item" href="/yumyum/resources/html/re1.html">중식</a>
-							<a class="dropdown-item" href="/yumyum/resources/html/re1.html">양식</a>
+							<a class="dropdown-item" href="Recipe">한식</a>
+							<a class="dropdown-item" href="Recipe">일식</a>
+							<a class="dropdown-item" href="Recipe">중식</a>
+							<a class="dropdown-item" href="Recipe">양식</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -68,8 +56,8 @@ $(document).ready(function(){
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<a class="dropdown-item"
-								href="/yumyum/resources/html/Review.html">우수 리뷰</a> <a
-								class="dropdown-item" href="/yumyum/resources/html/Review.html">리뷰</a>
+								href="Review">우수 리뷰</a> <a
+								class="dropdown-item" href="Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -77,21 +65,21 @@ $(document).ready(function(){
 							Board </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/resources/html/Board.html">공지사항</a>
-							<a class="dropdown-item" href="/yumyum/resources/html/Board.html">자유게시판</a>
-							<a class="dropdown-item" href="/yumyum/resources/html/Board.html">QnA</a>
+							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
+							<a class="dropdown-item" href="Board">공지사항</a>
+							<a class="dropdown-item" href="Board">자유게시판</a>
+							<a class="dropdown-item" href="Board">QnA</a>
 						</div></li>
-					<li data-toggle="modal" data-target="#loginPop"><a
-						id="navbarDropdownBlog" class="nav-link" href="#">login</a></li>
+					<li><a id="navbarDropdownBlog" class="nav-link"
+						href="Modallogin">login</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 	<!-- Page Content -->
 	<div class="container">
 		<ul id="ul-gray">
-			<li><a id="pont-sizea" href="/yumyum/resources/html/re1.html">Recipe</a></li>
+			<li><a id="pont-sizea" href="Recipe">Recipe</a></li>
 		</ul>
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">한식</h1>
@@ -220,10 +208,9 @@ $(document).ready(function(){
 
 	<!-- Footer -->
 	<footer class="py-4 bg-redred">
-		<div class="container">
-			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
-		</div>
-		<!-- /.container -->
-	</footer>
+	<div class="container">
+		<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
+	</div>
+	<!-- /.container --> </footer>
 </body>
 </html>

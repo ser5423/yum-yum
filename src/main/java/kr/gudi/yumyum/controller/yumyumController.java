@@ -28,32 +28,40 @@ public class yumyumController {
 		mav.setViewName("main/main");
 		return mav;
 	}
-	
-	@RequestMapping("/Login")
-	public void login(HttpServletRequest req, HttpServletResponse resp){
-		HashMap<String, Object> param = HttpUtil.getParameterMap(req);
-		System.out.println(param);
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		if(!("").equals(param.get("email"))){
-			map.put("email", param.get("email"));
-			map.put("stat", true);
-		}else {
-			map.put("stat", false);
-		}
-		HttpUtil.sendResponceToJson(resp, map);
-	}
-	
-	@RequestMapping("/listData")
-	public ModelAndView listData(ModelAndView mav, HttpServletRequest req){
-		HashMap<String, Object> param = new HashMap<String, Object>();
-		
-		// 디비에서 받아 온 hashmap 데이터를 json으로 변경하여 model 값으로 넣어 준다.
-		JSONObject jsonObject = new JSONObject();
-		jsonObject = JSONObject.fromObject(JSONSerializer.toJSON(ysi.select(param)));
-		mav.addObject("message", jsonObject.toString());
-		
-		mav.setViewName("re1");
+	@RequestMapping("/Board")
+	public ModelAndView board(ModelAndView mav){
+		mav.setViewName("/Board");
 		return mav;
 	}
+	@RequestMapping("/BoInput")
+	public ModelAndView boinput(ModelAndView mav){
+		mav.setViewName("/BoInput");
+		return mav;
+	}
+	@RequestMapping("/Manager")
+	public ModelAndView manager(ModelAndView mav){
+		mav.setViewName("/Manager");
+		return mav;
+	}
+	@RequestMapping("/Modallogin")
+	public ModelAndView modallogin(ModelAndView mav){
+		mav.setViewName("/Modallogin");
+		return mav;
+	}
+	@RequestMapping("/Recipe")
+	public ModelAndView recipe(ModelAndView mav){
+		mav.setViewName("/Recipe");
+		return mav;
+	}
+	@RequestMapping("/ReInput")
+	public ModelAndView reinput(ModelAndView mav){
+		mav.setViewName("/ReInput");
+		return mav;
+	}
+	@RequestMapping("/Review")
+	public ModelAndView review(ModelAndView mav){
+		mav.setViewName("/Review");
+		return mav;
+	}
+	
 }
