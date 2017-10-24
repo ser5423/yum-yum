@@ -8,11 +8,14 @@
     <script src="/yumyum/resources/js/jquery.min.js"></script>
     <script src="/yumyum/resources/js/popper.min.js"></script>
     <script src="/yumyum/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
     <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
+    
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#img1").load("/yumyum/resources/html/1016/img1.html");
@@ -39,7 +42,6 @@ $(document).ready(function(){
 	
 });
 </script> 
-
   </head>
   <body>
     <!-- Navigation -->
@@ -84,6 +86,9 @@ $(document).ready(function(){
             </li>
               <li data-toggle="modal" data-target="#loginPop">
               <a id="navbarDropdownBlog" class="nav-link" href="#">login</a>
+            </li>
+            <li >
+              <a id="navbarDropdownBlog" class="nav-link" href="/yumyum/resources/html/modallogin.html">loginmodalpage</a>
             </li>
           </ul>
         </div>
@@ -206,31 +211,55 @@ $(document).ready(function(){
         </div>
       </div>
     </div>
-    <!-- Modal -->
-<div class="modal fade" id="loginPop" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-      	<h4 class="modal-title">로그인</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-		<form>
-		  <div class="form-group">
-		    <label for="email">Email address:</label>
-		    <input type="email" class="form-control" id="email" name="email">
-		  </div>
-		  <div class="form-group">
-		    <label for="pwd">Password:</label>
-		    <input type="password" class="form-control" id="pwd" name="pwd">
-		  </div>
-		  <button type="submit" class="btn btn-success">login</button>
-		</form>
-      </div>
-    </div>
-  </div>
-</div>
+	  <!-- 로그인창  -->
+			<div class="modal fade" id="loginPop" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			      	<h4 class="modal-title">로그인</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			      </div>
+			      <div class="modal-body">
+					<form>
+					  <div class="form-group">
+					    <div id="naver_id_login"></div>
+					  </div>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<!-- 네이버 로그인 창 제어부분 -->
+		 <script type="text/javascript">
+		  	var naver_id_login = new naver_id_login("5pRw5lS7lYqvs0xHnEv4", "http://localhost:9090/yumyum/resources/html/callback.html");
+		  	var state = naver_id_login.getUniqState();
+		  	naver_id_login.setButton("green", 3,40);
+		  	naver_id_login.setDomain("http://localhost:9090");
+		  	naver_id_login.setState(state);
+		  	naver_id_login.setPopup();
+		  	naver_id_login.init_naver_id_login();
+		  </script>
+		  
+		  <!-- 관리자 로그인로그인창  -->
+			<div class="modal fade" id="managerlogin" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			      	<h4 class="modal-title">로그인</h4>
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			      </div>
+			      <div class="modal-body">
+					<form>
+					  <div class="form-group">
+					    
+					  </div>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
 <!-- Modal -->
 <div class="modal fade" id="signPop" role="dialog">
@@ -350,7 +379,7 @@ $(document).ready(function(){
       <div class="container">
         <p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
         <div id="navbarDropdownBlog" class="nav-link reviewmodal managerbtn">
-        	<a class="managerbtn" href="#" data-toggle="modal" data-target="#loginPop">manager login</a>
+        	<a class="managerbtn" href="#" data-toggle="modal" data-target="#managerlogin">manager login</a>
         	<a class="managerbtn" href="/yumyum/resources/html/manager.html">manager page</a>
         </div>
       </div>

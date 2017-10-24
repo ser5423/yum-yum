@@ -104,3 +104,18 @@
 .inputformne{
 	width:30%;
 }
+#modalloginimage { 
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(3px);
+}
+#myModal{
+	position : absoulte;
+	left : 848px;
+	top : 200px;
+	width : 220px;
+	height : 300px;
+}
