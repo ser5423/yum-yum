@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +41,14 @@
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -52,8 +56,7 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item"
-								href="Review">우수 리뷰</a> <a
+							<a class="dropdown-item" href="Review">우수 리뷰</a> <a
 								class="dropdown-item" href="Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -63,9 +66,9 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="Board">공지사항</a>
-							<a class="dropdown-item" href="Board">자유게시판</a>
-							<a class="dropdown-item" href="Board">QnA</a>
+							<a class="dropdown-item" href="Board">공지사항</a> <a
+								class="dropdown-item" href="Board">자유게시판</a> <a
+								class="dropdown-item" href="Board">QnA</a>
 						</div></li>
 					<li><a id="navbarDropdownBlog" class="nav-link"
 						href="Modallogin">login</a></li>

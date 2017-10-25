@@ -84,49 +84,183 @@
 			<li class="breadcrumb-item active">우수리뷰</li>
 		</ol>
 		<div class="row">
-			<table class="table table-hover ">
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>Title</th>
-						<th>Writer</th>
-						<th>Date</th>
-						<th>View</th>
-						<th>Recommend</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="writbtn2">
-				<button id="writebtn" type="button"
-					class="btn btn-default text-white bg-redred writbtn3"
-					onclick="location.href='ReInput'">글쓰기</button>
-			</div>
+		<div class="col-md-8">
+			<div class="col-md-4-2 col-sm-6-2  portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4-2 col-sm-6-2 portfolio-item ">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰2</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4-2 col-sm-6-2 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰3</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4-2 col-sm-6-2 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰4</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4-2 col-sm-6-2 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰5</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4-2 col-sm-6-2 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">우수리뷰6</a>
+              </h4>
+              <p id="cardne" class="card-text">우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰</p>
+            </div>
+          </div>
+        </div>
+			
+			
+<!-- 			<table class="table table-hover "> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>No</th> -->
+<!-- 						<th>Title</th> -->
+<!-- 						<th>Writer</th> -->
+<!-- 						<th>Date</th> -->
+<!-- 						<th>View</th> -->
+<!-- 						<th>Recommend</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>맛있는 요리</td> -->
+<!-- 						<td>매니저</td> -->
+<!-- 						<td>2017-10-23</td> -->
+<!-- 						<td>10</td> -->
+<!-- 						<td>24</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>2</td> -->
+<!-- 						<td>맛있는 요리</td> -->
+<!-- 						<td>매니저</td> -->
+<!-- 						<td>2017-10-23</td> -->
+<!-- 						<td>10</td> -->
+<!-- 						<td>24</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>3</td> -->
+<!-- 						<td>맛있는 요리</td> -->
+<!-- 						<td>매니저</td> -->
+<!-- 						<td>2017-10-23</td> -->
+<!-- 						<td>10</td> -->
+<!-- 						<td>24</td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 			<div class="writbtn2"> -->
+<!-- 				<button id="writebtn" type="button" -->
+<!-- 					class="btn btn-default text-white bg-redred writbtn3" -->
+<!-- 					onclick="location.href='ReInput'">글쓰기</button> -->
+<!-- 			</div> -->
+<!-- Sidebar Widgets Column -->
+        
+		</div>
+		
+		
+		<div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">여기엔 정렬을 넣장</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">한식만</a>
+                    </li>
+                    <li>
+                      <a href="#">일식만</a>
+                    </li>
+                    <li>
+                      <a href="#">중식만</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">양식만</a>
+                    </li>
+                    <li>
+                      <a href="#">잡다</a>
+                    </li>
+                    <li>
+                      <a href="#">추천수</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">여기에 뭘 넣을까..</h5>
+            <div class="card-body">
+              여기에 뭘 넣을까..
+            </div>
+          </div>
+
+        </div>
+        
 		</div>
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">

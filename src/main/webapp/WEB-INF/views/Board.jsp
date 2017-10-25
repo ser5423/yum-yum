@@ -28,8 +28,7 @@
 </head>
 <body>
 	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
@@ -41,8 +40,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
@@ -51,9 +50,10 @@
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						</div>
+						</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
@@ -139,8 +139,8 @@
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
 			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
-					class="sr-only">Previous</span>
+				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
 			</a></li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>

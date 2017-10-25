@@ -20,12 +20,16 @@
 }
 
 #cardne {
-	width: 85%;
+	width: 100%;
 	padding: 5px;
 	overflow: hidden;
-	white-space: nowrap;
 	text-overflow: clip;
 	display: inline-block;
+	
+	white-space: normal;
+	line-height: 1.2;
+	height: 46px;
+
 }
 
 #plusbtn {
@@ -162,4 +166,20 @@
 
 .yellowgreen {
 	background-color: #1EC800;
+}
+@media ( min-width :768px) {
+	.col-md-4-2 {
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 49%;
+		display : inline-block;
+		padding : 0 5px;
+	}
+}
+@media ( max-width :767px) {
+	.col-sm-6-2 {
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 100%
+	}
 }
