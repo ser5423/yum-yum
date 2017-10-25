@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+   String type = request.getParameter("type");
+   
+   if(type == null){
+      response.sendRedirect("Main");
+   }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +31,54 @@
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+var hash = location.hash; 
+   
+   $("div#boardset.dropdown-menu.dropdown-menu-right.show a").on("click", function(){
+      hash = $(this).attr("href"); 
+      htmlLoad(); 
+   });
+   function htmlLoad(){
+
+      var url = "/yum-yum2/resources/html/" + hash.substr(1, hash.length) + ".html";
+   }
+   htmlLoad(); 
+   
+   function getData(){
+      var type = '<%=type%>';
+      $.ajax({url:"Board1_Data", 
+            data: {"type": type}, 
+            datetype:"json"
+      }).done(function(result){
+         var data = result.list;
+         var board = result.Board;
+         
+         $("#pont-sizea").text(board);
+         $(".container h1").text(board);
+         $(".breadcrumb li").eq(1).text(board);
+         $(".container .row tbody").empty();
+         
+         for(var i = 0; i < data.length; i++){
+            var tag = "";
+            tag +=    '<tr>';
+            tag +=    '<td>'+ data[i].TITLE+'</td>';
+            tag +=    '<td>'+ data[i].NAME+'</td>';
+            tag +=    '<td>'+ data[i].UPLOAD+'</td>';
+            tag +=    '<td>'+ data[i].RECOMMEND+'</td>';
+            tag +=    '<td>'+ data[i].VIEWCNT+'</td>';
+            tag +=    '</tr>';
+            $(".container .row tbody").append(tag); 
+
+         }
+      });
+   }
+   getData();
+});
+</script>
+	
+	
+	
 
 </head>
 <body>
@@ -69,9 +124,9 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="Board">공지사항</a>
-							<a class="dropdown-item" href="Board">자유게시판</a>
-							<a class="dropdown-item" href="Board">QnA</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a> <a
+								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a> <a
+								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div></li>
 					<li><a id="navbarDropdownBlog" class="nav-link"
 						href="Modallogin">login</a></li>
@@ -94,7 +149,6 @@
 			<table class="table table-hover ">
 				<thead>
 					<tr>
-						<th>No</th>
 						<th>Title</th>
 						<th>Writer</th>
 						<th>Date</th>
@@ -103,30 +157,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>맛있는 요리</td>
-						<td>매니저</td>
-						<td>2017-10-23</td>
-						<td>10</td>
-						<td>24</td>
-					</tr>
+					
 				</tbody>
 			</table>
 			<div class="writbtn2">

@@ -67,9 +67,9 @@
 							Board </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="Board.html">공지사항</a> <a
-								class="dropdown-item" href="Board.html">자유게시판</a> <a
-								class="dropdown-item" href="Board.html">QnA</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a> <a
+								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a> <a
+								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div></li>
 					<li data-toggle="modal" data-target="#loginPop"><a
 						id="navbarDropdownBlog" class="nav-link" href="#">login</a></li>

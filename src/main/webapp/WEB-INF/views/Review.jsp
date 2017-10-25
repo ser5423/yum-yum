@@ -160,59 +160,8 @@
 						</div>
 					</div>
 				</div>
-
-
-				<!-- 			<table class="table table-hover "> -->
-				<!-- 				<thead> -->
-				<!-- 					<tr> -->
-				<!-- 						<th>No</th> -->
-				<!-- 						<th>Title</th> -->
-				<!-- 						<th>Writer</th> -->
-				<!-- 						<th>Date</th> -->
-				<!-- 						<th>View</th> -->
-				<!-- 						<th>Recommend</th> -->
-				<!-- 					</tr> -->
-				<!-- 				</thead> -->
-				<!-- 				<tbody> -->
-				<!-- 					<tr> -->
-				<!-- 						<td>1</td> -->
-				<!-- 						<td>맛있는 요리</td> -->
-				<!-- 						<td>매니저</td> -->
-				<!-- 						<td>2017-10-23</td> -->
-				<!-- 						<td>10</td> -->
-				<!-- 						<td>24</td> -->
-				<!-- 					</tr> -->
-				<!-- 					<tr> -->
-				<!-- 						<td>2</td> -->
-				<!-- 						<td>맛있는 요리</td> -->
-				<!-- 						<td>매니저</td> -->
-				<!-- 						<td>2017-10-23</td> -->
-				<!-- 						<td>10</td> -->
-				<!-- 						<td>24</td> -->
-				<!-- 					</tr> -->
-				<!-- 					<tr> -->
-				<!-- 						<td>3</td> -->
-				<!-- 						<td>맛있는 요리</td> -->
-				<!-- 						<td>매니저</td> -->
-				<!-- 						<td>2017-10-23</td> -->
-				<!-- 						<td>10</td> -->
-				<!-- 						<td>24</td> -->
-				<!-- 					</tr> -->
-				<!-- 				</tbody> -->
-				<!-- 			</table> -->
-				<!-- 			<div class="writbtn2"> -->
-				<!-- 				<button id="writebtn" type="button" -->
-				<!-- 					class="btn btn-default text-white bg-redred writbtn3" -->
-				<!-- 					onclick="location.href='ReInput'">글쓰기</button> -->
-				<!-- 			</div> -->
-				<!-- Sidebar Widgets Column -->
-
 			</div>
-
-
 			<div class="col-md-4">
-
-				<!-- Search Widget -->
 				<div class="card my-4 ">
 					<h5 class="card-header bg-redred text-white">Search</h5>
 					<div class="card-body">
@@ -220,13 +169,12 @@
 							<input type="text" class="form-control"
 								placeholder="Search for..."> <span
 								class="input-group-btn">
-								<button class="btn btn-default text-white bg-redred writbtn3" type="button">Go!</button>
+								<button class="btn btn-default text-white bg-redred writbtn3"
+									type="button">Go!</button>
 							</span>
 						</div>
 					</div>
 				</div>
-
-				<!-- Categories Widget -->
 				<div class="card my-4">
 					<h5 class="card-header bg-redred text-white">여기엔 정렬을 넣장</h5>
 					<div class="card-body">
@@ -248,8 +196,6 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Side Widget -->
 				<div class="card my-4">
 					<h5 class="card-header bg-redred text-white">여기에 뭘 넣을까..</h5>
 					<div class="card-body">여기에 뭘 넣을까..</div>

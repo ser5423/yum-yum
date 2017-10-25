@@ -33,6 +33,13 @@ public class yumyumController {
 		mav.setViewName("/Board");
 		return mav;
 	}
+	@RequestMapping("/Board1_Data")
+	   public void selectBoard(HttpServletResponse response, HttpServletRequest req) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	      HttpUtil.sendResponceToJson(response, ysi.BoardSelectOne(paramMap));
+	}
+	
+	
 	@RequestMapping("/BoInput")
 	public ModelAndView boinput(ModelAndView mav){
 		mav.setViewName("/BoInput");

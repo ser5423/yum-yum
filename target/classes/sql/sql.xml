@@ -10,4 +10,10 @@
 	<select id="recipeSelectOne" parameterType="hashmap" resultType="hashmap">
  		select * from recipe where type = #{type}
  	</select>
+ 	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap">
+      select * from board
+   </select>
+   <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
+       select * from board where type = #{type}
+   </select>
 </mapper>
