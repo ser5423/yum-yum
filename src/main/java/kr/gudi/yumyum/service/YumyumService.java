@@ -49,4 +49,26 @@ public class YumyumService implements YumyumServiceInterface {
 	   System.out.println(map);
 	      return map;
 	   }
+	 // Review부분
+	   @Override
+	   public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap){
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      String text="";
+	      map.put("list", ydi.reviewSelectOne(paramMap));
+	      map.put("text", text);
+	      System.out.println(map);
+	      return map;
+	   }
+	   
+	   
+	   // bestReview부분
+	   @Override
+	   public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap){
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      String text="";
+	      map.put("list", ydi.bestreviewSelectOne(paramMap));
+	      map.put("text", text);
+	      System.out.println(map);
+	      return map;
+	   }
 }

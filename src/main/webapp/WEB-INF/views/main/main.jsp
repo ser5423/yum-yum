@@ -19,32 +19,6 @@
 <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#img1").load("/yumyum/resources/html/1016/img1.html");
-		$("#img2").load("/yumyum/resources/html/1016/img2.html");
-		$("#img3").load("/yumyum/resources/html/1016/img3.html");
-		$("#img4").load("/yumyum/resources/html/1016/img4.html");
-
-		$("form").on("submit", function(event) {
-			event.preventDefault();
-			$.ajax({
-				url : "Login",
-				data : $(this).serialize()
-			}).done(function(result) {
-				console.log(result);
-				$("#loginPop").modal("hide");
-				if (result.stat) {
-					alert(result.email + " 로그인이 성공하였습니다.");
-				} else {
-					alert("입력하신 [" + result.email + "] 정보가 잘못되었습니다.");
-				}
-			});
-		});
-
-	});
-</script>
 </head>
 <body>
 	<!-- Navigation -->
@@ -52,6 +26,7 @@
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
+
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				style="cursor: pointer" data-toggle="collapse"
@@ -59,6 +34,7 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
@@ -82,8 +58,8 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="Review">우수 리뷰</a> <a
-								class="dropdown-item" href="Review">리뷰</a>
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
+								class="dropdown-item" href="/yumyum/Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -92,9 +68,12 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div></li>
 					<li><a id="navbarDropdownBlog" class="nav-link"
 						href="Modallogin">login</a></li>
@@ -254,43 +233,6 @@
 						<button id="plusbtn" type="button" data-toggle="modal"
 							data-target="#MF">...</button>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 로그인창  -->
-	<div class="modal fade" id="loginPop" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">로그인</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<div id="naver_id_login"></div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="signPop" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">회원 가입</h4>
-				</div>
-				<div class="modal-body">
-					<p>Some text in the modal.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>

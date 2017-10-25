@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,8 @@
 					<div class="modal-content myModalsize">
 						<div class="modal-header">
 							<h4 class="modal-title">Login</h4>
-							<button type="button" class="close" onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
+							<button type="button" class="close"
+								onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
 							<form>
@@ -61,6 +62,7 @@
 					</div>
 				</div>
 			</div>
+
 			<script type="text/javascript">
 				var naver_id_login = new naver_id_login("5pRw5lS7lYqvs0xHnEv4",
 						"http://localhost:9090/yumyum/resources/html/callback.html");

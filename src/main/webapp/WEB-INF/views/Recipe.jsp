@@ -112,9 +112,8 @@ $(document).ready(function(){
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item"
-								href="Review">우수 리뷰</a> <a
-								class="dropdown-item" href="Review">리뷰</a>
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
+								class="dropdown-item" href="/yumyum/Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -139,21 +138,15 @@ $(document).ready(function(){
 			<li><a id="pont-sizea" href="Recipe">Recipe</a></li>
 		</ul>
 		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">한식</h1>
+		<h1 class="mt-4 mb-3"></h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
-			<li class="breadcrumb-item active">한식</li>
+			<li class="breadcrumb-item active"></li>
 		</ol>
 
 		<div class="row">
-			<div class="col-xs-2">${item.NO}</div>
-			<div class="col-xs-2">${item.NAME }</div>
-			<div class="col-xs-2">${item.image}</div>
-			<div class="col-xs-2">${item.INTRO}</div>
-			<div class="col-xs-2">${item.RECIPE}</div>
-			<div class="col-xs-2">${item.type}</div>
-			<div class="col-xs-2">${item.INGREDIENT}</div>
+
 		</div>
 		<!-- /.row -->
 

@@ -18,7 +18,112 @@
 
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						var pathname = location.pathname;
+						console.log("")
+						if (pathname == "/yumyum/Review") {
+							function getData() {
 
+								$
+										.ajax({
+											url : "Review_Data",
+											data : $(this).serialize()
+										})
+										.done(
+												function(result) {
+													var data = result.list;
+													var text = result.text;
+													var tag = "";
+
+													$(".container h1").text(
+															text);
+													$(".breadcrumb li").eq(1)
+															.text(text);
+													$(
+															".container .row .col-md-8")
+															.empty();
+
+													for (var i = 0; i < data.length; i++) {
+														var tag = "";
+														tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
+														tag += '<div class="card h-100">';
+														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" alt=""></a>';
+														tag += '<div class="card-body">';
+														tag += '<h4 class="card-title">';
+														tag += '<a href="#">'
+																+ data[i].TITLE
+																+ '</a>';
+														tag += '</h4>';
+														tag += '<p id="cardne" class="card-text">'
+																+ data[i].WRITER
+																+ '</p>';
+														tag += '</div>';
+														tag += '</div>';
+														tag += '</div>';
+
+														$(
+																".container .row .col-md-8")
+																.append(tag);
+													}
+												});
+							}
+							getData();
+						} else if (pathname == "/yumyum/BestReview") {
+
+							function getData1() {
+								$
+										.ajax({
+											url : "bestReview_Data",
+											data : $(this).serialize()
+										})
+										.done(
+												function(result) {
+													var data = result.list;
+													var text = result.text;
+													var tag = "";
+
+													$(".container h1").text(
+															text);
+													$(".breadcrumb li").eq(1)
+															.text(text);
+													$(
+															".container .row .col-md-8")
+															.empty();
+
+													for (var i = 0; i < data.length; i++) {
+														var tag = "";
+														tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
+														tag += '<div class="card h-100">';
+														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" alt=""></a>';
+														tag += '<div class="card-body">';
+														tag += '<h4 class="card-title">';
+														tag += '<a href="#">'
+																+ data[i].TITLE
+																+ '</a>';
+														tag += '</h4>';
+														tag += '<p id="cardne" class="card-text">'
+																+ data[i].WRITER
+																+ '</p>';
+														tag += '</div>';
+														tag += '</div>';
+														tag += '</div>';
+
+														$(
+																".container .row .col-md-8")
+																.append(tag);
+													}
+												});
+							}
+							getData1();
+						} else {
+							response.sendRedirect("Main");
+						}
+
+					});
+</script>
 </head>
 <body>
 	<!-- Navigation -->
@@ -56,8 +161,8 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="Review">우수 리뷰</a> <a
-								class="dropdown-item" href="Review">리뷰</a>
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
+								class="dropdown-item" href="/yumyum/Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -66,9 +171,12 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="Board">공지사항</a> <a
-								class="dropdown-item" href="Board">자유게시판</a> <a
-								class="dropdown-item" href="Board">QnA</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div></li>
 					<li><a id="navbarDropdownBlog" class="nav-link"
 						href="Modallogin">login</a></li>
@@ -87,80 +195,7 @@
 			<li class="breadcrumb-item active">우수리뷰</li>
 		</ol>
 		<div class="row">
-			<div class="col-md-8">
-				<div class="col-md-4-2 col-sm-6-2  portfolio-item">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4-2 col-sm-6-2 portfolio-item ">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰2</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰3</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰4</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰5</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
-					<div class="card h-100">
-						<a href="#"><img class="card-img-top"
-							src="/yumyum/resources/img/manager.jpg" alt=""></a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#">우수리뷰6</a>
-							</h4>
-							<p id="cardne" class="card-text">우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰우수리뷰</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="col-md-8"></div>
 			<div class="col-md-4">
 				<div class="card my-4 ">
 					<h5 class="card-header bg-redred text-white">Search</h5>

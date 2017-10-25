@@ -58,8 +58,8 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="Review.html">우수 리뷰</a> <a
-								class="dropdown-item" href="Review.html">리뷰</a>
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
+								class="dropdown-item" href="/yumyum/Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"

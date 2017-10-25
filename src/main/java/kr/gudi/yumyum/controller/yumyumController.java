@@ -72,20 +72,33 @@ public class yumyumController {
 		mav.setViewName("/ReInput");
 		return mav;
 	}
-	@RequestMapping("/Review")
-	public ModelAndView review(ModelAndView mav){
-		mav.setViewName("/Review");
-		return mav;
-	}
+
 	@RequestMapping("/BoardView")
 	public ModelAndView boardview(ModelAndView mav){
 		mav.setViewName("/BoardView");
 		return mav;
 	}
-	@RequestMapping("/Reviewview")
-	public ModelAndView reviewview(ModelAndView mav){
-		mav.setViewName("/Reviewview");
-		return mav;
-	}
+	@RequestMapping("/Review")
+	   public ModelAndView review(ModelAndView mav){
+	      mav.setViewName("/Review");
+	      return mav;
+	   }
+	   @RequestMapping("/BestReview")
+	   public ModelAndView Bestreview(ModelAndView mav){
+	      mav.setViewName("/Review");
+	      return mav;
+	   }
+	   
+	   @RequestMapping("/Review_Data")
+	   public void ReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	      HttpUtil.sendResponceToJson(response, ysi.reviewSelectOne(paramMap));
+	   }
+	   
+	   @RequestMapping("/bestReview_Data")
+	   public void bestReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	      HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
+	   }
 	
 }

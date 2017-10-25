@@ -16,4 +16,13 @@
    <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
        select * from board where type = #{type}
    </select>
+     <!-- Review부분 -->
+    <select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
+       select * from REVIEW where RECOMMEND <![CDATA[ < ]]> 20
+    </select>
+    
+    <!-- BeseReview부분 -->
+    <select id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
+       select * from REVIEW where RECOMMEND >= 20
+    </select>
 </mapper>

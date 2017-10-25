@@ -56,8 +56,8 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="Review">우수 리뷰</a> <a
-								class="dropdown-item" href="Review">리뷰</a>
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
+								class="dropdown-item" href="/yumyum/Review">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -66,9 +66,12 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div></li>
 					<li><a id="navbarDropdownBlog" class="nav-link"
 						href="Modallogin">login</a></li>
@@ -112,7 +115,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">사진 첨부</label>
+					<label for="inputPassword3" class="col-xs-6 control-label">사진
+						첨부</label>
 					<div class="col-xs-6">
 						<input type="file" id="File" class="form-control">
 					</div>
