@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -19,14 +20,19 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 </head>
 <body>
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="Main">Yum - Yum</a>
-			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
+			<a class="navbar-brand" href="/yumyum/Main">Food Factory</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				style="cursor: pointer" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -41,10 +47,10 @@
 						aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+							<a class="dropdown-item" href="re1.html">한식</a> <a
+								class="dropdown-item" href="re1.html">일식</a> <a
+								class="dropdown-item" href="re1.html">중식</a> <a
+								class="dropdown-item" href="re1.html">양식</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -52,9 +58,8 @@
 							Review </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item"
-								href="Review">우수 리뷰</a> <a
-								class="dropdown-item" href="Review">리뷰</a>
+							<a class="dropdown-item" href="Review.html">우수 리뷰</a> <a
+								class="dropdown-item" href="Review.html">리뷰</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -62,76 +67,68 @@
 							Board </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="Board">공지사항</a>
-							<a class="dropdown-item" href="Board">자유게시판</a>
-							<a class="dropdown-item" href="Board">QnA</a>
+							<a class="dropdown-item" href="Board.html">공지사항</a> <a
+								class="dropdown-item" href="Board.html">자유게시판</a> <a
+								class="dropdown-item" href="Board.html">QnA</a>
 						</div></li>
-					<li><a id="navbarDropdownBlog" class="nav-link"
-						href="Modallogin">login</a></li>
+					<li data-toggle="modal" data-target="#loginPop"><a
+						id="navbarDropdownBlog" class="nav-link" href="#">login</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<!-- 게시판 -->
+
+
+	<!-- nav 끝 -->
 	<div class="container">
 		<ul id="ul-gray">
-			<li><p id="pont-sizea" class="col-xs-6">Create</p></li>
+			<li><p id="pont-sizea" class="col-xs-6">View</p></li>
 		</ul>
-		<!--       <h1 class="mt-4 mb-3">Create Page</h1> -->
+		<!-- 게시판 메인 부분 -->
 		<div class="row">
 			<form class="form-horizontal inputform">
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">제목</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="inputEmail3" placeholder="글 제목을 입력하세요">
-					</div>
+					<label for="inputEmail3" class="col-xs-6 control-label">글 번호 : </label>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">아이디</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="inputEmail3" placeholder="아이디를 입력하세요">
-					</div>
+					<label for="inputEmail3" class="col-xs-6 control-label">제목 : </label>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">비밀번호</label>
-					<div class="col-xs-6">
-						<input type="password" class="form-control inputformne"
-							id="inputPassword3" placeholder="비밀번호를 입력하세요">
-					</div>
+					<label for="inputEmail3" class="col-xs-6 control-label">작성자  : </label>
+				</div>
+				<div class="form-group" style="text-align : right;">
+					<label for="inputEmail3" class="col-xs-6 control-label">ip : 192.168.***.***</label>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">내용</label>
+					<label for="inputPassword3" class="col-xs-6 control-label">내용 : </label>
 					<div class="col-xs-6">
-						<textarea class="form-control col-xs-12" rows="25" cols="100"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">파일첨부</label>
-					<div class="col-xs-6">
-						<input type="file" id="File" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">대표 사진 첨부</label>
-					<div class="col-xs-6">
-						<input type="file" id="File" class="form-control">
+						<div id="managertable" class="table"></div>
 					</div>
 				</div>
 				<div class="form-group writbtn3-1">
 					<div class="col-xs-3">
 						<button type="button" class="btn text-white bg-redred writbtn3"
-							onclick="location.href='Review'">목록</button>
+							onclick="location.href='/yumyum/resources/html/Board.html'">목록</button>
 						<button type="submit"
-							class="btn btn-default text-white bg-redred writbtn3">작성</button>
+							class="btn btn-default text-white bg-redred writbtn3">수정</button>
+							<button type="button"
+							class="btn btn-default text-white bg-redred writbtn3">삭제</button>
 					</div>
 				</div>
 			</form>
+			
+<!-- 			<div class="writbtn2"> -->
+<!-- 				<button id="writebtn" type="button" -->
+<!-- 					class="btn btn-default text-white bg-redred writbtn3" -->
+<!-- 					onclick="location.href='/yumyum/resources/html/BoInput.html'">글쓰기</button> -->
+<!-- 			</div> -->
 		</div>
+
+		
 	</div>
-	<!-- Footer -->
+	
+	
+<!-- Footer -->
 	<footer class="py-4 bg-redred">
 		<div class="container">
 			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>

@@ -173,7 +173,7 @@
 						data-target="#KF"></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#KF" data-toggle="modal" data-target="#KF">한국</a>
+							<a href="#KF" data-toggle="modal" data-target="#KF">한식</a>
 						</h4>
 						<p id="cardne" class="card-text">소개글소개글소개글소개글소개글소개글소개글소개</p>
 						<button id="plusbtn" type="button" data-toggle="modal"

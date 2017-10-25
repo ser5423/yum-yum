@@ -112,7 +112,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">파일첨부</label>
+					<label for="inputPassword3" class="col-xs-6 control-label">사진 첨부</label>
 					<div class="col-xs-6">
 						<input type="file" id="File" class="form-control">
 					</div>

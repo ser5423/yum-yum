@@ -60,14 +60,6 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.recipeSelectOne(paramMap));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/ReInput")
 	public ModelAndView reinput(ModelAndView mav){
 		mav.setViewName("/ReInput");
@@ -76,6 +68,16 @@ public class yumyumController {
 	@RequestMapping("/Review")
 	public ModelAndView review(ModelAndView mav){
 		mav.setViewName("/Review");
+		return mav;
+	}
+	@RequestMapping("/BoardView")
+	public ModelAndView boardview(ModelAndView mav){
+		mav.setViewName("/BoardView");
+		return mav;
+	}
+	@RequestMapping("/Review")
+	public ModelAndView reviewview(ModelAndView mav){
+		mav.setViewName("/Reviewview");
 		return mav;
 	}
 	
