@@ -75,7 +75,7 @@ public class yumyumController {
 		mav.setViewName("/BoardView");
 		return mav;
 	}
-	@RequestMapping("/Review")
+	@RequestMapping("/Reviewview")
 	public ModelAndView reviewview(ModelAndView mav){
 		mav.setViewName("/Reviewview");
 		return mav;

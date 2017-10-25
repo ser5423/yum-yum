@@ -91,7 +91,7 @@
 				<div class="col-md-4-2 col-sm-6-2  portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰</a>
@@ -103,7 +103,7 @@
 				<div class="col-md-4-2 col-sm-6-2 portfolio-item ">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰2</a>
@@ -115,7 +115,7 @@
 				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰3</a>
@@ -127,7 +127,7 @@
 				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰4</a>
@@ -139,7 +139,7 @@
 				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰5</a>
@@ -151,7 +151,7 @@
 				<div class="col-md-4-2 col-sm-6-2 portfolio-item">
 					<div class="card h-100">
 						<a href="#"><img class="card-img-top"
-							src="http://placehold.it/700x400" alt=""></a>
+							src="/yumyum/resources/img/manager.jpg" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="#">우수리뷰6</a>
@@ -213,14 +213,14 @@
 			<div class="col-md-4">
 
 				<!-- Search Widget -->
-				<div class="card my-4">
-					<h5 class="card-header">Search</h5>
+				<div class="card my-4 ">
+					<h5 class="card-header bg-redred text-white">Search</h5>
 					<div class="card-body">
 						<div class="input-group">
 							<input type="text" class="form-control"
 								placeholder="Search for..."> <span
 								class="input-group-btn">
-								<button class="btn btn-secondary" type="button">Go!</button>
+								<button class="btn btn-default text-white bg-redred writbtn3" type="button">Go!</button>
 							</span>
 						</div>
 					</div>
@@ -228,7 +228,7 @@
 
 				<!-- Categories Widget -->
 				<div class="card my-4">
-					<h5 class="card-header">여기엔 정렬을 넣장</h5>
+					<h5 class="card-header bg-redred text-white">여기엔 정렬을 넣장</h5>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-6">
@@ -251,7 +251,7 @@
 
 				<!-- Side Widget -->
 				<div class="card my-4">
-					<h5 class="card-header">여기에 뭘 넣을까..</h5>
+					<h5 class="card-header bg-redred text-white">여기에 뭘 넣을까..</h5>
 					<div class="card-body">여기에 뭘 넣을까..</div>
 				</div>
 

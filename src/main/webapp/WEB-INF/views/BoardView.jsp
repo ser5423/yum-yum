@@ -108,7 +108,7 @@
 				<div class="form-group writbtn3-1">
 					<div class="col-xs-3">
 						<button type="button" class="btn text-white bg-redred writbtn3"
-							onclick="location.href='/yumyum/resources/html/Board.html'">목록</button>
+							onclick="location.href='Board'">목록</button>
 						<button type="submit"
 							class="btn btn-default text-white bg-redred writbtn3">수정</button>
 							<button type="button"
