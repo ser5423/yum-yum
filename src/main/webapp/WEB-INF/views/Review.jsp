@@ -35,7 +35,7 @@
 										.done(
 												function(result) {
 													var data = result.list;
-													var text = result.text;
+													var text = result.text1;
 													var tag = "";
 
 													$(".container h1").text(
@@ -82,13 +82,11 @@
 										.done(
 												function(result) {
 													var data = result.list;
-													var text = result.text;
+													var text = result.text2;
 													var tag = "";
 
-													$(".container h1").text(
-															text);
-													$(".breadcrumb li").eq(1)
-															.text(text);
+													$(".container h1").text(text);
+													$(".breadcrumb li").eq(1).text(text);
 													$(
 															".container .row .col-md-8")
 															.empty();
@@ -189,10 +187,10 @@
 		<ul id="ul-gray">
 			<li><a id="pont-sizea" href="Review">Review</a></li>
 		</ul>
-		<h1 class="mt-4 mb-3">우수리뷰</h1>
+		<h1 class="mt-4 mb-3"></h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
-			<li class="breadcrumb-item active">우수리뷰</li>
+			<li class="breadcrumb-item active"></li>
 		</ol>
 		<div class="row">
 			<div class="col-md-8"></div>
@@ -249,8 +247,8 @@
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#">3</a></li>
 			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-					class="sr-only">Next</span>
+				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
 			</a></li>
 		</ul>
 	</div>

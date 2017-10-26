@@ -19,86 +19,93 @@ import net.sf.json.JSONSerializer;
 
 @Controller
 public class yumyumController {
-	
+
 	@Autowired
 	YumyumServiceInterface ysi;
-	
+
 	@RequestMapping("/Main")
-	public ModelAndView main(ModelAndView mav){
+	public ModelAndView main(ModelAndView mav) {
 		mav.setViewName("main/main");
 		return mav;
 	}
+
 	@RequestMapping("/Board")
-	public ModelAndView board(ModelAndView mav){
+	public ModelAndView board(ModelAndView mav) {
 		mav.setViewName("/Board");
 		return mav;
 	}
+
 	@RequestMapping("/Board1_Data")
-	   public void selectBoard(HttpServletResponse response, HttpServletRequest req) {
-	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-	      HttpUtil.sendResponceToJson(response, ysi.BoardSelectOne(paramMap));
+	public void selectBoard(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.BoardSelectOne(paramMap));
 	}
-	
-	
+
 	@RequestMapping("/BoInput")
-	public ModelAndView boinput(ModelAndView mav){
+	public ModelAndView boinput(ModelAndView mav) {
 		mav.setViewName("/BoInput");
 		return mav;
 	}
+
 	@RequestMapping("/Manager")
-	public ModelAndView manager(ModelAndView mav){
+	public ModelAndView manager(ModelAndView mav) {
 		mav.setViewName("/Manager");
 		return mav;
 	}
+
 	@RequestMapping("/Modallogin")
-	public ModelAndView modallogin(ModelAndView mav){
+	public ModelAndView modallogin(ModelAndView mav) {
 		mav.setViewName("/Modallogin");
 		return mav;
 	}
+
 	@RequestMapping("/Recipe")
-	public ModelAndView recipe(ModelAndView mav){
-		
+	public ModelAndView recipe(ModelAndView mav) {
+
 		mav.setViewName("/Recipe");
 		return mav;
 	}
-	
+
 	@RequestMapping("/RE_Data")
 	public void selectItem(HttpServletResponse response, HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.recipeSelectOne(paramMap));
 	}
+
 	@RequestMapping("/ReInput")
-	public ModelAndView reinput(ModelAndView mav){
+	public ModelAndView reinput(ModelAndView mav) {
 		mav.setViewName("/ReInput");
 		return mav;
 	}
 
 	@RequestMapping("/BoardView")
-	public ModelAndView boardview(ModelAndView mav){
+	public ModelAndView boardview(ModelAndView mav) {
 		mav.setViewName("/BoardView");
 		return mav;
 	}
+
 	@RequestMapping("/Review")
-	   public ModelAndView review(ModelAndView mav){
-	      mav.setViewName("/Review");
-	      return mav;
-	   }
-	   @RequestMapping("/BestReview")
-	   public ModelAndView Bestreview(ModelAndView mav){
-	      mav.setViewName("/Review");
-	      return mav;
-	   }
-	   
-	   @RequestMapping("/Review_Data")
-	   public void ReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
-	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-	      HttpUtil.sendResponceToJson(response, ysi.reviewSelectOne(paramMap));
-	   }
-	   
-	   @RequestMapping("/bestReview_Data")
-	   public void bestReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
-	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-	      HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
-	   }
-	
+	public ModelAndView review(ModelAndView mav) {
+		mav.setViewName("/Review");
+		return mav;
+	}
+
+	@RequestMapping("/BestReview")
+	public ModelAndView Bestreview(ModelAndView mav) {
+		mav.setViewName("/Review");
+		return mav;
+	}
+
+	@RequestMapping("/Review_Data")
+	public void ReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.reviewSelectOne(paramMap));
+	}
+
+	@RequestMapping("/bestReview_Data")
+	public void bestReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
+	}
+
 }

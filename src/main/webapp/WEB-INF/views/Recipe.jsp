@@ -59,9 +59,9 @@ $(document).ready(function(){
 				tag += '<div class="col-lg-6 portfolio-item">';
 				tag += '<div class="card h-100">';
 				if(data[i].IMAGE != ""){
-					tag += '<a href="#"><img class="card-img-top" src="/yumyum2test/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
+					tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
 				}else {
-					tag += '<a href="#"><img class="card-img-top" src="/yumyum2test/resources/img/manager.jpg"></a>';
+					tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
 				}
 				tag += '<div class="card-body">';
 				tag += '<h4 class="card-title">';

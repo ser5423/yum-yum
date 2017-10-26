@@ -46,8 +46,7 @@ var hash = location.hash;
    htmlLoad(); 
    
    function getData(){
-      var type = '<%=type%>
-	';
+      var type = '<%=type%>';
 					$.ajax({
 						url : "Board1_Data",
 						data : {
@@ -58,7 +57,6 @@ var hash = location.hash;
 						var data = result.list;
 						var board = result.Board;
 
-						$("#pont-sizea").text(board);
 						$(".container h1").text(board);
 						$(".breadcrumb li").eq(1).text(board);
 						$(".container .row tbody").empty();
@@ -149,10 +147,10 @@ var hash = location.hash;
 		<ul id="ul-gray">
 			<li><a id="pont-sizea" href="Board">Board</a></li>
 		</ul>
-		<h1 class="mt-4 mb-3">공지사항</h1>
+		<h1 class="mt-4 mb-3"></h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
-			<li class="breadcrumb-item active">공지사항</li>
+			<li class="breadcrumb-item active"></li>
 		</ol>
 		<!-- 게시판 메인 부분 -->
 		<div class="row">

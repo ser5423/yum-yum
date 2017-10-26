@@ -37,11 +37,11 @@ public class YumyumService implements YumyumServiceInterface {
 	      HashMap<String, Object> map = new HashMap<String, Object>();
 	      String board = "";
 	      if(("fr").equals(paramMap.get("type"))){
-	         board = "자유";
+	         board = "Free Board";
 	      }else if(("no").equals(paramMap.get("type"))){
-	         board = "공지";
+	         board = "Notice";
 	      }else if(("qa").equals(paramMap.get("type"))){
-	         board = "질문";
+	         board = "QnA";
 	      }
 	   
 	   map.put("list", ydi.BoardSelectOne(paramMap));
@@ -53,9 +53,9 @@ public class YumyumService implements YumyumServiceInterface {
 	   @Override
 	   public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap){
 	      HashMap<String, Object> map = new HashMap<String, Object>();
-	      String text="";
+	      String text="Review";
 	      map.put("list", ydi.reviewSelectOne(paramMap));
-	      map.put("text", text);
+	      map.put("text1", text);
 	      System.out.println(map);
 	      return map;
 	   }
@@ -65,9 +65,9 @@ public class YumyumService implements YumyumServiceInterface {
 	   @Override
 	   public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap){
 	      HashMap<String, Object> map = new HashMap<String, Object>();
-	      String text="";
+	      String text="BestReview";
 	      map.put("list", ydi.bestreviewSelectOne(paramMap));
-	      map.put("text", text);
+	      map.put("text2", text);
 	      System.out.println(map);
 	      return map;
 	   }
