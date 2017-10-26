@@ -27,6 +27,7 @@
 <script type="text/javascript">
 	$(window).on("load", function() {
 		$('#myModal').modal('show');
+		
 	});
 </script>
 
@@ -42,7 +43,7 @@
 					<div class="modal-content myModalsize">
 						<div class="modal-header">
 							<h4 class="modal-title">Login</h4>
-							<button type="button" class="close"
+							<button type="button" class="close" style="cursor: pointer"
 								onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">

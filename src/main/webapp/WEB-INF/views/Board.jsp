@@ -33,18 +33,6 @@
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-var hash = location.hash; 
-   
-   $("div#boardset.dropdown-menu.dropdown-menu-right.show a").on("click", function(){
-      hash = $(this).attr("href"); 
-      htmlLoad(); 
-   });
-   function htmlLoad(){
-
-      var url = "/yum-yum2/resources/html/" + hash.substr(1, hash.length) + ".html";
-   }
-   htmlLoad(); 
-   
    function getData(){
       var type = '<%=type%>';
 					$.ajax({
@@ -67,7 +55,6 @@ var hash = location.hash;
 							tag += '<td>' + data[i].TITLE + '</td>';
 							tag += '<td>' + data[i].NAME + '</td>';
 							tag += '<td>' + data[i].UPLOAD + '</td>';
-							tag += '<td>' + data[i].RECOMMEND + '</td>';
 							tag += '<td>' + data[i].VIEWCNT + '</td>';
 							tag += '</tr>';
 							$(".container .row tbody").append(tag);
@@ -161,7 +148,6 @@ var hash = location.hash;
 						<th>Writer</th>
 						<th>Date</th>
 						<th>View</th>
-						<th>Recommend</th>
 					</tr>
 				</thead>
 				<tbody>

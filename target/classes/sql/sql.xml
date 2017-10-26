@@ -13,16 +13,18 @@
  	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap">
       select * from board
    </select>
-   <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
-       select * from board where type = #{type}
-   </select>
-     <!-- Review부분 -->
-    <select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
-       select * from REVIEW where RECOMMEND <![CDATA[ < ]]> 20
+     <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
+      select  TYPE,NAME,TITLE,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT
+      from board where type = #{type}
     </select>
     
-    <!-- BeseReview부분 -->
-    <select id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
-       select * from REVIEW where RECOMMEND >= 20
+    <select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
+      select  TITLE,WRITER,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT,RECOMMEND,IMAGE
+      from REVIEW where RECOMMEND <![CDATA[ < ]]> 20
     </select>
+    
+    <select id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
+      select TITLE,WRITER,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT,RECOMMEND,IMAGE
+      from REVIEW where RECOMMEND >= 20
+    </select> 
 </mapper>

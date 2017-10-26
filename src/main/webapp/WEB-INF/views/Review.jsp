@@ -87,15 +87,13 @@
 
 													$(".container h1").text(text);
 													$(".breadcrumb li").eq(1).text(text);
-													$(
-															".container .row .col-md-8")
-															.empty();
+													$(".container .row .col-md-8").empty();
 
 													for (var i = 0; i < data.length; i++) {
 														var tag = "";
 														tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
 														tag += '<div class="card h-100">';
-														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" alt=""></a>';
+														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target="#' + data[i].NO + '"></a>';
 														tag += '<div class="card-body">';
 														tag += '<h4 class="card-title">';
 														tag += '<a href="#">'
@@ -109,9 +107,7 @@
 														tag += '</div>';
 														tag += '</div>';
 
-														$(
-																".container .row .col-md-8")
-																.append(tag);
+														$(".container .row .col-md-8").append(tag);
 													}
 												});
 							}
@@ -237,6 +233,29 @@
 			</div>
 
 		</div>
+		<!-- Modal -->
+	<div class="modal fade" id=" "+ data[i].NO +" " tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">양식</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div id="modalimagesize">
+						<p>
+							<img src="/yumyum/resources/img/us2.jpg"
+								class="img-responsive card-img-top" id="modalimagesize2">
+						</p>
+					</div>
+					<p id="modaltextsize" class="modalradius">설명</p>
+					<p class="modalradius">양식</p>
+				</div>
+			</div>
+		</div>
+	</div>
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
 			<li class="page-item"><a class="page-link" href="#"
