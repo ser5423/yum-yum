@@ -27,4 +27,20 @@
       select TITLE,WRITER,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT,RECOMMEND,IMAGE
       from REVIEW where RECOMMEND >= 20
     </select> 
+    
+    <select id="tokenCheck" parameterType="hashmap" resultType="hashmap">
+    	select * from NAVERLOGIN where access_token = #{access_token}
+    </select>
+    <insert id="tokenAdd" parameterType="hashmap">
+		insert into NAVERLOGIN (access_token, EMAIL, NAME, NICKNAME, AGE) values (#{access_token}, #{EMAIL},#{NAME},#{NICKNAME},#{AGE})
+<!-- 			insert into NAVERLOGIN (access_token) values (#{access_token}) -->
+	</insert>
+	<update id="tokenUpdate" parameterType="hashmap">
+		update NAVERLOGIN
+		set EMAIL = #{EMAIL}, 
+		    NAME = #{NAME}, 
+		    NICKNAME = #{NICKNAME}, 
+		    AGE = #{AGE}
+		where access_token = #{access_token}
+	</update>
 </mapper>

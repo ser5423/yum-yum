@@ -71,4 +71,30 @@ public class YumyumService implements YumyumServiceInterface {
 	      System.out.println(map);
 	      return map;
 	   }
+	@Override
+	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map = ydi.tokenCheck(paramMap);
+		System.out.println(map);
+		if(map == null){
+			map = new HashMap<String, Object>();
+			map.put("state", ydi.tokenAdd(paramMap));
+
+//			System.out.println(map);
+		}else {
+			int state = ydi.tokenUpdate(paramMap);
+			if(state == 1){
+				System.out.println("행복이란...");
+			}else{
+				System.out.println("우울함...");
+			}
+//			System.out.println(map);
+		}
+		
+		return map;
+	}
+//	@Override
+//	public HashMap<String, Object> tokenAdd(HashMap<String, Object> paramMap) {
+//		return null;
+//	}
 }

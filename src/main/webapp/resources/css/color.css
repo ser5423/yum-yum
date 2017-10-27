@@ -2,7 +2,7 @@
 .bg-redred {
 	background-color: firebrick;
 }
-
+/* board, recipe, review writer view 부분에 nav 부분을 제외한 최상단 제목에 들어가는 css */
 #ul-gray {
 	position: inline-block;
 	text-align: center;
@@ -11,7 +11,7 @@
 	display: block;
 	list-style: none;
 }
-
+/* 제목 부분의 글씨 형태 */
 #pont-sizea {
 	font-weight: bold;
 	font-size: 85px;
@@ -19,7 +19,7 @@
 	color: #000000;
 	font-family: arial;
 }
-
+/* main modal 부분 id값 */
 #cardne {
 	width: 100%;
 	padding: 5px;
@@ -32,7 +32,7 @@
 	height: 46px;
 
 }
-
+/* modal부분에 ... 부분에 준 값 상세 */
 #plusbtn {
 	margin-left: 85%;
 	width : 15%;
@@ -43,21 +43,21 @@
 	cursor: pointer;
 	width: 15%;
 }
-
+/* modal 크기 */
 #modalsize {
 	width: 100%;
 }
-
+/* modal image 가 들어가는 div크기 */
 #modalimagesize {
 	width: 60%;
 	display: inline-block;
 }
-
+/* modal image 크기 */
 #modalimagesize2 {
 	width: 100%;
 	display: inline-block;
 }
-
+/* modal image 옆 부분 간단 설명 부분 */
 #modaltextsize {
 	height: 297.59px;
 	width: 35%;
@@ -66,7 +66,7 @@
 	position: absolute;
 	right: 25px;
 }
-
+/* modal페이지에서 글 쓰는 곳 radius */
 .modalradius {
 	border-radius: 1em;
 	padding: 5px;
@@ -74,40 +74,40 @@
 	border: 1px solid #dededf;
 	text-align: left;
 }
-
+/* 가운데 정렬 */
 .reviewmodal {
 	text-align: center;
 }
-
+/* main 부분 맨 밑에 managerlogin 및  managerpage 버튼 css */
 .managerbtn {
 	color: rgba(255, 255, 255, .5);
 	text-decoration: none;
 	hover: text-decoration:none;
 }
-
+/* 생성 버튼담는 곳 값 */
 #writebtn {
 	width: 70px;
 	display: inline-block;
 	cursor: pointer;
 }
-
+/* 글쓰기 버튼 특성 */
 .writbtn2 {
 	text-align: right;
 	width: 100%;
 	cursor: pointer;
 }
-
+/* 글쓰기 버튼 특성 */
 .writbtn3 {
 	position: relative;
 	cursor: pointer;
 }
-
+/* 버튼 특성 */
 .writbtn3-1 {
 	position: relative;
 	width: 100%;
 	text-align: right;
 }
-
+/* manager page 안에서 내용 보여줄 공간 값 */
 #managertable {
 	height: 500px;
 	border-radius: 1em;
@@ -115,15 +115,15 @@
 	border: 1em;
 	border: 1px solid #dededf;
 }
-
+/* managerpage 체크 박스 부분 li 스타일 제거 */
 .managerul {
 	list-style: none;
 }
-
+/* 입력 및 각종 form의 크기 값 */
 .inputform {
 	width: 100%;
 }
-
+/* 입력 폼 input 테그 크기 값 */
 .inputformne {
 	width: 30%;
 }
@@ -131,7 +131,7 @@
 .inputformne2 {
 	width: 100%;
 }
-
+/* modal login page 뒤에 백그라운드 이미지에 흐림 효과 넣어줌! */
 #modalloginimage {
 	position: fixed;
 	top: 0;
@@ -140,7 +140,7 @@
 	height: 100%;
 	filter: blur(3px);
 }
-
+/* modal login page에서 modal 위치 값 밑 크기 값 */
 #myModal {
 	position: absolute;
 	top: 30%;
@@ -149,25 +149,26 @@
 	width: 300px;
 	height: 300px;
 }
-
+/* mymodal 안에서 표시할 값 */
 .myModalsize {
 	width: 225px;
 	height: 200px;
 }
-
+/* main 부분에서 managerlogin 부분 modal 크기 */
 #managerlogin {
 	max-width: 400px;
 	margin: 30px auto;
 }
-
+/* managerlogin 크기 값 */
 .managerlogin {
 	width: 400px;
 	height: 300px;
 }
-
+/* modalloginpage 버튼 색상 */
 .yellowgreen {
 	background-color: #1EC800;
 }
+/* Review page에서 width 값768까지 유지 되는 값 */
 @media ( min-width :768px) {
 	.col-md-4-2 {
 		-ms-flex: 0 0 33.333333%;
@@ -177,6 +178,7 @@
 		padding : 0 5px;
 	}
 }
+/* Review page에서 width 값767 이하 부터 시작 되는 값 */
 @media ( max-width :767px) {
 	.col-sm-6-2 {
 		-ms-flex: 0 0 50%;

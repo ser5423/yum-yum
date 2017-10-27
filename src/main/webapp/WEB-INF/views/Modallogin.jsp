@@ -63,8 +63,13 @@
 					</div>
 				</div>
 			</div>
-
+			<input type="text" id="token">
 			<script type="text/javascript">
+			// 확인용.
+// 			var href = "https://nid.naver.com/oauth2.0/authorize?response_type=token&client_id=5pRw5lS7lYqvs0xHnEv4&redirect_uri=http://localhost:9090/yumyum/resources/html/callback.html&state=";
+// 			var opener = window.open(href, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');	
+			
+			
 				var naver_id_login = new naver_id_login("5pRw5lS7lYqvs0xHnEv4",
 						"http://localhost:9090/yumyum/resources/html/callback.html");
 				var state = naver_id_login.getUniqState();
@@ -73,6 +78,7 @@
 				naver_id_login.setState(state);
 				naver_id_login.setPopup();
 				naver_id_login.init_naver_id_login();
+				
 			</script>
 		</div>
 	</div>

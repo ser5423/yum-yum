@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,5 +108,11 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
 	}
-
+	@RequestMapping("/TokenCheck")
+	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		System.out.println(paramMap);
+		paramMap = ysi.tokenCheck(paramMap);
+		HttpUtil.sendResponceToJson(response, paramMap);
+	}
 }

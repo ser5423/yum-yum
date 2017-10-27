@@ -19,161 +19,120 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						var pathname = location.pathname;
-						console.log("")
-						if (pathname == "/yumyum/Review") {
-							function getData() {
+$(document).ready(function() {
+	var pathname = location.pathname;
+	console.log("")
+	if (pathname == "/yumyum/Review") {
+		function getData() {
+			$.ajax({url : "Review_Data",
+				data : $(this).serialize(
+					)}).done(
+						function(result) {
+							var data = result.list;
+							var text = result.text1;
+							var tag = "";
 
-								$
-										.ajax({
-											url : "Review_Data",
-											data : $(this).serialize()
-										})
-										.done(
-												function(result) {
-													var data = result.list;
-													var text = result.text1;
-													var tag = "";
+							$(".container h1").text(text);
+							$(".breadcrumb li").eq(1).text(text);
+							$(".container .row .col-md-8").empty();
 
-													$(".container h1").text(
-															text);
-													$(".breadcrumb li").eq(1)
-															.text(text);
-													$(
-															".container .row .col-md-8")
-															.empty();
-
-													for (var i = 0; i < data.length; i++) {
-														var tag = "";
-														tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
-														tag += '<div class="card h-100">';
-														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" alt=""></a>';
-														tag += '<div class="card-body">';
-														tag += '<h4 class="card-title">';
-														tag += '<a href="#">'
-																+ data[i].TITLE
-																+ '</a>';
-														tag += '</h4>';
-														tag += '<p id="cardne" class="card-text">'
-																+ data[i].WRITER
-																+ '</p>';
-														tag += '</div>';
-														tag += '</div>';
-														tag += '</div>';
-
-														$(
-																".container .row .col-md-8")
-																.append(tag);
-													}
-												});
+							for (var i = 0; i < data.length; i++) {
+								var tag = "";
+								tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
+								tag += '<div class="card h-100">';
+								tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal"data-target=""></a>';
+								tag += '<div class="card-body">';
+								tag += '<h4 class="card-title">';
+								tag += '<a href="#">'+ data[i].TITLE + '</a>';
+								tag += '</h4>';
+								tag += '<p id="cardne" class="card-text">' + data[i].WRITER + '</p>';
+								tag += '</div>';
+								tag += '</div>';
+								tag += '</div>';
+								$(".container .row .col-md-8").append(tag);
 							}
-							getData();
-						} else if (pathname == "/yumyum/BestReview") {
+						});
+			}
+		getData();
+		} else if (pathname == "/yumyum/BestReview") {
+			function getData1() {
+			$.ajax({url : "bestReview_Data",data :
+				$(this).serialize()
+				}).done(
+					function(result) {
+						var data = result.list;
+						var text = result.text2;
+						var tag = "";
 
-							function getData1() {
-								$
-										.ajax({
-											url : "bestReview_Data",
-											data : $(this).serialize()
-										})
-										.done(
-												function(result) {
-													var data = result.list;
-													var text = result.text2;
-													var tag = "";
+						$(".container h1").text(text);
+						$(".breadcrumb li").eq(1).text(text);
+						$(".container .row .col-md-8").empty();
 
-													$(".container h1").text(text);
-													$(".breadcrumb li").eq(1).text(text);
-													$(".container .row .col-md-8").empty();
-
-													for (var i = 0; i < data.length; i++) {
-														var tag = "";
-														tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
-														tag += '<div class="card h-100">';
-														tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target="#' + data[i].NO + '"></a>';
-														tag += '<div class="card-body">';
-														tag += '<h4 class="card-title">';
-														tag += '<a href="#">'
-																+ data[i].TITLE
-																+ '</a>';
-														tag += '</h4>';
-														tag += '<p id="cardne" class="card-text">'
-																+ data[i].WRITER
-																+ '</p>';
-														tag += '</div>';
-														tag += '</div>';
-														tag += '</div>';
-
-														$(".container .row .col-md-8").append(tag);
-													}
-												});
-							}
-							getData1();
-						} else {
-							response.sendRedirect("Main");
+						for (var i = 0; i < data.length; i++) {
+							var tag = "";
+							tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
+							tag += '<div class="card h-100">';
+							tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target="#' + data[i].NO + '"></a>';
+							tag += '<div class="card-body">';
+							tag += '<h4 class="card-title">';
+							tag += '<a href="#">' + data[i].TITLE + '</a>';
+							tag += '</h4>';
+							tag += '<p id="cardne" class="card-text">' + data[i].WRITER + '</p>';
+							tag += '</div>';
+							tag += '</div>';
+							tag += '</div>';
+							$(".container .row .col-md-8").append(tag);
 						}
-
 					});
+			}
+			getData1();
+			} else {
+				response.sendRedirect("Main");
+				}
+	});
 </script>
 </head>
 <body>
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				style="cursor: pointer" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Recipe </a>
-						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Review </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
-								class="dropdown-item" href="/yumyum/Review">리뷰</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Board </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> Recipe </a>
+						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
+							<a class="dropdown-item" href="/yumyum/Review">리뷰</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
-						</div></li>
-					<li><a id="navbarDropdownBlog" class="nav-link"
-						href="Modallogin">login</a></li>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+						</div>
+					</li>
+					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -195,11 +154,8 @@
 					<h5 class="card-header bg-redred text-white">Search</h5>
 					<div class="card-body">
 						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-default text-white bg-redred writbtn3"
-									type="button">Go!</button>
+							<input type="text" class="form-control" placeholder="Search for..."> <span class="input-group-btn">
+								<button class="btn btn-default text-white bg-redred writbtn3" type="button">Go!</button>
 							</span>
 						</div>
 					</div>
@@ -233,42 +189,23 @@
 			</div>
 
 		</div>
-		<!-- Modal -->
-	<div class="modal fade" id=" "+ data[i].NO +" " tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">양식</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div id="modalimagesize">
-						<p>
-							<img src="/yumyum/resources/img/us2.jpg"
-								class="img-responsive card-img-top" id="modalimagesize2">
-						</p>
-					</div>
-					<p id="modaltextsize" class="modalradius">설명</p>
-					<p class="modalradius">양식</p>
-				</div>
-			</div>
-		</div>
-	</div>
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
-					class="sr-only">Previous</span>
-			</a></li>
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">Previous</span>
+				</a>
+			</li>
+			
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				<span class="sr-only">Next</span>
-			</a></li>
+			
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Next</span>
+				</a>
+			</li>
 		</ul>
 	</div>
 	<!-- Footer -->

@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Food Factory</title>
@@ -20,68 +19,55 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
 <body>
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/yumyum/Main">Food Factory</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				style="cursor: pointer" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+			<a class="navbar-brand" href="Main">Yum - Yum</a>
+			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
+			<button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Recipe </a>
-						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="re1.html">한식</a> <a
-								class="dropdown-item" href="re1.html">일식</a> <a
-								class="dropdown-item" href="re1.html">중식</a> <a
-								class="dropdown-item" href="re1.html">양식</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Review </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
-								class="dropdown-item" href="/yumyum/Review">리뷰</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Board </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
-						</div></li>
-					<li data-toggle="modal" data-target="#loginPop"><a
-						id="navbarDropdownBlog" class="nav-link" href="#">login</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> Recipe </a>
+						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
+							<a class="dropdown-item" href="/yumyum/Review">리뷰</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+						</div>
+					</li>
+					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-
 	<!-- nav 끝 -->
 	<div class="container">
 		<ul id="ul-gray">
@@ -91,24 +77,19 @@
 		<div class="row">
 			<form class="form-horizontal inputform">
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">글
-						번호 : </label>
+					<label for="inputEmail3" class="col-xs-6 control-label">글번호 : </label>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">제목
-						: </label>
+					<label for="inputEmail3" class="col-xs-6 control-label">제목 : </label>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">작성자
-						: </label>
+					<label for="inputEmail3" class="col-xs-6 control-label">작성자 : </label>
 				</div>
 				<div class="form-group" style="text-align: right;">
-					<label for="inputEmail3" class="col-xs-6 control-label">ip
-						: 192.168.***.***</label>
+					<label for="inputEmail3" class="col-xs-6 control-label">ip : 192.168.***.***</label>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">내용
-						: </label>
+					<label for="inputPassword3" class="col-xs-6 control-label">내용 : </label>
 					<div class="col-xs-6">
 						<div id="managertable" class="table"></div>
 					</div>
@@ -124,18 +105,8 @@
 					</div>
 				</div>
 			</form>
-
-			<!-- 			<div class="writbtn2"> -->
-			<!-- 				<button id="writebtn" type="button" -->
-			<!-- 					class="btn btn-default text-white bg-redred writbtn3" -->
-			<!-- 					onclick="location.href='/yumyum/resources/html/BoInput.html'">글쓰기</button> -->
-			<!-- 			</div> -->
 		</div>
-
-
 	</div>
-
-
 	<!-- Footer -->
 	<footer class="py-4 bg-redred">
 		<div class="container">

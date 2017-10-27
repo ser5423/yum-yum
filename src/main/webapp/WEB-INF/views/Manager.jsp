@@ -21,60 +21,46 @@
 
 </head>
 <body>
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				style="cursor: pointer" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Recipe </a>
-						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Review </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
-								class="dropdown-item" href="/yumyum/Review">리뷰</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Board </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> Recipe </a>
+						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
+							<a class="dropdown-item" href="/yumyum/Review">리뷰</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
-							<a class="dropdown-item"
-								href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
-						</div></li>
-					<li><a id="navbarDropdownBlog" class="nav-link"
-						href="Modallogin">login</a></li>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+						</div>
+					</li>
+					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -94,20 +80,16 @@
 				<li>
 					<h3>Recipe</h3>
 				</li>
-				<li><input type="checkbox"> 한식 &nbsp; <input
-					type="checkbox"> 일식 &nbsp; <input type="checkbox">
+				<li><input type="checkbox"> 한식 &nbsp; <input type="checkbox"> 일식 &nbsp; <input type="checkbox">
 					중식 &nbsp; <input type="checkbox"> 양식</li>
 				<li>
 					<h3>Review</h3>
 				</li>
-				<li><input type="checkbox"> 리뷰 &nbsp; <input
-					type="checkbox"> 우수리뷰</li>
+				<li><input type="checkbox"> 리뷰 &nbsp; <input type="checkbox"> 우수리뷰</li>
 				<li>
 					<h3>Board</h3>
 				</li>
-				<li><input type="checkbox"> 공지사항 &nbsp; <input
-					type="checkbox"> 게시판 &nbsp; <input type="checkbox">
-					QnA</li>
+				<li><input type="checkbox"> 공지사항 &nbsp; <input type="checkbox"> 게시판 &nbsp; <input type="checkbox"> QnA</li>
 			</ul>
 			<!-- 결과 화면 창 -->
 			<div id="managertable" class="table"></div>

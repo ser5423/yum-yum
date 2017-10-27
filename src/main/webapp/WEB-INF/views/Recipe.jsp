@@ -81,53 +81,46 @@ $(document).ready(function(){
 </head>
 
 <body>
-<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
 			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				style="cursor: pointer" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> Recipe </a>
-						<div id="recipeset" class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> Recipe </a>
+						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Review </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a> <a
-								class="dropdown-item" href="/yumyum/Review">리뷰</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Board </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
+							<a class="dropdown-item" href="/yumyum/Review">리뷰</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a> <a
-								class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
-						</div></li>
-					<li><a id="navbarDropdownBlog" class="nav-link"
-						href="Modallogin">login</a></li>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+						</div>
+					</li>
+					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -152,35 +145,36 @@ $(document).ready(function(){
 
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
-					class="sr-only">Previous</span>
-			</a></li>
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">Previous</span>
+				</a>
+			</li>
+			
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-					class="sr-only">Next</span>
-			</a></li>
+			
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Next</span>
+				</a>
+			</li>
 		</ul>
 
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="${item.NO}" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="${item.NO}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content" id="modalsize">
 				<div class="modal-header">
 					<h4 class="modal-title" id="myModalLabel">한식</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div id="modalimagesize">
 						<p>
-							<img src="/yumyum/resources/img/korea2.jpg"
-								class="img-responsive card-img-top" id="modalimagesize2">
+							<img src="/yumyum/resources/img/korea2.jpg" class="img-responsive card-img-top" id="modalimagesize2">
 						</p>
 					</div>
 					<p id="modaltextsize" class="modalradius">설명</p>
