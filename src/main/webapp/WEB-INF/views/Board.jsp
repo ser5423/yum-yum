@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%
 	String type = request.getParameter("type");
 
 	if (type == null) {
 		response.sendRedirect("Main");
 	}
-%>
+%> 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +32,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+// 	var user = session.getAttribute("user");
+// 	alert(user);
    function getData(){
       var type = '<%=type%>';
 					$.ajax({
@@ -59,7 +64,14 @@ $(document).ready(function(){
 					});
 				}
 				getData();
-			});
+				
+// 				if(user == null || user.equal("")){
+// 					$(".container .row .writbtn2 button").addClass("hide");
+// 				} else {
+// 					$(".container .row .writbtn2 button").removeClass("hide");
+// 				}
+});
+			
 </script>
 </head>
 <body>
@@ -133,7 +145,11 @@ $(document).ready(function(){
 				</tbody>
 			</table>
 			<div class="writbtn2">
-				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='BoInput'">글쓰기</button>
+			<% if(session.getAttribute("user") == null) {%> 
+				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" >글쓰기</button>
+			<% } else { %>
+				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" >글쓰기</button>
+				<% } %>
 			</div>
 		</div>
 

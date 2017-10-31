@@ -74,6 +74,7 @@ public class YumyumService implements YumyumServiceInterface {
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> user = new HashMap<String, Object>();
 		map = ydi.tokenCheck(paramMap);
 		System.out.println(map);
 		if(map == null){
@@ -90,6 +91,8 @@ public class YumyumService implements YumyumServiceInterface {
 			}
 //			System.out.println(map);
 		}
+		
+		map = ydi.tokenCheck(paramMap);
 		
 		return map;
 	}

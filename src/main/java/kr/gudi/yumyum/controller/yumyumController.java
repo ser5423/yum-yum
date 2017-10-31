@@ -31,7 +31,9 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/Board")
-	public ModelAndView board(ModelAndView mav) {
+	public ModelAndView board(ModelAndView mav, HttpSession session) {
+		System.out.println(session.getAttribute("user"));
+		session.getAttribute("user");
 		mav.setViewName("/Board");
 		return mav;
 	}
@@ -86,7 +88,8 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/Review")
-	public ModelAndView review(ModelAndView mav) {
+	public ModelAndView review(ModelAndView mav , HttpSession session) {
+		System.out.println(session.getAttribute("user"));
 		mav.setViewName("/Review");
 		return mav;
 	}
@@ -113,6 +116,7 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		System.out.println(paramMap);
 		paramMap = ysi.tokenCheck(paramMap);
+		session.setAttribute("user", paramMap);
 		HttpUtil.sendResponceToJson(response, paramMap);
 	}
 }

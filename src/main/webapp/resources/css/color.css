@@ -186,3 +186,6 @@
 		max-width: 100%
 	}
 }
+.hide{
+	visibility: hidden;
+}
