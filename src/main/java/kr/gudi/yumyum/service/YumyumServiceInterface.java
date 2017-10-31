@@ -13,7 +13,12 @@ public interface YumyumServiceInterface {
 	// bestreview부분
 	public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap);
 
+	// boardview
+	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap);
+
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap);
-	// public HashMap<String, Object> tokenAdd(HashMap<String, Object>
-	// paramMap);
+//	
+//	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap);
+	 // insert부분
+	 public HashMap<String, Object> insert(HashMap<String, Object> paramMap);
 }

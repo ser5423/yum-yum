@@ -10,23 +10,38 @@
 	<select id="recipeSelectOne" parameterType="hashmap" resultType="hashmap">
  		select * from recipe where type = #{type}
  	</select>
- 	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap">
-      select * from board
-   </select>
+<!--  	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap"> -->
+<!--       select * from board -->
+<!--    </select> -->
      <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
-      select  TYPE,NAME,TITLE,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT
-      from board where type = #{type}
+      select *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD2
+      from board where type = #{type} 
     </select>
     
     <select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
-      select  TITLE,WRITER,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT,RECOMMEND,IMAGE
+      select  *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
       from REVIEW where RECOMMEND <![CDATA[ < ]]> 20
     </select>
     
     <select id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
-      select TITLE,WRITER,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD, VIEWCNT,RECOMMEND,IMAGE
+      select *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
       from REVIEW where RECOMMEND >= 20
     </select> 
+    
+    <select id="BoardviewSelectOne" parameterType="hashmap" resultType="hashmap"> 
+       select *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD2 from board where NO = #{NO}	    
+    </select>
+     <insert id="insert" parameterType="hashmap">
+       insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT) values (#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT})
+    </insert>
+    
+    <delete id="delete" parameterType="hashmap" >
+       delete from board where NAME=#{NAME}
+     </delete>
+    
+     <update id="update" parameterType="hashmap" >
+       update board set TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT}  where NO = #{NO}
+     </update>
     
     <select id="tokenCheck" parameterType="hashmap" resultType="hashmap">
     	select * from NAVERLOGIN where access_token = #{access_token}
@@ -43,4 +58,11 @@
 		    AGE = #{AGE}
 		where access_token = #{access_token}
 	</update>
+<!-- 	 <insert id="insert" parameterType="hashmap"> -->
+<!--        insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT) values (#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT}) -->
+<!--     </insert> -->
+<!-- 	<select id="reviewSearch" parameterType="hashmap" resultType="hashmap"> -->
+<!--     	select * from REVIEW where TITLE like '%#{search}%' -->
+<!--     </select> -->
+	
 </mapper>

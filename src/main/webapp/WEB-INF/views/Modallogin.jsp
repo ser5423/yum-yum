@@ -44,7 +44,7 @@
 						<div class="modal-header">
 							<h4 class="modal-title">Login</h4>
 							<button type="button" class="close" style="cursor: pointer"
-								onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
+								onclick="location.href='javascript:history.go(-1)'" data-dismiss="modal">&times;</button>
 						</div>
 						<div class="modal-body">
 							<form>
@@ -57,7 +57,7 @@
 							<div class="form-group">
 								<button type="button"
 									class="btn btn-default text-white yellowgreen writbtn3"
-									style="cursor: pointer" onclick="location.href='/yumyum/Main'">Main</button>
+									style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'">확인</button>
 							</div>
 						</div>
 					</div>

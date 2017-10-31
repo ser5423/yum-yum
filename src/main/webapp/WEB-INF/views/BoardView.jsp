@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+<%   
+   String NO = request.getParameter("NO");
+   if (NO == null) {
+      response.sendRedirect("Main");
+   }
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Food Factory</title>
@@ -19,12 +26,61 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
+<script type="text/javascript"
+   src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+   charset="utf-8"></script>
+<script type="text/javascript"
+   src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+   
+<script type="text/javascript">
+$(document).ready(function(){
+   function getData(){
+      var NO = '<%=NO%>';
+               $.ajax({
+                  url : "BoardView_Data",
+                  data : {"NO" : NO},
+                  datetype : "json"
+               }).done(function(result) {
+                  var board = result.boardview;
+                  // 값이 안들어왔을 때 예외처리
+                  if(board == null){
+//                      location.href = "Main";
+                     $(".hanyena").html("<h1>데이터가 없습니다.</h1>");
+                  }else{
+                     $(".hanyena").empty();
+                        var tag = "";
+                        
+                        tag += '<div class="form-group">';
+                        tag += '<label for="inputEmail3" id="viewtitle" class="col-xs-6 control-label">제목 : ' + board.TITLE + '</label>';
+                        tag += '</div>';
+                        tag += '<div class="form-group">';
+                        tag += '<label for="inputEmail3" id="viewname" class="col-xs-6 control-label">작성자 : ' + board.NAME + '</label>';
+                        tag += '</div>';
+                        tag += '<div class="form-group" style="text-align: right;">';
+                        tag += '<label for="inputEmail3" class="col-xs-6 control-label">ip : 192.168.***.***</label>';
+                        tag += '</div>';
+                        tag += '<div class="form-group">';
+                        var cont = "없다."
+                        if(board.CONT){
+                           cont = board.CONT; 
+                        }
+                        tag += '<label for="inputPassword3" id="viewcont" class="col-xs-6 control-label">내용 : </label>';
+                        tag += '<div class="col-xs-6">';
+                        tag += '<div id="managertable" class="table">'+ cont +'</div>';
+                        tag += '</div>';
+                        tag += '</div>';
+                        
+                        $(".hanyena").append(tag);
+               }
+            });
+         }
+         getData();         
+      }); 
+</script>
+ 
 </head>
 <body>
-	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+   <!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
@@ -68,50 +124,58 @@
 			</div>
 		</div>
 	</nav>
-	<!-- nav 끝 -->
-	<div class="container">
-		<ul id="ul-gray">
-			<li><p id="pont-sizea" class="col-xs-6">View</p></li>
-		</ul>
-		<!-- 게시판 메인 부분 -->
-		<div class="row">
-			<form class="form-horizontal inputform">
-				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">글번호 : </label>
-				</div>
-				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">제목 : </label>
-				</div>
-				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">작성자 : </label>
-				</div>
-				<div class="form-group" style="text-align: right;">
-					<label for="inputEmail3" class="col-xs-6 control-label">ip : 192.168.***.***</label>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">내용 : </label>
-					<div class="col-xs-6">
-						<div id="managertable" class="table"></div>
-					</div>
-				</div>
-				<div class="form-group writbtn3-1">
-					<div class="col-xs-3">
-						<button type="button" class="btn text-white bg-redred writbtn3"
-							onclick="location.href='Board'">목록</button>
-						<button type="submit"
-							class="btn btn-default text-white bg-redred writbtn3">수정</button>
-						<button type="button"
-							class="btn btn-default text-white bg-redred writbtn3">삭제</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-	<!-- Footer -->
-	<footer class="py-4 bg-redred">
-		<div class="container">
-			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
-		</div>
-	</footer>
+   <!-- nav 끝 -->
+   <div class="container">
+      <ul id="ul-gray">
+         <li><p id="pont-sizea" class="col-xs-6">View</p></li>
+      </ul>
+      <!-- 게시판 메인 부분 -->
+      <div class="row">
+         <form class="form-horizontal inputform">
+         <div class="hanyena">
+            <div class="form-group">
+               <label for="inputEmail3" id="viewtitle" class="col-xs-6 control-label">제목
+                  : </label>
+            </div>
+            <div class="form-group">
+               <label for="inputEmail3" id="viewname" class="col-xs-6 control-label">작성자
+                  : </label>
+            </div>
+            <div class="form-group" style="text-align: right;">
+               <label for="inputEmail3" class="col-xs-6 control-label">ip
+                  : 192.168.***.***</label>
+            </div>
+            <div class="form-group">
+               <label for="inputPassword3" id="viewcont" class="col-xs-6 control-label">내용
+                  : </label>
+               <div class="col-xs-6">
+                  <div id="managertable" class="table"></div>
+               </div>
+            </div>
+         </div>
+            <div class="form-group writbtn3-1">
+               <div class="col-xs-3">
+                  <button type="button" class="btn text-white bg-redred writbtn3"
+                     onclick="location.href='javascript:history.go(-1)'">목록</button>
+                  <button type="submit" id="updateform"
+                     class="btn btn-default text-white bg-redred writbtn3">수정</button>
+                  <button type="button"
+                     class="btn btn-default text-white bg-redred writbtn3">삭제</button>
+               </div>
+            </div>
+         </form>
+         
+      </div>
+
+
+   </div>
+
+
+   <!-- Footer -->
+   <footer class="py-4 bg-redred">
+      <div class="container">
+         <p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
+      </div>
+   </footer>
 </body>
 </html>

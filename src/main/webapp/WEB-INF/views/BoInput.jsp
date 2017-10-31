@@ -17,7 +17,29 @@
 
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#write").on("click", function(){
+              
+		  // #writeform의 모든 값을 가져온다
+			var formData = $('#writeform').serialize();
+			$.ajax({
+            	url: "BoInput_Data",
+            	type : "POST",
+            	data : formData,
+            	success : function(data) 
+                { // 성공 시 	메세지 및 이동할주소
+	            	alert(data.data);
+	            	location.href= data.move;
+           		},error : function(req,data) {
+           			alert(data.data);
+                	location.href= data.move;
+           			
+           		}
+            });
+    })
+});
+</script>
 </head>
 <body>
 	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
@@ -71,42 +93,66 @@
 		</ul>
 		<!--       <h1 class="mt-4 mb-3">Create Page</h1> -->
 		<div class="row">
-			<form class="form-horizontal inputform">
+			<form class="form-horizontal inputform" id="writeform" name="writeform">
+			<!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
+				<input type="hidden" id="type" name="type" value="${param.type}">
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">제목</label>
+					<label for="subject" class="col-xs-6 control-label">제목</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="글 제목을 입력하세요">
+						<input type="text" class="form-control inputformne"
+							id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">아이디</label>
+					<label for="id" class="col-xs-6 control-label">아이디</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="아이디를 입력하세요">
+						<input type="text" class="form-control inputformne"
+							id="ID" name="ID" placeholder="아이디를 입력하세요">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="name" class="col-xs-6 control-label">이름</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control inputformne"
+							id="NAME" name="NAME" placeholder="이름을 입력하세요">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="password" class="col-xs-6 control-label">비밀번호</label>
+					<div class="col-xs-6">
+						<input type="password" class="form-control inputformne"
+							id="PASSWD" name="PASSWD" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">비밀번호</label>
+					<label for="TYPE" class="col-xs-6 control-label">분류</label>
+				    <!-- 스크롤바 사용 -->
 					<div class="col-xs-6">
-						<input type="password" class="form-control inputformne" id="inputPassword3" placeholder="비밀번호를 입력하세요">
+						<select id="TYPE" name="TYPE" class="box form-control inputformne">
+			               <option value="fr" <%if(request.getParameter("type").equalsIgnoreCase("fr")) { %>selected="selected"<%}%>>자유게시판</option>
+			               <option value="qa" <%if(request.getParameter("type").equalsIgnoreCase("qa")) { %>selected="selected"<%}%>>QnA</option>
+			            </select> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">내용</label>
+					<label for="cont" class="col-xs-6 control-label">내용</label>
 					<div class="col-xs-6">
-						<textarea class="form-control col-xs-12" rows="25" cols="100"></textarea>
+						<textarea id="CONT" name="CONT" class="form-control col-xs-12" rows="25" cols="100"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">사진 첨부</label>
+					<label for="File" class="col-xs-6 control-label">사진 첨부</label>
 					<div class="col-xs-6">
-						<input type="file" id="File" class="form-control">
+						<input type="file" id="file" name="file" multiple="multiple" class="form-control">
 					</div>
 				</div>
 				<div class="form-group writbtn3-1">
 					<div class="col-xs-3">
-						<button type="button" class="btn text-white bg-redred writbtn3" onclick="location.href='Board'">목록</button>
-						<button type="submit"
-							class="btn btn-default text-white bg-redred writbtn3">작성</button>
+						<button type="button" class="btn text-white bg-redred writbtn3"
+							onclick="location.href='javascript:history.go(-1)'">목록</button>
+						<button type="button" class="btn btn-default text-white bg-redred writbtn3" id="write">작성</button>
 					</div>
 				</div>
 			</form>

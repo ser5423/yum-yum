@@ -1,6 +1,7 @@
 package kr.gudi.yumyum.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.gudi.util.HttpUtil;
@@ -44,11 +46,49 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, ysi.BoardSelectOne(paramMap));
 	}
 
+	// board에 입력된 자료 클릭 시 보이는 부분
+	@RequestMapping("/BoardView_Data")
+	public void selectBoardView(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.BoardViewSelectOne(paramMap));
+	}
+
 	@RequestMapping("/BoInput")
 	public ModelAndView boinput(ModelAndView mav) {
 		mav.setViewName("/BoInput");
 		return mav;
 	}
+	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
+		@RequestMapping("/BoInput_Data")
+		public void insert(HttpServletResponse response, HttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
+			HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+			System.out.println(paramMap);
+
+			// ysi.insert(paramMap) : 입력받은 데이터(paramMap) 서비스로 보내기
+			// rstMap : 리턴된 값 받는 곳
+			HashMap<String, Object> rstMap = ysi.insert(paramMap);
+			// rstCnt: 삽입 된 갯수 => DB에 삽입이 되었는지 안되었는지 확인하기 위해
+			// rstInsertCnt: 서비스에서 리턴된 값
+			int rstCnt = (int)rstMap.get("rstInsertCnt");
+			// rstCNt 삽입 된 갯수야 ... .   갯수는  0 , 1  즉 , 0은 실패 1은 성공이야 .. 조건은  0보다 작거나 같으면 실패 0보다 크면 성공.
+			if(rstCnt > 0) { // msg , say, data, item,  직관적인 단어들 사요
+			/**
+			 * @param data: 알림 메시지
+			 * @param : 이동할 주소
+			 * */
+				rstMap.put("data","글작성이 완료되었습니다.");
+				rstMap.put("move",req.getContextPath()+"/Board?type="+paramMap.get("TYPE"));
+				
+			}else {
+				rstMap.put("data","글작성이 실패하였습니다.");
+				rstMap.put("move",req.getContextPath()+"/Main");
+				
+			}
+			// 한대 맞아서 나도 떄려주고싶은데 .... 때릴수 있는 유일한 수단.
+			HttpUtil.sendResponceToJson(response, rstMap);
+			// jsp -> 데이터 글작성 했다던가 ? -> 데이터 전송 -> 컨트롤러 -> db -> return Map -> json 변환을 해 ->
+			// jsp 다시 받음.
+		}
 
 	@RequestMapping("/Manager")
 	public ModelAndView manager(ModelAndView mav) {
@@ -88,7 +128,7 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/Review")
-	public ModelAndView review(ModelAndView mav , HttpSession session) {
+	public ModelAndView review(ModelAndView mav, HttpSession session) {
 		System.out.println(session.getAttribute("user"));
 		mav.setViewName("/Review");
 		return mav;
@@ -111,6 +151,7 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
 	}
+
 	@RequestMapping("/TokenCheck")
 	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
@@ -119,4 +160,9 @@ public class yumyumController {
 		session.setAttribute("user", paramMap);
 		HttpUtil.sendResponceToJson(response, paramMap);
 	}
+//	@RequestMapping("/reviewSearch_Data")
+//	public void reviewSearch(HttpServletResponse response, HttpServletRequest req) {
+//		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+//		HttpUtil.sendResponceToJson(response, ysi.reviewSearch(paramMap));
+//	}
 }

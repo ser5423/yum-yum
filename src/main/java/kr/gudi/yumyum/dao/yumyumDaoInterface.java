@@ -14,8 +14,16 @@ public interface yumyumDaoInterface {
 	// BestReview 부분
 	public List<HashMap<String, Object>> bestreviewSelectOne(HashMap<String, Object> paramMap);
 
+	// boardview부분
+	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap);
+
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap);
 
 	public int tokenAdd(HashMap<String, Object> paramMap);
+
 	public int tokenUpdate(HashMap<String, Object> paramMap);
+//
+//	public List<HashMap<String, Object>> reviewSearch(HashMap<String, Object> paramMap);
+//	
+	public int insert(HashMap<String, Object> paramMap);
 }

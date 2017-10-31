@@ -32,46 +32,46 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-// 	var user = session.getAttribute("user");
-// 	alert(user);
    function getData(){
       var type = '<%=type%>';
-					$.ajax({
-						url : "Board1_Data",
-						data : {
-							"type" : type
-						},
-						datetype : "json"
-					}).done(function(result) {
-						var data = result.list;
-						var board = result.Board;
+		$.ajax({
+			url :"Board1_Data",
+			data : {
+				"type" : type
+			},
+			datetype : "json"
+		}).done(function(result) {
+			var data = result.list;
+			var board = result.Board;
 
-						$(".container h1").text(board);
-						$(".breadcrumb li").eq(1).text(board);
-						$(".container .row tbody").empty();
+			$(".container h1").text(board);
+			$(".breadcrumb li").eq(1).text(board);
+			$(".container .row tbody").empty();
 
-						for (var i = 0; i < data.length; i++) {
-							var tag = "";
-							tag += '<tr>';
-							tag += '<td>' + data[i].TITLE + '</td>';
-							tag += '<td>' + data[i].NAME + '</td>';
-							tag += '<td>' + data[i].UPLOAD + '</td>';
-							tag += '<td>' + data[i].VIEWCNT + '</td>';
-							tag += '</tr>';
-							$(".container .row tbody").append(tag);
+			for (var i = 0; i < data.length; i++) {
+				var tag = "";
+				tag += '<tr>';
+	            tag += '<a href ="/BoardView">';
+	            tag += '<td>' + data[i].TITLE + '</td>';
+	            tag += '<td>' + data[i].NAME + '</td>';
+	            tag += '<td>' + data[i].UPLOAD2 + '</td>';
+	            tag += '<td>' + data[i].VIEWCNT + '</td>';
+	            tag += '</a>';
+	            tag += '</tr>';
+				$(".container .row tbody").append(tag);
+			}
 
-						}
-					});
-				}
-				getData();
-				
-// 				if(user == null || user.equal("")){
-// 					$(".container .row .writbtn2 button").addClass("hide");
-// 				} else {
-// 					$(".container .row .writbtn2 button").removeClass("hide");
-// 				}
-});
-			
+		 $("tbody tr").on("click", function(){
+			 
+	            var index = $("tbody tr").index(this);
+	            // BoardView.jsp뒷 주소 =>get방식
+// 	            console.log(index);
+	            location.href = "BoardView?NO=" + data[index].NO;
+	         }); 
+	      });
+	   }
+	getData();
+});	
 </script>
 </head>
 <body>
@@ -129,6 +129,11 @@ $(document).ready(function(){
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
 			<li class="breadcrumb-item active"></li>
 		</ol>
+		<ul class="ulstyle">
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a></li>
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a></li>
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a></li>
+		</ul>
 		<!-- 게시판 메인 부분 -->
 		<div class="row">
 			<table class="table table-hover ">
@@ -146,9 +151,9 @@ $(document).ready(function(){
 			</table>
 			<div class="writbtn2">
 			<% if(session.getAttribute("user") == null) {%> 
-				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" >글쓰기</button>
+				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>
 			<% } else { %>
-				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" >글쓰기</button>
+				<button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>
 				<% } %>
 			</div>
 		</div>

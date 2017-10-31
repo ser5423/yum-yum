@@ -10,7 +10,7 @@ import kr.gudi.yumyum.dao.yumyumDaoInterface;
 
 @Service
 public class YumyumService implements YumyumServiceInterface {
-	
+
 	@Autowired
 	yumyumDaoInterface ydi;
 
@@ -18,13 +18,13 @@ public class YumyumService implements YumyumServiceInterface {
 	public HashMap<String, Object> recipeSelectOne(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String food = "";
-		if(("KF").equals(paramMap.get("type"))){
+		if (("KF").equals(paramMap.get("type"))) {
 			food = "한식";
-		}else if(("JF").equals(paramMap.get("type"))){
+		} else if (("JF").equals(paramMap.get("type"))) {
 			food = "일식";
-		}else if(("CF").equals(paramMap.get("type"))){
+		} else if (("CF").equals(paramMap.get("type"))) {
 			food = "중식";
-		}else if(("EF").equals(paramMap.get("type"))){
+		} else if (("EF").equals(paramMap.get("type"))) {
 			food = "양식";
 		}
 		map.put("list", ydi.recipeSelectOne(paramMap));
@@ -32,72 +32,101 @@ public class YumyumService implements YumyumServiceInterface {
 		System.out.println(map);
 		return map;
 	}
+
 	@Override
-	   public HashMap<String, Object> BoardSelectOne(HashMap<String, Object> paramMap) {
-	      HashMap<String, Object> map = new HashMap<String, Object>();
-	      String board = "";
-	      if(("fr").equals(paramMap.get("type"))){
-	         board = "Free Board";
-	      }else if(("no").equals(paramMap.get("type"))){
-	         board = "Notice";
-	      }else if(("qa").equals(paramMap.get("type"))){
-	         board = "QnA";
-	      }
-	   
-	   map.put("list", ydi.BoardSelectOne(paramMap));
-	   map.put("Board", board);
-	   System.out.println(map);
-	      return map;
-	   }
-	 // Review부분
-	   @Override
-	   public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap){
-	      HashMap<String, Object> map = new HashMap<String, Object>();
-	      String text="Review";
-	      map.put("list", ydi.reviewSelectOne(paramMap));
-	      map.put("text1", text);
-	      System.out.println(map);
-	      return map;
-	   }
-	   
-	   
-	   // bestReview부분
-	   @Override
-	   public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap){
-	      HashMap<String, Object> map = new HashMap<String, Object>();
-	      String text="BestReview";
-	      map.put("list", ydi.bestreviewSelectOne(paramMap));
-	      map.put("text2", text);
-	      System.out.println(map);
-	      return map;
-	   }
+	public HashMap<String, Object> BoardSelectOne(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String board = "";
+		if (("fr").equals(paramMap.get("type"))) {
+			board = "자유게시판";
+		} else if (("no").equals(paramMap.get("type"))) {
+			board = "공지사항";
+		} else if (("qa").equals(paramMap.get("type"))) {
+			board = "QnA";
+		}
+
+		map.put("list", ydi.BoardSelectOne(paramMap));
+		map.put("Board", board);
+		System.out.println(map);
+		return map;
+	}
+
+	// Review부분
+	@Override
+	public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String text = "리뷰";
+		map.put("list", ydi.reviewSelectOne(paramMap));
+		map.put("text1", text);
+		System.out.println(map);
+		return map;
+	}
+
+	// bestReview부분
+	@Override
+	public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String text = "우수리뷰";
+		map.put("list", ydi.bestreviewSelectOne(paramMap));
+		map.put("text2", text);
+		System.out.println(map);
+		return map;
+	}
+
+	// boardview
+	@Override
+	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String boardview = "";
+		map.put("boardview", ydi.BoardViewSelectOne(paramMap));
+		System.out.println(map);
+		return map;
+	}
+
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HashMap<String, Object> user = new HashMap<String, Object>();
 		map = ydi.tokenCheck(paramMap);
 		System.out.println(map);
-		if(map == null){
+		if (map == null) {
 			map = new HashMap<String, Object>();
 			map.put("state", ydi.tokenAdd(paramMap));
 
-//			System.out.println(map);
-		}else {
+			// System.out.println(map);
+		} else {
 			int state = ydi.tokenUpdate(paramMap);
-			if(state == 1){
+			if (state == 1) {
 				System.out.println("행복이란...");
-			}else{
+			} else {
 				System.out.println("우울함...");
 			}
-//			System.out.println(map);
+			// System.out.println(map);
 		}
-		
+
 		map = ydi.tokenCheck(paramMap);
-		
+
 		return map;
 	}
+	// @Override
+	// public HashMap<String, Object> tokenAdd(HashMap<String, Object> paramMap)
+	// {
+	// return null;
+	// }
+
 //	@Override
-//	public HashMap<String, Object> tokenAdd(HashMap<String, Object> paramMap) {
-//		return null;
+//	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap) {
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("Serach", ydi.reviewSearch(paramMap));
+//		System.out.println(map);
+//		return map;
 //	}
+	// insert부분
+		@Override
+		public HashMap<String, Object> insert(HashMap<String, Object> paramMap) {
+			HashMap<String, Object> rstMap = new HashMap<String, Object>();
+			int rstInsertCnt = ydi.insert(paramMap);
+			rstMap.put("rstInsertCnt", rstInsertCnt);
+			return rstMap;
+		}
 }

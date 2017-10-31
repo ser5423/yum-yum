@@ -87,8 +87,16 @@ $(document).ready(function() {
 			}
 			getData1();
 			} else {
-				response.sendRedirect("Main");
-				}
+			response.sendRedirect("Main");
+		}
+		function check() {
+	        if (document.search.keyWord.value == "") {
+	            alert("검색어를 입력하세요.");
+	            document.search.keyWord.focus();
+	            return;
+	        }
+	        document.search.submit();
+	    }
 	});
 </script>
 </head>
@@ -147,44 +155,58 @@ $(document).ready(function() {
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
 			<li class="breadcrumb-item active"></li>
 		</ol>
+		<ul class="ulstyle">
+			<li class="listyle"><a class="libtn" href="/yumyum/BestReview">우수 리뷰</a></li>
+			<li class="listyle"><a class="libtn" href="/yumyum/Review">리뷰</a></li>
+		</ul>
 		<div class="row">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
-				<div class="card my-4 ">
+			<form action="boardList.action" name="search" method="post">
+			<div class="card my-4 ">
 					<h5 class="card-header bg-redred text-white">Search</h5>
 					<div class="card-body">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for..."> <span class="input-group-btn">
-								<button class="btn btn-default text-white bg-redred writbtn3" type="button">Go!</button>
+							<select name="keyField" size="1">
+				                <option value="name" > 이름 </option>
+				                <option value="title" > 제목 </option>
+				                <option value="content" > 내용 </option>
+				            </select>
+							<span class="input-group-btn">
+<!-- 								<button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->
+								<input type="text" size="16" name="KeyWord" value="${keyWord}" class="form-control" placeholder="Search for...">
+								<input class="btn btn-default text-white bg-redred writbtn3" type="button" value="검색" onClick="check()">
+								<input type="hidden" name="page" value="0">
 							</span>
 						</div>
 					</div>
 				</div>
-				<div class="card my-4">
-					<h5 class="card-header bg-redred text-white">여기엔 정렬을 넣장</h5>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-6">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">한식만</a></li>
-									<li><a href="#">일식만</a></li>
-									<li><a href="#">중식만</a></li>
-								</ul>
-							</div>
-							<div class="col-lg-6">
-								<ul class="list-unstyled mb-0">
-									<li><a href="#">양식만</a></li>
-									<li><a href="#">잡다</a></li>
-									<li><a href="#">추천수</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card my-4">
-					<h5 class="card-header bg-redred text-white">여기에 뭘 넣을까..</h5>
-					<div class="card-body">여기에 뭘 넣을까..</div>
-				</div>
+			</form>
+<!-- 				<div class="card my-4"> -->
+<!-- 					<h5 class="card-header bg-redred text-white">여기엔 정렬을 넣장</h5> -->
+<!-- 					<div class="card-body"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-lg-6"> -->
+<!-- 								<ul class="list-unstyled mb-0"> -->
+<!-- 									<li><a href="#">한식만</a></li> -->
+<!-- 									<li><a href="#">일식만</a></li> -->
+<!-- 									<li><a href="#">중식만</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-lg-6"> -->
+<!-- 								<ul class="list-unstyled mb-0"> -->
+<!-- 									<li><a href="#">양식만</a></li> -->
+<!-- 									<li><a href="#">잡다</a></li> -->
+<!-- 									<li><a href="#">추천수</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="card my-4"> -->
+<!-- 					<h5 class="card-header bg-redred text-white">여기에 뭘 넣을까..</h5> -->
+<!-- 					<div class="card-body">여기에 뭘 넣을까..</div> -->
+<!-- 				</div> -->
 
 			</div>
 

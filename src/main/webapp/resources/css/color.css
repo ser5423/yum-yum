@@ -189,3 +189,15 @@
 .hide{
 	visibility: hidden;
 }
+.listyle{
+	display : inline-block;
+}
+.ulstyle{
+	list-style: none;
+	padding : 0;
+}
+/* main 부분 맨 밑에 managerlogin 및  managerpage 버튼 css */
+.libtn {
+	text-decoration: none;
+	hover: text-decoration:none;
+}

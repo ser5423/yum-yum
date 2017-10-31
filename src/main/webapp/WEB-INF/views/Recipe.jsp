@@ -28,55 +28,43 @@
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
-$(document).ready(function(){
-	var hash = location.hash; 
-	
-	$("#recipeset a").on("click", function(){
-		hash = $(this).attr("href"); 
-		htmlLoad(); 
+$(document).ready(function(){   
+	   function getData(){
+	      var type = '<%=type%>';
+	      $.ajax({url:"RE_Data", 
+	            data: {"type": type}, 
+	            datetype:"json"
+	      }).done(function(result){
+	         var data = result.list;
+	         var food = result.food;
+	         
+	         $(".container h1").text(food);
+	         $(".breadcrumb li").eq(1).text(food);
+	         $(".container .row").empty();
+	         
+	         for(var i = 0; i < data.length; i++){
+	            var tag = "";
+	            tag += '<div class="col-lg-6 portfolio-item">';
+	            tag += '<div class="card h-100">';
+	            if(data[i].IMAGE != ""){
+	               tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
+	            }else {
+	               tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+	            }
+	            tag += '<div class="card-body">';
+	            tag += '<h4 class="card-title">';
+	            tag += '<a href="#">'+data[i].NAME+'</a>';
+	            tag += '</h4>';
+	            tag += '<p class="card-text">'+data[i].INTRO+'</p>';
+	            tag += '</div>';
+	            tag += '</div>';
+	            tag += '</div>';
+	            $(".container .row").append(tag);
+	         }
+	      });
+	   }
+	   getData();
 	});
-	function htmlLoad(){
-
-		var url = "/yum-yum/resources/html/" + hash.substr(1, hash.length) + ".html";
-	}
-	htmlLoad(); 
-	
-	function getData(){
-		var type = '<%=type%>';
-		$.ajax({url:"RE_Data", 
-				data: {"type": type}, 
-				datetype:"json"
-		}).done(function(result){
-			var data = result.list;
-			var food = result.food;
-			
-			$(".container h1").text(food);
-			$(".breadcrumb li").eq(1).text(food);
-			$(".container .row").empty();
-			
-			for(var i = 0; i < data.length; i++){
-				var tag = "";
-				tag += '<div class="col-lg-6 portfolio-item">';
-				tag += '<div class="card h-100">';
-				if(data[i].IMAGE != ""){
-					tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
-				}else {
-					tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
-				}
-				tag += '<div class="card-body">';
-				tag += '<h4 class="card-title">';
-				tag += '<a href="#">'+data[i].NAME+'</a>';
-				tag += '</h4>';
-				tag += '<p class="card-text">'+data[i].INTRO+'</p>';
-				tag += '</div>';
-				tag += '</div>';
-				tag += '</div>';
-				$(".container .row").append(tag);
-			}
-		});
-	}
-	getData();
-});
 </script> 
 </head>
 
@@ -137,6 +125,12 @@ $(document).ready(function(){
 			<li class="breadcrumb-item"><a href="/yumyum/Main">Main</a></li>
 			<li class="breadcrumb-item active"></li>
 		</ol>
+		<ul class="ulstyle">
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a></li>
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a></li>
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a></li>
+			<li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a></li>
+		</ul>
 
 		<div class="row">
 
@@ -164,7 +158,7 @@ $(document).ready(function(){
 
 	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="${item.NO}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="${data[i].NO}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content" id="modalsize">
 				<div class="modal-header">
