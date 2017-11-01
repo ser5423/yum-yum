@@ -65,7 +65,6 @@ $(document).ready(function(){
 			 
 	            var index = $("tbody tr").index(this);
 	            // BoardView.jsp뒷 주소 =>get방식
-// 	            console.log(index);
 	            location.href = "BoardView?NO=" + data[index].NO;
 	         }); 
 	      });

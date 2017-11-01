@@ -3,6 +3,8 @@ package kr.gudi.yumyum.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -108,25 +110,38 @@ public class YumyumService implements YumyumServiceInterface {
 
 		return map;
 	}
-	// @Override
-	// public HashMap<String, Object> tokenAdd(HashMap<String, Object> paramMap)
-	// {
-	// return null;
-	// }
 
-//	@Override
-//	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap) {
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("Serach", ydi.reviewSearch(paramMap));
-//		System.out.println(map);
-//		return map;
-//	}
+	@Override
+	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("Serach", ydi.reviewSearch(paramMap));
+		System.out.println(map);
+		return map;
+	}
+
 	// insert부분
-		@Override
-		public HashMap<String, Object> insert(HashMap<String, Object> paramMap) {
-			HashMap<String, Object> rstMap = new HashMap<String, Object>();
-			int rstInsertCnt = ydi.insert(paramMap);
-			rstMap.put("rstInsertCnt", rstInsertCnt);
-			return rstMap;
+	@Override
+	public HashMap<String, Object> insert(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		int rstInsertCnt = ydi.insert(paramMap);
+		rstMap.put("rstInsertCnt", rstInsertCnt);
+		return rstMap;
+	}
+
+	// update부분
+	@Override
+	public HashMap<String, Object> update(HashMap<String, Object> paramMap, HttpServletRequest req) {
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		int rstUpdateCnt = ydi.update(paramMap);
+		System.out.println(rstUpdateCnt);
+		if (rstUpdateCnt > 0) {
+			rstMap.put("msg", "글수정이 완료되었습니다.");
+			rstMap.put("move", req.getContextPath() + "/BoardView?NO=" + paramMap.get("NO"));
+		} else {
+			rstMap.put("msg", "글수정을 실패하였습니다.");
+			rstMap.put("move", req.getContextPath() + "/BoardView?NO=" + paramMap.get("NO"));
+
 		}
+		return rstMap;
+	}
 }

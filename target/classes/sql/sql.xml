@@ -37,12 +37,7 @@
     
     <delete id="delete" parameterType="hashmap" >
        delete from board where NAME=#{NAME}
-     </delete>
-    
-     <update id="update" parameterType="hashmap" >
-       update board set TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT}  where NO = #{NO}
-     </update>
-    
+     </delete>    
     <select id="tokenCheck" parameterType="hashmap" resultType="hashmap">
     	select * from NAVERLOGIN where access_token = #{access_token}
     </select>
@@ -58,11 +53,11 @@
 		    AGE = #{AGE}
 		where access_token = #{access_token}
 	</update>
-<!-- 	 <insert id="insert" parameterType="hashmap"> -->
-<!--        insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT) values (#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT}) -->
-<!--     </insert> -->
-<!-- 	<select id="reviewSearch" parameterType="hashmap" resultType="hashmap"> -->
-<!--     	select * from REVIEW where TITLE like '%#{search}%' -->
-<!--     </select> -->
+	<select id="reviewSearch" parameterType="hashmap" resultType="hashmap">
+    	select * from REVIEW where TITLE like '%${keyWord}%'
+    </select>
+    <update id="update" parameterType="hashmap" >
+       update board set TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT},UPLOAD=now()  where NO = #{NO}
+     </update>
 	
 </mapper>

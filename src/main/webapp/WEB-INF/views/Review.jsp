@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,17 +87,39 @@ $(document).ready(function() {
 					});
 			}
 			getData1();
+			} else if (${keyWord} ){
+				function getData2() {
+					$.ajax({url : "reviewSearch_Data",data :
+						$(this).serialize()
+						}).done(
+							function(result) {
+								var tag = "";
+
+								$(".container h1").text(text);
+								$(".breadcrumb li").eq(1).text(text);
+								$(".container .row .col-md-8").empty();
+
+								for (var i = 0; i < data.length; i++) {
+									var tag = "";
+									tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
+									tag += '<div class="card h-100">';
+									tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target="#' + data[i].NO + '"></a>';
+									tag += '<div class="card-body">';
+									tag += '<h4 class="card-title">';
+									tag += '<a href="#">' + data[i].TITLE + '</a>';
+									tag += '</h4>';
+									tag += '<p id="cardne" class="card-text">' + data[i].WRITER + '</p>';
+									tag += '</div>';
+									tag += '</div>';
+									tag += '</div>';
+									$(".container .row .col-md-8").append(tag);
+								}
+							});
+					}
+					getData2();
 			} else {
 			response.sendRedirect("Main");
 		}
-		function check() {
-	        if (document.search.keyWord.value == "") {
-	            alert("검색어를 입력하세요.");
-	            document.search.keyWord.focus();
-	            return;
-	        }
-	        document.search.submit();
-	    }
 	});
 </script>
 </head>
@@ -168,9 +191,9 @@ $(document).ready(function() {
 					<div class="card-body">
 						<div class="input-group">
 							<select name="keyField" size="1">
-				                <option value="name" > 이름 </option>
-				                <option value="title" > 제목 </option>
-				                <option value="content" > 내용 </option>
+				                <option value="WRITER">작성자</option>
+				                <option value="TITLE">제목</option>
+<!-- 				                <option value="">내용</option> -->
 				            </select>
 							<span class="input-group-btn">
 <!-- 								<button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->

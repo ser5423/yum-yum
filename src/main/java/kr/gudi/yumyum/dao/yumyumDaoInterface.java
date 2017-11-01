@@ -22,8 +22,11 @@ public interface yumyumDaoInterface {
 	public int tokenAdd(HashMap<String, Object> paramMap);
 
 	public int tokenUpdate(HashMap<String, Object> paramMap);
-//
-//	public List<HashMap<String, Object>> reviewSearch(HashMap<String, Object> paramMap);
-//	
+
+	public List<HashMap<String, Object>> reviewSearch(HashMap<String, Object> paramMap);
+
 	public int insert(HashMap<String, Object> paramMap);
+
+	// update부분
+	public int update(HashMap<String, Object> paramMap);
 }
