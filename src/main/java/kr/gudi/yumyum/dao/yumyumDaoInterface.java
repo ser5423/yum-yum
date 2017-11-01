@@ -23,10 +23,12 @@ public interface yumyumDaoInterface {
 
 	public int tokenUpdate(HashMap<String, Object> paramMap);
 
-	public List<HashMap<String, Object>> reviewSearch(HashMap<String, Object> paramMap);
-
 	public int insert(HashMap<String, Object> paramMap);
 
 	// update부분
 	public int update(HashMap<String, Object> paramMap);
+	
+	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap);
+
+	public int delete(HashMap<String, Object> paramMap);
 }

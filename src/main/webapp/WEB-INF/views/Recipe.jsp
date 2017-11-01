@@ -47,23 +47,47 @@ $(document).ready(function(){
 	            tag += '<div class="col-lg-6 portfolio-item">';
 	            tag += '<div class="card h-100">';
 	            if(data[i].IMAGE != ""){
-	               tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
+	               tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
 	            }else {
-	               tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+	               tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
 	            }
 	            tag += '<div class="card-body">';
 	            tag += '<h4 class="card-title">';
-	            tag += '<a href="#">'+data[i].NAME+'</a>';
+	            tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal">'+data[i].NAME+'</a>';
 	            tag += '</h4>';
-	            tag += '<p class="card-text">'+data[i].INTRO+'</p>';
+	            tag += '<p class="card-text">'+ data[i].INTRO +'</p>';
 	            tag += '</div>';
 	            tag += '</div>';
 	            tag += '</div>';
 	            $(".container .row").append(tag);
 	         }
+	      
 	      });
 	   }
 	   getData();
+	   
+	   $(".tagtagtag").on("click",function(){
+		   var index = $(".tagtagtag").index(this);
+		   console.log(index);
+		   var NO = (index + 1);
+		   
+		   $.ajax({url:"Recipemodal_Data", 
+			   NAME: {"NAME": NAME},
+			   INTRO: {"INTRO": INTRO},
+			   INGREDIENT: {"INGREDIENT": INGREDIENT},
+	            datetype:"json"
+	      }).done(function(){
+	    	  $("#RecipeModal #myModalLabel").empty();
+	    	  $("#RecipeModal #modaltextsize").empty();
+	    	  $("#RecipeModal #modalsogae").empty();
+	        
+	        $("#RecipeModal #myModalLabel").html(NAME);
+		    $("#RecipeModal #modaltextsize").html(INTRO);
+		    $("#RecipeModal #modalsogae").html(INGREDIENT);
+		    
+		    $("#RecipeModal").modal('show');
+	      })
+	    });
 	});
 </script> 
 </head>
@@ -139,30 +163,23 @@ $(document).ready(function(){
 
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					<span class="sr-only">Previous</span>
-				</a>
-			</li>
+			
 			
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#">3</a></li>
 			
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Next</span>
-				</a>
-			</li>
+			
 		</ul>
 
 	</div>
+	
 	<!-- Modal -->
-	<div class="modal fade" id="${data[i].NO}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="RecipeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content" id="modalsize">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">한식</h4>
+					<h4 class="modal-title" id="myModalLabel">요리제목</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -171,8 +188,8 @@ $(document).ready(function(){
 							<img src="/yumyum/resources/img/korea2.jpg" class="img-responsive card-img-top" id="modalimagesize2">
 						</p>
 					</div>
-					<p id="modaltextsize" class="modalradius">설명</p>
-					<p class="modalradius">한식</p>
+					<p id="modaltextsize" class="modalradius">재료</p>
+					<p id="modalsogae" class="modalradius">설명</p>
 				</div>
 			</div>
 		</div>

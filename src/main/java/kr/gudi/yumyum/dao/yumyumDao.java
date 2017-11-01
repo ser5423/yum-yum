@@ -66,15 +66,20 @@ public class yumyumDao implements yumyumDaoInterface {
 		return session.selectOne(NS + "BoardviewSelectOne", paramMap);
 	}
 
-	@Override
-	public List<HashMap<String, Object>> reviewSearch(HashMap<String, Object> paramMap) {
-		return session.selectList(NS + "reviewSearch", paramMap);
-	}
-
 	// update 부분
 	@Override
 	public int update(HashMap<String, Object> paramMap) {
 		return session.insert(NS + "update", paramMap);
 	}
 
+	@Override
+	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap) {
+		return session.selectOne(NS + "Recipemodal", paramMap);
+	}
+	//delete부분
+	   @Override
+	   public int delete(HashMap<String, Object> paramMap) {
+	       return session.delete(NS+"delete",paramMap);
+	   
+	   }
 }

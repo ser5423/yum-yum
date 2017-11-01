@@ -24,14 +24,10 @@
 <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
 <!-- Custom styles for this template -->
-<link rel="stylesheet"
-   href="/yumyum/resources/css/modern-business.css">
+<link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 
-<script type="text/javascript"
-   src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-   charset="utf-8"></script>
-<script type="text/javascript"
-   src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -133,6 +129,7 @@ $(document).ready(function(){
       $('#update').val("submit");
       //2017-10-31 수정화면일때 취소 버튼 생성 block로 하면 css 꺠지기 때문에 빈값으로 처리
       $('#cancel').css("display","");
+      $('#delete').css("display","none");
 
 
    } else if(display == "block") {
@@ -165,6 +162,7 @@ $(document).ready(function(){
    //2017-10-31 0이면 NONE 1이면 DISPLAY
       $('#display').val(0);
       $('#update').val("button");
+      $('#delete').css("display","inline-block");
       $('#cancel').css("display","none");
       $('#TITLE').css("display","none");
       $('#NAME').css("display","none");
@@ -172,6 +170,27 @@ $(document).ready(function(){
       $('#viewtitle').css("display","block");
       $('#viewname').css("display","block");
       $('#managertable').css("display","block");
+   })
+   
+   
+   //delete부분
+   $('#delete').click(function(){
+   
+      var form = $('#updateform').serialize();
+      $.ajax({
+         url : "BoDelete_Data",
+         data : form,
+         type : "POST",
+         datetype : "json",
+         success : function(data) { // 성공 시    메세지 및 이동할주소
+               alert(data.msg);
+               location.href= data.move;
+             },error : function(req,msg) {
+                alert(data.data);
+               location.href= data.move;
+             }
+      });
+
    })
 })
    
@@ -264,7 +283,7 @@ $(document).ready(function(){
                   onclick="location.href='javascript:history.go(-1)'">목록</button>
                <button type="button" id="update" class="btn btn-default text-white bg-redred writbtn3" value="button">수정</button>  
                <button type="button" id="cancel" class="btn btn-default text-white bg-redred writbtn3" style="display:none">취소</button>
-               <button type="button" class="btn btn-default text-white bg-redred writbtn3">삭제</button>
+               <button type="submit" id="delete" class="btn btn-default text-white bg-redred writbtn3">삭제</button>
             </div>
          </div>
 

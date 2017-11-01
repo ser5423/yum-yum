@@ -111,14 +111,6 @@ public class YumyumService implements YumyumServiceInterface {
 		return map;
 	}
 
-	@Override
-	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("Serach", ydi.reviewSearch(paramMap));
-		System.out.println(map);
-		return map;
-	}
-
 	// insert부분
 	@Override
 	public HashMap<String, Object> insert(HashMap<String, Object> paramMap) {
@@ -144,4 +136,27 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 		return rstMap;
 	}
+	@Override
+	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String Recipemodal = "";
+		map.put("Recipemodal", ydi.Recipemodal(paramMap));
+		System.out.println(map);
+		
+		return map;
+	}
+	@Override
+	   public HashMap<String, Object> delete(HashMap<String, Object> paramMap, HttpServletRequest req) {
+	      HashMap<String, Object> rstMap = new HashMap<String, Object>();
+	      int rstUpdateCnt = ydi.delete(paramMap);
+	      if(rstUpdateCnt > 0) {
+	         rstMap.put("msg","글삭제가 완료되었습니다.");
+	         rstMap.put("move",req.getContextPath()+"/Board?type="+paramMap.get("type"));
+	      }else{
+	         rstMap.put("msg","글삭제를 실패하였습니다.");
+	         rstMap.put("move",req.getContextPath()+"/BoardView?NO="+paramMap.get("NO"));
+	         
+	      }
+	      return rstMap;
+	   }
 }

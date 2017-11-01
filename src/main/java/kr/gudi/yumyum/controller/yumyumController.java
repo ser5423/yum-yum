@@ -166,12 +166,6 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, paramMap);
 	}
 
-	@RequestMapping("/reviewSearch_Data")
-	public void reviewSearch(HttpServletResponse response, HttpServletRequest req) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.reviewSearch(paramMap));
-	}
-
 	// update부분
 	@RequestMapping("/BoUpdate_Data")
 	public void update(HttpServletResponse response, HttpServletRequest req,@RequestParam Map<String, Object> paramMapa) {
@@ -179,5 +173,18 @@ public class yumyumController {
 		HashMap<String, Object> rstMap = ysi.update(paramMap, req);
 
 		HttpUtil.sendResponceToJson(response, rstMap);
+	}
+	//delete부분
+	   @RequestMapping("/BoDelete_Data")
+	   public void delete(HttpServletResponse response, HttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	      HashMap<String, Object> rstMap = ysi.delete(paramMap,req);
+	      
+	      HttpUtil.sendResponceToJson(response, rstMap);
+	   }
+	@RequestMapping("/Recipemodal_Data")
+	public void Recipemodal(HttpServletResponse response, HttpServletRequest req) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HttpUtil.sendResponceToJson(response, ysi.Recipemodal(paramMap));
 	}
 }

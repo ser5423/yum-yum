@@ -10,12 +10,12 @@
 	<select id="recipeSelectOne" parameterType="hashmap" resultType="hashmap">
  		select * from recipe where type = #{type}
  	</select>
-<!--  	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap"> -->
-<!--       select * from board -->
-<!--    </select> -->
+ 	<select id="BoardSelectList" parameterType="hashmap" resultType="hashmap">
+      select * from board
+   </select>
      <select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
       select *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD2
-      from board where type = #{type} 
+      from board where type = #{type} and DEL_YN='N'
     </select>
     
     <select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
@@ -31,13 +31,17 @@
     <select id="BoardviewSelectOne" parameterType="hashmap" resultType="hashmap"> 
        select *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD2 from board where NO = #{NO}	    
     </select>
+    
+    <select id="Recipemodal" parameterType="hashmap" resultType="hashmap"> 
+       select * from recipe where NO = ${NO}	    
+    </select>
+    
      <insert id="insert" parameterType="hashmap">
        insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT) values (#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT})
     </insert>
-    
-    <delete id="delete" parameterType="hashmap" >
-       delete from board where NAME=#{NAME}
-     </delete>    
+     <update id="delete" parameterType="hashmap" >
+       update board set DEL_YN = 'D' where NO = #{NO}
+     </update>
     <select id="tokenCheck" parameterType="hashmap" resultType="hashmap">
     	select * from NAVERLOGIN where access_token = #{access_token}
     </select>
@@ -53,9 +57,6 @@
 		    AGE = #{AGE}
 		where access_token = #{access_token}
 	</update>
-	<select id="reviewSearch" parameterType="hashmap" resultType="hashmap">
-    	select * from REVIEW where TITLE like '%${keyWord}%'
-    </select>
     <update id="update" parameterType="hashmap" >
        update board set TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT},UPLOAD=now()  where NO = #{NO}
      </update>

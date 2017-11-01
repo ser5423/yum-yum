@@ -20,10 +20,14 @@ public interface YumyumServiceInterface {
 
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap);
 
-	public HashMap<String, Object> reviewSearch(HashMap<String, Object> paramMap);
-
 	// insert부분
 	public HashMap<String, Object> insert(HashMap<String, Object> paramMap);
 
 	public HashMap<String, Object> update(HashMap<String, Object> paramMap, HttpServletRequest req);
+	
+	
+	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap);
+
+	 //delete부분
+    public HashMap<String, Object> delete(HashMap<String, Object> paramMap, HttpServletRequest req);
 }
