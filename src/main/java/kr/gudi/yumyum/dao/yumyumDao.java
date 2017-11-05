@@ -108,4 +108,8 @@ public class yumyumDao implements yumyumDaoInterface {
 		public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
 			return session.selectOne(NS + "managerlogin", paramMap);
 		}
+	   @Override
+	   public HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap) {
+	      return session.selectOne(NS + "VIEWCNT", paramMap);
+	   }
 }

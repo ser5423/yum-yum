@@ -99,6 +99,8 @@ $(document).ready(function(){
       
       $.ajax({
          url :"Board1_Data",
+         // 이미 받은거를 버리고 새로, 기본설정은 true!
+         cache : false,
          data : {
             "type" : type ,"start":start, "viewRow":viewRow
          }, datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기

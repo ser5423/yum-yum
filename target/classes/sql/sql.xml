@@ -86,6 +86,8 @@
 	
 	<select id="managerlogin" parameterType="hashmap" resultType="hashmap">
 		select * from Manager where ID = #{ID} and PW = #{PW}
-		
 	</select>
+	 <update id="VIEWCNT" parameterType="hashmap" >
+       update board set VIEWCNT = VIEWCNT + 1 where NO = #{NO}
+     </update>
 </mapper>

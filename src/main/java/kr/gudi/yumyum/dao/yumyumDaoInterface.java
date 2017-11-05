@@ -41,4 +41,6 @@ public interface yumyumDaoInterface {
 	HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> recipeSelectOneTotCnt(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap);
 }

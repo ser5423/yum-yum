@@ -86,10 +86,11 @@ public class YumyumService implements YumyumServiceInterface {
 	@Override
 	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String boardview = "";
-		map.put("boardview", ydi.BoardViewSelectOne(paramMap));
-		System.out.println(map);
-		return map;
+	      String boardview = "";
+	      map.put("boardview", ydi.BoardViewSelectOne(paramMap));
+	      map.put("VIEWCNT", ydi.VIEWCNT(paramMap));
+	      System.out.println(map);
+	      return map;
 	}
 
 	@Override
