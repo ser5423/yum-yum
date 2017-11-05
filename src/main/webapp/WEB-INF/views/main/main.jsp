@@ -16,37 +16,37 @@
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
-// function login(){
-//     var ID = $("#ID").val();
-//     var PW = $("#PW").val();
+function login(){
+    var ID = $("#ID").val();
+    var PW = $("#PW").val();
     
-//     console.log(ID);
+    console.log(ID);
       
-//       if(ID == "" || PW == ""){
-//           alert("아이디 또는 비밀번호가 입력되지 않았습니다!!");
-//           return false;
-//       }
+      if(ID == "" || PW == ""){
+          alert("아이디 또는 비밀번호가 입력되지 않았습니다!!");
+          return false;
+      }
         
-//       $.ajax({
-//          type:"post", 
-//          url:"managerlogin",
-//          data:{"ID": ID, "PW": PW},
-//          datatype:"json"  
-//       }).done(function(data){
-//         var result = data;
-//         console.log(data);
-//          if(result.data == null){  
-//             alert("실패");
-//             location.replace("main"); 
-//          }else if(result.data != null){
-//             alert("관리자님 환영합니다.");
-//          }
-//          console.log(ID);
+      $.ajax({
+         type:"post", 
+         url:"managerlogin",
+         data:{"ID": ID, "PW": PW},
+         datatype:"json"  
+      }).done(function(data){
+        var result = data;
+        console.log(data);
+         if(result.data == null){  
+            alert("실패");
+            location.replace("main"); 
+         }else if(result.data != null){
+            alert("관리자님 환영합니다.");
+         }
+         console.log(ID);
         
-//       }).fail(function(x){
-//          alert("다시 로그인 부탁드립니다."); 
-//       });
-// }
+      }).fail(function(x){
+         alert("다시 로그인 부탁드립니다."); 
+      });
+}
 
 </script>
 </head>

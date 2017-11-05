@@ -83,7 +83,7 @@ $(document).ready(function(){
           
                var index = $("tbody tr").index(this);
             
-               location.href = "BoardView?NO=" + data1[index].NO;
+               location.href = "BoardView?type=${param.type}"+"&NO="+ data1[index].NO;
             }); 
        
       }
