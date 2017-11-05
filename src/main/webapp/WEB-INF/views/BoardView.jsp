@@ -176,6 +176,7 @@ $(document).ready(function(){
    //delete부분
    $('#delete').click(function(){
    
+	  var type = $('#delete').val();
       var form = $('#updateform').serialize();
       $.ajax({
          url : "BoDelete_Data",

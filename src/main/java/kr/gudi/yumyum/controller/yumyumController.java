@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,10 +28,20 @@ public class yumyumController {
 	YumyumServiceInterface ysi;
 
 	@RequestMapping("/Main")
-	public ModelAndView main(ModelAndView mav) {
+	public ModelAndView main(ModelAndView mav, HttpSession session) {
+		System.out.println(session.getAttribute("manager"));
+		session.getAttribute("manager");
 		mav.setViewName("main/main");
 		return mav;
 	}
+	// 로그인
+	   @RequestMapping(value = "/managerlogin", method = RequestMethod.POST)
+	   public void loginData(HttpServletRequest req, HttpServletResponse resp, HttpSession session){
+	      HashMap<String, Object> param = HttpUtil.getParameterMap(req);
+	      HashMap<String, Object> result = ysi.managerlogin(param);
+	      session.setAttribute("manager", result);
+	      System.out.println(session.getAttribute("manager"));
+	   }
 
 	@RequestMapping("/Board")
 	public ModelAndView board(ModelAndView mav, HttpSession session) {

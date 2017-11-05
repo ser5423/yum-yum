@@ -20,17 +20,34 @@ public class yumyumDao implements yumyumDaoInterface {
 	public List<HashMap<String, Object>> recipeSelectOne(HashMap<String, Object> paramMap) {
 		return session.selectList(NS + "recipeSelectOne", paramMap);
 	}
+	 //recipe Paging부분
+	   @Override
+	   public HashMap<String, Object> recipeSelectOneTotCnt(HashMap<String, Object> paramMap) {
+	      return session.selectOne(NS + "recipeSelectOneTotCnt", paramMap);
+	   }
 
 	@Override
 	public List<HashMap<String, Object>> BoardSelectOne(HashMap<String, Object> paramMap) {
 		return session.selectList(NS + "BoardSelectOne", paramMap);
 	}
+	 //Board Paging부분
+	   @Override
+	   public HashMap<String, Object> BoardSelectOneTotCnt(HashMap<String, Object> paramMap) {
+	      return session.selectOne(NS + "BoardSelectOneTotCnt", paramMap);
+	   }
+
 
 	// Review 부분
 	@Override
 	public List<HashMap<String, Object>> reviewSelectOne(HashMap<String, Object> paramMap) {
 		return session.selectList(NS + "reviewSelectOne", paramMap);
 	}
+	//review Paging부분
+    @Override
+    public HashMap<String, Object> reviewSelectOneTotCnt(HashMap<String, Object> paramMap) {
+       return session.selectOne(NS + "reviewSelectOneTotCnt", paramMap);
+    }
+
 
 	// BestReview 부분
 	@Override
@@ -38,6 +55,11 @@ public class yumyumDao implements yumyumDaoInterface {
 		return session.selectList(NS + "bestreviewSelectOne", paramMap);
 
 	}
+    //BestReview Paging부분
+    @Override
+    public HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap) {
+       return session.selectOne(NS + "bestreviewSelectOneTotCnt", paramMap);
+    }
 
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
@@ -82,4 +104,8 @@ public class yumyumDao implements yumyumDaoInterface {
 	       return session.delete(NS+"delete",paramMap);
 	   
 	   }
+	   @Override
+		public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
+			return session.selectOne(NS + "managerlogin", paramMap);
+		}
 }

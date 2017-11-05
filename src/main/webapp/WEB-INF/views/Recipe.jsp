@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <% 
 	String type = request.getParameter("type");
-	
+
 	if(type == null){
 		response.sendRedirect("Main");
 	}
@@ -28,67 +28,91 @@
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
-$(document).ready(function(){   
+$(document).ready(function(){
+	   var type='<%=type%>';
+
+	   var data1 = []; // 데이터 담을 배열 변수 선언
+	   var page = 1; // 현재 페이지 값
+	   var viewRow = 6; // 화면에 보여질 행 갯수
+	   var totCnt = 0;
+	   
+	    function createHtml(){ // ul(부모) 태그 속에 li(자식) 태그 넣기 위한 함수
+	        $(".container .row").empty();
+	        for(var i = 0; i < data1.length; i++){
+	           var tag = "";
+	           tag += '<div class="col-lg-6 portfolio-item">';
+	           tag += '<div class="card h-100">';
+	           if(data1[i].IMAGE != ""){
+	              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data1[i].IMAGE + '"></a>';
+	           }else {
+	              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+	           }
+	           tag += '<div class="card-body">';
+	           tag += '<h4 class="card-title">';
+	           tag += '<a href="#">'+data1[i].NAME+'</a>';
+	           tag += '</h4>';
+	           tag += '<p class="card-text">'+data1[i].INTRO+'</p>';
+	           tag += '</div>';
+	           tag += '</div>';
+	           tag += '</div>';
+	           $(".container .row").prepend(tag);
+	      }
+	 
+	   } 
+
 	   function getData(){
-	      var type = '<%=type%>';
-	      $.ajax({url:"RE_Data", 
-	            data: {"type": type}, 
-	            datetype:"json"
-	      }).done(function(result){
-	         var data = result.list;
-	         var food = result.food;
-	         
-	         $(".container h1").text(food);
-	         $(".breadcrumb li").eq(1).text(food);
-	         $(".container .row").empty();
-	         
-	         for(var i = 0; i < data.length; i++){
-	            var tag = "";
-	            tag += '<div class="col-lg-6 portfolio-item">';
-	            tag += '<div class="card h-100">';
-	            if(data[i].IMAGE != ""){
-	               tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data[i].IMAGE + '"></a>';
-	            }else {
-	               tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
-	            }
-	            tag += '<div class="card-body">';
-	            tag += '<h4 class="card-title">';
-	            tag += '<a href="#" class="tagtagtag" data-toggle="modal" data-target="#RecipeModal">'+data[i].NAME+'</a>';
-	            tag += '</h4>';
-	            tag += '<p class="card-text">'+ data[i].INTRO +'</p>';
-	            tag += '</div>';
-	            tag += '</div>';
-	            tag += '</div>';
-	            $(".container .row").append(tag);
-	         }
+	      var paging = totCnt / viewRow;
+	      $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
+	      for(var i = 0; i < paging; i++){
+	         console.log(totCnt);
+	         console.log(viewRow);
+	         console.log(paging); 
+	         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
+	      }   
+	   
 	      
+	      $("#ul a").eq(page - 1); 
+	      // page의 변수를 이용하여 a 태그의 인덱스 값을 구하여 bg 클래스를 적용한다.
+	      
+	      $("#ul a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
+	         // a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
+	         page = $(this).text();
+	         setTimeout(function(){
+	            initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
+	         }, 100); // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
+	      });
+	      
+
+	      } 
+	   function initData(){ // 디비에서 데이터 가져오기 위한 함수
+	      
+	      var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
+	      if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
+	         page = hash.substr(1, hash.length);
+	      }
+	      
+	      var end = (viewRow * page); // 10 * 2 = 20 
+	      var start = (end - viewRow); // 20 - 10 = 10
+	      $.ajax({
+	         url :"RE_Data",
+	         data : {
+	            "type" : type ,"start":start, "viewRow":viewRow
+	         }, datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
+	      }).done(function(d){ // 비동기식 데이터 가져오기
+	         console.log(d);
+	         data1 = d.list;
+	         totCnt = d.ToT.tot;
+	         createHtml(); // 화면에 표현하기 위하여 함수 호출 
+	         getData(); // 페이지 링크 표현하기 우하여 함수 호출
+	           var food = d.food;
+
+	           $(".container h1").text(food);
+	             $(".breadcrumb li").eq(1).text(food);
 	      });
 	   }
-	   getData();
-	   
-	   $(".tagtagtag").on("click",function(){
-		   var index = $(".tagtagtag").index(this);
-		   console.log(index);
-		   var NO = (index + 1);
-		   
-		   $.ajax({url:"Recipemodal_Data", 
-			   NAME: {"NAME": NAME},
-			   INTRO: {"INTRO": INTRO},
-			   INGREDIENT: {"INGREDIENT": INGREDIENT},
-	            datetype:"json"
-	      }).done(function(){
-	    	  $("#RecipeModal #myModalLabel").empty();
-	    	  $("#RecipeModal #modaltextsize").empty();
-	    	  $("#RecipeModal #modalsogae").empty();
-	        
-	        $("#RecipeModal #myModalLabel").html(NAME);
-		    $("#RecipeModal #modaltextsize").html(INTRO);
-		    $("#RecipeModal #modalsogae").html(INGREDIENT);
-		    
-		    $("#RecipeModal").modal('show');
-	      })
-	    });
-	});
+	   initData();
+	});   
+
 </script> 
 </head>
 
@@ -162,12 +186,9 @@ $(document).ready(function(){
 		<!-- /.row -->
 
 		<!-- Pagination -->
-		<ul class="pagination justify-content-center">
+		<ul id="ul" class="pagination justify-content-center">
 			
-			
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
+		
 			
 			
 		</ul>

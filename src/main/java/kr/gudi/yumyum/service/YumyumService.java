@@ -31,49 +31,56 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 		map.put("list", ydi.recipeSelectOne(paramMap));
 		map.put("food", food);
+		map.put("ToT", ydi.recipeSelectOneTotCnt(paramMap));
 		System.out.println(map);
 		return map;
 	}
 
-	@Override
-	public HashMap<String, Object> BoardSelectOne(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		String board = "";
-		if (("fr").equals(paramMap.get("type"))) {
-			board = "자유게시판";
-		} else if (("no").equals(paramMap.get("type"))) {
-			board = "공지사항";
-		} else if (("qa").equals(paramMap.get("type"))) {
-			board = "QnA";
-		}
+	   //board부분
+	   @Override
+	   public HashMap<String, Object> BoardSelectOne(HashMap<String, Object> paramMap) {
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      String board = "";
+	      if (("fr").equals(paramMap.get("type"))) {
+	         board = "자유게시판";
+	      } else if (("no").equals(paramMap.get("type"))) {
+	         board = "공지사항";
+	      } else if (("qa").equals(paramMap.get("type"))) {
+	         board = "QnA";
+	      }
 
-		map.put("list", ydi.BoardSelectOne(paramMap));
-		map.put("Board", board);
-		System.out.println(map);
-		return map;
-	}
+	      map.put("list", ydi.BoardSelectOne(paramMap));
+	      //Board Paging부분
+	      map.put("ToT", ydi.BoardSelectOneTotCnt(paramMap));
+	      map.put("Board", board);
+	      System.out.println(map);
+	      return map;
+	   }
 
-	// Review부분
-	@Override
-	public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		String text = "리뷰";
-		map.put("list", ydi.reviewSelectOne(paramMap));
-		map.put("text1", text);
-		System.out.println(map);
-		return map;
-	}
+	   // Review부분
+	      @Override
+	      public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap) {
+	         HashMap<String, Object> map = new HashMap<String, Object>();
+	         String text = "리뷰";
+	         map.put("list", ydi.reviewSelectOne(paramMap));
+	         map.put("text1", text);
+	         map.put("ToT", ydi.reviewSelectOneTotCnt(paramMap));
+	         System.out.println(map);
+	         return map;
+	      }
 
-	// bestReview부분
-	@Override
-	public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		String text = "우수리뷰";
-		map.put("list", ydi.bestreviewSelectOne(paramMap));
-		map.put("text2", text);
-		System.out.println(map);
-		return map;
-	}
+	      // bestReview부분
+	      @Override
+	      public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap) {
+	         HashMap<String, Object> map = new HashMap<String, Object>();
+	         String text = "우수리뷰";
+	         map.put("list", ydi.bestreviewSelectOne(paramMap));
+	         map.put("text2", text);
+	         map.put("ToT", ydi.bestreviewSelectOneTotCnt(paramMap));
+	         System.out.println(map);
+	         return map;
+	      }
+
 
 	// boardview
 	@Override
@@ -159,4 +166,11 @@ public class YumyumService implements YumyumServiceInterface {
 	      }
 	      return rstMap;
 	   }
+	@Override
+	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("data", ydi.managerlogin(paramMap));
+        return map;
+	}
+	
 }

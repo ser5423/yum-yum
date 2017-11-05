@@ -31,4 +31,14 @@ public interface yumyumDaoInterface {
 	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap);
 
 	public int delete(HashMap<String, Object> paramMap);
+	
+	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> BoardSelectOneTotCnt(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> reviewSelectOneTotCnt(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> recipeSelectOneTotCnt(HashMap<String, Object> paramMap);
 }
