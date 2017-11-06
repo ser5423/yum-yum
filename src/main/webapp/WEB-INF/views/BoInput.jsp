@@ -103,19 +103,12 @@ $(document).ready(function(){
 							id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="id" class="col-xs-6 control-label">아이디</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="ID" name="ID" placeholder="아이디를 입력하세요">
-					</div>
-				</div>
 				
 				<div class="form-group">
-					<label for="name" class="col-xs-6 control-label">이름</label>
+					<label for="name" class="col-xs-6 control-label">작성자</label>
 					<div class="col-xs-6">
 						<input type="text" class="form-control inputformne"
-							id="NAME" name="NAME" placeholder="이름을 입력하세요">
+							id="NAME" name="NAME" placeholder="작성자 이름을 입력하세요">
 					</div>
 				</div>
 				

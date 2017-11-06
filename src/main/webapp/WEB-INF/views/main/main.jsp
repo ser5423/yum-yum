@@ -350,7 +350,7 @@ function login(){
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal inputform" action="managerlogin" method="post">
+					<form class="form-horizontal inputform" action="Main" method="post">
 						<div class="form-group">
 							<label for="ID" class="col-xs-6 control-label">ID</label>
 							<div class="col-xs-6">

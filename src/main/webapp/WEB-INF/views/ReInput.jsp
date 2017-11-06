@@ -80,9 +80,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">아이디</label>
+					<label for="inputEmail3" class="col-xs-6 control-label">작성자</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="아이디를 입력하세요">
+						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="작성자 이름을 입력하세요">
 					</div>
 				</div>
 				<div class="form-group">
