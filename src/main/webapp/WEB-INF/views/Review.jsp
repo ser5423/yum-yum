@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-	 <% 
-   String RECOMMEND = request.getParameter("RECOMMEND");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +20,53 @@
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
 $(document).ready(function(){
-	   var RECOMMEND='<%=RECOMMEND%>';
+	   var RECOMMEND=0;
 	   var pathname = location.pathname;
 
 	   var data1 = []; // 데이터 담을 배열 변수 선언
 	   var page = 1; // 현재 페이지 값
 	   var viewRow = 6; // 화면에 보여질 행 갯수
 	   var totCnt = 0;
+	   
+	   $("#KeyWord").attr("disabled",true);
+	   $("#check").attr("disabled",true);
+	   
 	   if (pathname == "/yumyum/Review") {
-	    function createHtml(){ // ul(부모) 태그 속에 li(자식) 태그 넣기 위한 함수
+		   RECOMMEND = 0;
+	   }else if (pathname == "/yumyum/BestReview") {
+		   RECOMMEND = 1;
+	   }
+	   initData();
+	   
+	   $( "form" ).on("submit", function( event ) { // 예나는 돼?
+		   event.preventDefault();
+		   if ($("#KeyWord").val() == "") {
+	        	var text = "";
+	        	if($("#keyField").val() == "TITLE"){
+	        		text = "제목";
+	        	}else if($("#keyField").val() == "WRITER"){
+	        		text = "이름";
+	        	}
+	            alert(text + "에 대한 검색어를 입력하세요.");
+	            $("#KeyWord").focus();
+	            return;
+	        }
+		   initData();
+	   });
+	   
+	   $("#keyField").change(function() {
+		   if($(this).val() == "ALL"){
+			   $("#KeyWord").attr("disabled",true);
+			   $("#check").attr("disabled",true);
+			   $("#KeyWord").val("");
+			   initData();
+		   }else{
+			   $("#KeyWord").attr("disabled",false);
+			   $("#check").attr("disabled",false);
+		   }
+	   });
+	   
+	   function createHtml(){ // ul(부모) 태그 속에 li(자식) 태그 넣기 위한 함수
 	        $(".container .row .col-md-8").empty();
 	       for (var i = 0; i < data1.length; i++) {
 	         var tag = "";
@@ -49,136 +84,62 @@ $(document).ready(function(){
 	         $(".container .row .col-md-8").prepend(tag);
 	      }
 	 
-	   } 
-
+	   }
+	   
 	   function getData(){
-	      var paging = totCnt / viewRow;
-	      $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
-	      for(var i = 0; i < paging; i++){
-	   
-	         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
-	      }   
-	   
-	      
-	      $("#ul a").eq(page - 1); 
-	      // page의 변수를 이용하여 a 태그의 인덱스 값을 구하여 bg 클래스를 적용한다.
-	      
-	      $("#ul a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
-	         // a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
-	         page = $(this).text();
-	         setTimeout(function(){
-	            initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
-	         }, 100); // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
-	      });
-	      
+		      var paging = totCnt / viewRow;
+		      $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
+		      for(var i = 0; i < paging; i++){
+		   
+		         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
+		      }   
+		   
+		      
+		      $("#ul a").eq(page - 1); 
+		      // page의 변수를 이용하여 a 태그의 인덱스 값을 구하여 bg 클래스를 적용한다.
+		      
+		      $("#ul a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
+		         // a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
+		         page = $(this).text();
+		         setTimeout(function(){
+		            initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
+		         }, 100); // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
+		      });
+		      
 
-	      } 
+		      }
+	   
 	   function initData(){ // 디비에서 데이터 가져오기 위한 함수
-	      
-	      var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
-	      if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
-	         page = hash.substr(1, hash.length);
-	      }
-	      
-	      var end = (viewRow * page); // 10 * 2 = 20 
-	      var start = (end - viewRow); // 20 - 10 = 10
-	      $.ajax({
-	         url :"Review_Data",
-	         data :  {"RECOMMEND":RECOMMEND,"start":start, "viewRow":viewRow},
-	         datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
-	      }).done(function(d){ // 비동기식 데이터 가져오기
-	         console.log(d);
-	         data1 = d.list;
-	         totCnt = d.ToT.tot;
-	         createHtml(); // 화면에 표현하기 위하여 함수 호출 
-	         getData(); // 페이지 링크 표현하기 우하여 함수 호출
-	           var text = d.text;
-
-	           $(".container h1").text(text);
-	            $(".breadcrumb li").eq(1).text(text);
-	      });
-	   }
-	   initData();
-	   }else if (pathname == "/yumyum/BestReview") {
-	      function createHtml1(){ // ul(부모) 태그 속에 li(자식) 태그 넣기 위한 함수
-	           $(".container .row .col-md-8").empty();
-	          for (var i = 0; i < data1.length; i++) {
-	            var tag = "";
-	            tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
-	            tag += '<div class="card h-100">';
-	            tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal"data-target=""></a>';
-	            tag += '<div class="card-body">';
-	            tag += '<h4 class="card-title">';
-	            tag += '<a href="#">'+ data1[i].TITLE + '</a>';
-	            tag += '</h4>';
-	            tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
-	            tag += '</div>';
-	            tag += '</div>';
-	            tag += '</div>';
-	            $(".container .row .col-md-8").append(tag);
-	         }
-	    
-	      } 
-
-	      function getData1(){
-	         var paging = totCnt / viewRow;
-	         $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
-	         for(var i = 0; i < paging; i++){
-	      
-	            $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
-	         }   
-	      
-	         
-	         $("#ul a").eq(page - 1); 
-	         // page의 변수를 이용하여 a 태그의 인덱스 값을 구하여 bg 클래스를 적용한다.
-	         
-	         $("#ul a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
-	            // a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
-	            page = $(this).text();
-	            setTimeout(function(){
-	               initData1(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
-	            }, 100); // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
-	         });
-	         
-
-	         } 
-	      function initData1(){ // 디비에서 데이터 가져오기 위한 함수
-	         
-	         var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
-	         if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
-	            page = hash.substr(1, hash.length);
-	         }
-	         
-	         var end = (viewRow * page); // 10 * 2 = 20 
-	         var start = (end - viewRow); // 20 - 10 = 10
-	         $.ajax({
-	            url :"bestReview_Data",
-	            data :  {"RECOMMEND":RECOMMEND,"start":start, "viewRow":viewRow},
-	            datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
-	         }).done(function(d){ // 비동기식 데이터 가져오기
-	            console.log(d);
-	            data1 = d.list;
-	            totCnt = d.ToT.tot;
-	            createHtml1(); // 화면에 표현하기 위하여 함수 호출 
-	            getData1(); // 페이지 링크 표현하기 우하여 함수 호출
-	              var text = d.text;
-
-	              $(".container h1").text(text);
-	               $(".breadcrumb li").eq(1).text(text);
-	         });
-	      }
-	      initData1();
-	   }else {
-	      response.sendRedirect("Main");
-	   }
-	   function check() {
-	        if (document.search.keyWord.value == "") {
-	            alert("검색어를 입력하세요.");
-	            document.search.keyWord.focus();
-	            return;
-	        }
-	        document.search.submit();
-	    }
+		      
+		      var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
+		      if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
+		         page = hash.substr(1, hash.length);
+		      }
+		      
+		      var end = (viewRow * page); // 10 * 2 = 20 
+		      var start = (end - viewRow); // 20 - 10 = 10
+		      
+		      $.ajax({
+			         url :"Review_Data",
+			         data :  {"RECOMMEND":RECOMMEND, 
+			        	      "start":start, 
+			        	      "viewRow":viewRow, 
+			        	      "keyField": $("#keyField").val(), 
+			        	      "KeyWord": $("#KeyWord").val()
+				  },datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
+		      }).done(function(d){ // 비동기식 데이터 가져오기
+		         console.log(d);
+		         data1 = d.list;
+		         totCnt = d.ToT.tot;
+		         createHtml(); // 화면에 표현하기 위하여 함수 호출 
+		         getData(); // 페이지 링크 표현하기 우하여 함수 호출
+		         var text = d.text;
+		         console.log(text);
+		         $(".container h1").text(text);
+		         $(".breadcrumb li").eq(1).text(text);
+		      });
+		   }
+	   
 	});   
 
 </script>
@@ -245,52 +206,27 @@ $(document).ready(function(){
 		<div class="row">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
-			<form action="boardList.action" name="search" method="post">
+			<form>
 			<div class="card my-4 ">
 					<h5 class="card-header bg-redred text-white">Search</h5>
 					<div class="card-body">
 						<div class="input-group">
 							<select id="keyField" name="keyField" class="box form-control inputformne">
-				               <option value="WRITER" <%/* if(request.getParameter("WRITER").equalsIgnoreCase("WRITER")) */ { %>selected="selected"<%}%>>이름</option>
-				               <option value="TITLE" <%/* if(request.getParameter("TITLE").equalsIgnoreCase("TITLE")) */ { %>selected="selected"<%}%>>제목</option>
+							   <option value="ALL">전체</option>
+				               <option value="WRITER">이름</option>
+				               <option value="TITLE">제목</option>
 				            </select> 
 <!-- 				                <option value="">내용</option> -->
 							<span class="input-group-btn">
 <!-- 								<button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->
-								<input type="text" size="16" name="KeyWord" value="${keyWord}" class="form-control" placeholder="Search for...">
-								<input class="btn btn-default text-white bg-redred writbtn3" type="button" value="검색" onClick="check()">
+								<input type="text" size="16" name="KeyWord" id="KeyWord" value="${keyWord}" class="form-control" placeholder="Search for...">
+								<input class="btn btn-default text-white bg-redred writbtn3" type="submit" value="검색">
 								<input type="hidden" name="page" value="0">
 							</span>
 						</div>
 					</div>
 				</div>
 			</form>
-<!-- 				<div class="card my-4"> -->
-<!-- 					<h5 class="card-header bg-redred text-white">여기엔 정렬을 넣장</h5> -->
-<!-- 					<div class="card-body"> -->
-<!-- 						<div class="row"> -->
-<!-- 							<div class="col-lg-6"> -->
-<!-- 								<ul class="list-unstyled mb-0"> -->
-<!-- 									<li><a href="#">한식만</a></li> -->
-<!-- 									<li><a href="#">일식만</a></li> -->
-<!-- 									<li><a href="#">중식만</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-lg-6"> -->
-<!-- 								<ul class="list-unstyled mb-0"> -->
-<!-- 									<li><a href="#">양식만</a></li> -->
-<!-- 									<li><a href="#">잡다</a></li> -->
-<!-- 									<li><a href="#">추천수</a></li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="card my-4"> -->
-<!-- 					<h5 class="card-header bg-redred text-white">여기에 뭘 넣을까..</h5> -->
-<!-- 					<div class="card-body">여기에 뭘 넣을까..</div> -->
-<!-- 				</div> -->
-
 			</div>
 
 		</div>

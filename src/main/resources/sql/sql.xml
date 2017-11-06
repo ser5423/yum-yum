@@ -25,12 +25,34 @@
    </select>
 	
 	<select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
-		select  *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
-      from REVIEW where RECOMMEND <![CDATA[ < ]]> 20 limit ${start}, ${viewRow}
+		select  *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
+          from REVIEW 
+          where 1 = 1 
+          <if test="RECOMMEND == 0">
+          	and RECOMMEND <![CDATA[ < ]]> 20
+          </if>
+          <if test="RECOMMEND == 1">
+          	and RECOMMEND <![CDATA[ >= ]]> 20
+          </if>
+          <if test="keyField == 'TITLE'">
+          	and TITLE like '%${KeyWord}%'
+          </if> 
+          <if test="keyField == 'WRITER'">
+          	and WRITER like '%${KeyWord}%'
+          </if>
+          limit ${start}, ${viewRow}
 	</select>
 	
 	<select id="reviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
-      select count(*) as tot from REVIEW where RECOMMEND <![CDATA[ < ]]> 20
+     select count(*) as tot 
+      from REVIEW 
+      where 1 = 1 
+      <if test="RECOMMEND == 0">
+      	and RECOMMEND <![CDATA[ < ]]> 20
+      </if>
+      <if test="RECOMMEND == 1">
+      	and RECOMMEND <![CDATA[ >= ]]> 20
+      </if>
    </select>
 
 	<select	id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
