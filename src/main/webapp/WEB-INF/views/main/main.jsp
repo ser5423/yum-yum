@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	session.getAttribute("manager");
+	System.out.println(session.getAttribute("manager"));
+	%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Food Factory</title>
+<title>Yum - Yum</title>
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
@@ -15,40 +19,7 @@
 <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-<script type="text/javascript">
-function login(){
-    var ID = $("#ID").val();
-    var PW = $("#PW").val();
-    
-    console.log(ID);
-      
-      if(ID == "" || PW == ""){
-          alert("아이디 또는 비밀번호가 입력되지 않았습니다!!");
-          return false;
-      }
-        
-      $.ajax({
-         type:"post", 
-         url:"managerlogin",
-         data:{"ID": ID, "PW": PW},
-         datatype:"json"  
-      }).done(function(data){
-        var result = data;
-        console.log(data);
-         if(result.data == null){  
-            alert("실패");
-            location.replace("main"); 
-         }else if(result.data != null){
-            alert("관리자님 환영합니다.");
-         }
-         console.log(ID);
-        
-      }).fail(function(x){
-         alert("다시 로그인 부탁드립니다."); 
-      });
-}
 
-</script>
 </head>
 <body>
 	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
@@ -341,45 +312,23 @@ function login(){
 			</div>
 		</div>
 	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="managerlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content managerlogin">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Manager Login</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal inputform" action="Main" method="post">
-						<div class="form-group">
-							<label for="ID" class="col-xs-6 control-label">ID</label>
-							<div class="col-xs-6">
-								<input type="text" class="form-control inputformne2" id="ID" name="ID" placeholder="아이디를 입력하세요">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="PW" class="col-xs-6 control-label">Password</label>
-							<div class="col-xs-6">
-								<input type="password" class="form-control inputformne2" id="PW" name="PW" placeholder="비밀번호를 입력하세요">
-							</div>
-						</div>
-						<div class="form-group writbtn3-1">
-							<div class="col-xs-3">
-								<button type="submit" class="btn btn-default text-white bg-redred writbtn3">Login</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!-- 하단 footer 부분 -->
 	<footer class="py-4 bg-redred">
 		<div class="container">
 			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
 			<div id="navbarDropdownBlog" class="nav-link reviewmodal managerbtn">
-				<a class="managerbtn" href="#" data-toggle="modal" data-target="#managerlogin">Manager Login</a>
-				<a class="managerbtn" href="Manager">Manager Page</a>
+				<% if(session.getAttribute("manager") == null) {%> 
+            		<a class="managerbtn" href="Managerlogin" >Manager Login</a>
+         		<% } else { %>
+         			<a id="logout" class="managerbtn" href="logout">Manager Logout</a>
+            		<a class="managerbtn hide" href="Managerlogin" >Manager Login</a>
+            	<% } %>
+				<% if(session.getAttribute("manager") == null) {%> 
+            		<a class="managerbtn hide" href="Manager">Manager Page</a>
+         		<% } else { %>
+            		<a class="managerbtn" href="Manager">Manager Page</a>
+            	<% } %>
 			</div>
 		</div>
 	</footer>

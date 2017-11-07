@@ -32,7 +32,7 @@ public interface yumyumDaoInterface {
 
 	public int delete(HashMap<String, Object> paramMap);
 	
-	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
+//	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> BoardSelectOneTotCnt(HashMap<String, Object> paramMap);
 
@@ -43,4 +43,6 @@ public interface yumyumDaoInterface {
 	HashMap<String, Object> recipeSelectOneTotCnt(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap);
+
+	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
 }

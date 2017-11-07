@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Food Factory</title>
+<title>Yum - Yum</title>
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
@@ -196,7 +196,7 @@ $(document).ready(function(){
             </tbody>
          </table>
          <div class="writbtn2">
-         <% if(session.getAttribute("user") == null) {%> 
+         <% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%> 
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>
          <% } else { %>
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>

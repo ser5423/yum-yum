@@ -1,25 +1,24 @@
 package kr.gudi.yumyum.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.gudi.util.HttpUtil;
-
 import kr.gudi.yumyum.service.YumyumServiceInterface;
 
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 
 @Controller
 public class yumyumController {
@@ -29,20 +28,12 @@ public class yumyumController {
 
 	@RequestMapping("/Main")
 	public ModelAndView main(ModelAndView mav, HttpSession session) {
-		System.out.println(session.getAttribute("manager"));
+//		System.out.println(session.getAttribute("manager"));
 		session.getAttribute("manager");
 		mav.setViewName("main/main");
 		return mav;
 	}
-	// 로그인
-	   @RequestMapping(value = "/managerlogin", method = RequestMethod.POST)
-	   public void loginData(HttpServletRequest req, HttpServletResponse resp, HttpSession session){
-	      HashMap<String, Object> param = HttpUtil.getParameterMap(req);
-	      HashMap<String, Object> result = ysi.managerlogin(param);
-	      session.setAttribute("manager", result);
-	      System.out.println(session.getAttribute("manager"));
-	   }
-
+	
 	@RequestMapping("/Board")
 	public ModelAndView board(ModelAndView mav, HttpSession session) {
 		System.out.println(session.getAttribute("user"));
@@ -197,5 +188,36 @@ public class yumyumController {
 	public void Recipemodal(HttpServletResponse response, HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.Recipemodal(paramMap));
+	}
+	@RequestMapping("/Managerlogin")
+	public ModelAndView Managerlogin(ModelAndView mav, HttpSession session) {
+		System.out.println(session.getAttribute("manager"));
+		session.getAttribute("manager");
+		System.out.println("manager");
+		mav.setViewName("/Managerlogin");
+		return mav;
+	}
+	@RequestMapping("/Managerlogin1")
+	public void managerlogin( HttpServletResponse response, HttpServletRequest req, HttpSession session) throws IOException {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		System.out.println(paramMap);
+		paramMap = ysi.managerlogin(paramMap);
+		session.setAttribute("manager", paramMap);
+		HttpUtil.sendResponceToJson(response, paramMap);
+		
+		System.out.println(paramMap);
+		if(paramMap == null){
+			response.sendRedirect("/yumyum/Managerlogin");
+//			System.out.println("로그인 실패실패 컨트롤러");
+		} else{
+			response.sendRedirect("/yumyum/Main");
+//			System.out.println("로그인 성공성공 컨트롤러");
+		}
+	}
+	@RequestMapping("/logout")
+	public ModelAndView logout(ModelAndView mav, HttpSession session) {
+		session.invalidate();
+		mav.setViewName("redirect:/Main");
+		return mav;
 	}
 }

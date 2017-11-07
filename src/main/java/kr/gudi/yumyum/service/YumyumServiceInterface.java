@@ -19,6 +19,8 @@ public interface YumyumServiceInterface {
 	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap);
 
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap);
+	
+	
 
 	// insert부분
 	public HashMap<String, Object> insert(HashMap<String, Object> paramMap);

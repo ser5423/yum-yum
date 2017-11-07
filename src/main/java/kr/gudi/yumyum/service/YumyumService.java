@@ -167,11 +167,26 @@ public class YumyumService implements YumyumServiceInterface {
 	      }
 	      return rstMap;
 	   }
+
 	@Override
 	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("data", ydi.managerlogin(paramMap));
-        return map;
+		HashMap<String, Object> manager = new HashMap<String, Object>();
+		map = ydi.managerlogin(paramMap);
+		System.out.println(map);
+		if (map == null) {
+//			System.out.println("로그인 실패");
+			manager.put("msg","로그인 실패");
+			manager.put("link", "http://localhost:9090/yumyum/Managerlogin");
+			// System.out.println(map);
+		} else {
+//			System.out.println("로그인 성공");
+			manager.put("msg","로그인 성공");
+			manager.put("link", "http://localhost:9090/yumyum/Main");
+		}
+
+		return map;
 	}
+
 	
 }

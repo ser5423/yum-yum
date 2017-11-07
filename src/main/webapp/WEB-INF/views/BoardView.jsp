@@ -14,7 +14,7 @@
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Food Factory</title>
+<title>Yum - Yum</title>
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
@@ -263,10 +263,6 @@ $(document).ready(function(){
             <div class="form-group">
                <label for="inputEmail3" id="viewname" class="col-xs-6 control-label">작성자
                   : </label>
-            </div>
-            <div class="form-group" style="text-align: right;">
-               <label for="inputEmail3" class="col-xs-6 control-label">ip
-                  : 192.168.***.***</label>
             </div>
             <div class="form-group">
                <label for="inputPassword3" id="viewcont" class="col-xs-6 control-label">내용

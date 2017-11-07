@@ -104,12 +104,17 @@ public class yumyumDao implements yumyumDaoInterface {
 	       return session.delete(NS+"delete",paramMap);
 	   
 	   }
-	   @Override
-		public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
-			return session.selectOne(NS + "managerlogin", paramMap);
-		}
+//	   @Override
+//		public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
+//			return session.selectOne(NS + "managerlogin", paramMap);
+//		}
 	   @Override
 	   public HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap) {
 	      return session.selectOne(NS + "VIEWCNT", paramMap);
 	   }
+	@Override
+	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS + "managerlogin", paramMap);
+	}
 }
