@@ -57,8 +57,8 @@ $(document).ready(function(){
             }
             modal += '</p>';
             modal += '</div>';
-            modal += '<p id="modaltextsize" class="modalradius">'   + data1[i].INGREDIENT +  '</p>';
-            modal += '<p id="modalsogae" class="modalradius">'   + data1[i].RECIPE +  '</p>';
+            modal += '<p id="modaltextsize" class="modalradius">'   + data1[i].INGREDIENT +  '<br><button type="button" id="navershop" class="btn btn-default text-white yellowgreen writbtn3"style="cursor: pointer">네이버 쇼핑</button></p>';
+            modal += '<p class="modalradius">'   + data1[i].RECIPE +  '</p>';
             modal += '</div>';
             modal += '</div>';
             modal += '</div>';
@@ -70,13 +70,13 @@ $(document).ready(function(){
            tag += '<div class="col-lg-6 portfolio-item">';
            tag += '<div class="card h-100">';
            if(data1[i].IMAGE != ""){
-              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
            }else {
-              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
            }
            tag += '<div class="card-body">';
            tag += '<h4 class="card-title">';
-           tag += '<a href="#"data-toggle="modal" data-target=#"' + data1[i].NO + '">'+data1[i].NAME+'</a>';
+           tag += '<a href="#"data-toggle="modal" data-target=#' + data1[i].NO + '>'+data1[i].NAME+'</a>';
            tag += '</h4>';
            tag += '<p class="card-text">'+data1[i].INTRO+'</p>';
            tag += '</div>';
@@ -85,6 +85,16 @@ $(document).ready(function(){
            $(".container .row").prepend(tag);
            
            
+           $("#navershop").on("click", function(){
+        	   var windowWidth = $( window ).width();
+        	   if(windowWidth < 992) {
+        	   //창 가로 크기가 992 미만일 경우
+        	   location.href="http://shopping2.naver.com/home/m/index.nhn";	   
+        	   } else {
+        	   //창 가로 크기가 992보다 클 경우
+        		location.href="http://pc.shopping2.naver.com/home/p/index.nhn";
+        	   }
+           });
       }
    } 
    function getData(){
@@ -138,6 +148,8 @@ $(document).ready(function(){
       });
    }
    initData();
+   
+   
 });   
 
 </script> 
@@ -208,7 +220,7 @@ $(document).ready(function(){
 		</ul>
 
 		<div class="row">
-
+			
 		</div>
 		<!-- /.row -->
 

@@ -58,14 +58,59 @@
 	display: inline-block;
 }
 /* modal image 옆 부분 간단 설명 부분 */
+
 #modaltextsize {
 	height: 297.59px;
+/* 	height: 60%; */
 	width: 35%;
 	display: inline-block;
 	margin-bottom: 0;
 	position: absolute;
 	right: 25px;
 }
+@media ( max-width :885px) {
+	#modaltextsize {
+/* 	height: 297.59px; */
+ 	height: 60%; 
+	width: 35%;
+	display: inline-block;
+	margin-bottom: 0;
+	position: absolute;
+	right: 25px;
+	}
+}
+@media ( max-width :743px) {
+	#modaltextsize {
+/* 	height: 297.59px; */
+ 	height: 50%; 
+	width: 35%;
+	display: inline-block;
+	margin-bottom: 0;
+	position: absolute;
+	right: 25px;
+	}
+}
+
+@media ( max-width :598px) {
+	#modaltextsize {
+/* 	height: 297.59px; */
+ 	height: 45%; 
+	width: 35%;
+	display: inline-block;
+	margin-bottom: 0;
+	position: absolute;
+	right: 25px;
+	}
+}
+
+
+
+
+
+
+
+
+
 /* modal페이지에서 글 쓰는 곳 radius */
 .modalradius {
 	border-radius: 1em;
