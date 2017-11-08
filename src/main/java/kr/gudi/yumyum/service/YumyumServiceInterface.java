@@ -34,4 +34,6 @@ public interface YumyumServiceInterface {
     public HashMap<String, Object> delete(HashMap<String, Object> paramMap, HttpServletRequest req);
     
     public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
+
+	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
 }

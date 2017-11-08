@@ -18,7 +18,9 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
+
 $(document).ready(function(){
+<%-- 	var EMAIL = '<%=EMAIL%>'; --%>
 	$("#write").on("click", function(){
               
 		  // #writeform의 모든 값을 가져온다
@@ -105,7 +107,7 @@ $(document).ready(function(){
 				</div>
 				
 				<div class="form-group">
-					<label for="name" class="col-xs-6 control-label">작성자</label>
+					<label for="name" class="col-xs-6 control-label"><%session.getAttribute("user"); %></label>
 					<div class="col-xs-6">
 						<input type="text" class="form-control inputformne"
 							id="NAME" name="NAME" placeholder="작성자 이름을 입력하세요">

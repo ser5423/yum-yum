@@ -45,4 +45,8 @@ public interface yumyumDaoInterface {
 	HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap);
 
 	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
+
+	public int boinputEmail(HashMap<String, Object> paramMap);
+	
+	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
 }

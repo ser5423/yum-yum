@@ -117,4 +117,13 @@ public class yumyumDao implements yumyumDaoInterface {
 		// TODO Auto-generated method stub
 		return session.selectOne(NS + "managerlogin", paramMap);
 	}
+	
+	@Override
+	public int boinputEmail(HashMap<String, Object> paramMap) {
+		return session.insert(NS + "boinputEmail", paramMap);
+	}
+	@Override
+	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap) {
+		return session.selectOne(NS + "boinputEmailCheck", paramMap);
+	}	
 }

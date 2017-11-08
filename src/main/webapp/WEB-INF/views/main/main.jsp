@@ -79,27 +79,27 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="carousel-item active" style="background-image: url(/yumyum/resources/img/korea.jpg)" onclick="location.href='${pageContext.request.contextPath }/Recipe?type=KF';">
 					<div class="carousel-caption d-none d-md-block">
-						<h3>한식</h3>
+<!-- 						<h3>한식</h3> -->
 						
 					</div>
 				</div>
 				<!-- Slide Two - Set the background image for this slide in the line below -->
 				<div class="carousel-item" style="background-image: url(/yumyum/resources/img/jp.jpg)" onclick="location.href='${pageContext.request.contextPath }/Recipe?type=JF';">
 					<div class="carousel-caption d-none d-md-block">
-						<h3>일식</h3>
+<!-- 						<h3>일식</h3> -->
 						
 					</div>
 				</div>
 				<!-- Slide Three - Set the background image for this slide in the line below -->
 				<div class="carousel-item" style="background-image: url(/yumyum/resources/img/ch.jpg)" onclick="location.href='${pageContext.request.contextPath }/Recipe?type=CF';">
 					<div class="carousel-caption d-none d-md-block">
-						<h3>중식</h3>
+<!-- 						<h3>중식</h3> -->
 						
 					</div>
 				</div>
 				<div class="carousel-item" style="background-image: url(/yumyum/resources/img/us.jpg)" onclick="location.href='${pageContext.request.contextPath }/Recipe?type=EF';">
 					<div class="carousel-caption d-none d-md-block">
-						<h3>양식</h3>
+<!-- 						<h3>양식</h3> -->
 						
 					</div>
 				</div>

@@ -92,6 +92,15 @@
 		<!-- insert into NAVERLOGIN (access_token) values (#{access_token}) -->
 	</insert>
 	
+	<insert	id="boinputEmail" parameterType="hashmap">
+		insert into board (EMAIL)
+		values (#{EMAIL})
+	</insert>
+	
+	<select	id="boinputEmailCheck"	parameterType="hashmap"	resultType="hashmap">
+		select * from board where EMAIL = #{EMAIL}
+	</select>
+	
 	<update	id="tokenUpdate" parameterType="hashmap">
 		update NAVERLOGIN
 		set EMAIL = #{EMAIL},

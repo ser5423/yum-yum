@@ -56,8 +56,27 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/BoInput")
-	public ModelAndView boinput(ModelAndView mav) {
+	public ModelAndView boinput(ModelAndView mav, HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+//		paramMap = ysi.boinputEmailCheck(paramMap);
+//		session.setAttribute("EMAIL", paramMap);
+//		
+//		if(user == null){
+//			map.put("state", 0);
+//		}else{
+//			map.put("EMAIL", user.get("EMAIL"));
+//			map.put("state", 1);
+//			System.out.println(map);
+//		}
+		session.getAttribute("user");
+		System.out.println(session.getAttribute("user"));
+		map.put("EMAIL", user.get("EMAIL"));
+		System.out.println(user.get("EMAIL"));
 		mav.setViewName("/BoInput");
+		
+		HttpUtil.sendResponceToJson(resp, map);
 		return mav;
 	}
 
@@ -166,6 +185,20 @@ public class yumyumController {
 		paramMap = ysi.tokenCheck(paramMap);
 		session.setAttribute("user", paramMap);
 		HttpUtil.sendResponceToJson(response, paramMap);
+	}
+
+	@RequestMapping("/GetNaverId")
+	public void getNaverId(HttpServletResponse resp, HttpSession session) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		if(user == null){
+			map.put("state", 0);
+		}else{
+			map.put("EMAIL", user.get("EMAIL"));
+			map.put("state", 1);
+		}
+		
+		HttpUtil.sendResponceToJson(resp, map);
 	}
 
 	// update부분

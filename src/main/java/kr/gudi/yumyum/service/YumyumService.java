@@ -118,6 +118,23 @@ public class YumyumService implements YumyumServiceInterface {
 
 		return map;
 	}
+	
+	@Override
+	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> user = new HashMap<String, Object>();
+		map = ydi.boinputEmailCheck(paramMap);
+		System.out.println(map);
+		if (map == null) {
+			map = new HashMap<String, Object>();
+			map.put("EMAIL", ydi.boinputEmail(paramMap));
+
+			// System.out.println(map);
+		}
+		map = ydi.boinputEmailCheck(paramMap);
+
+		return map;
+	}
 
 	// insert부분
 	@Override
