@@ -34,9 +34,31 @@ public class yumyumController {
 
 	@RequestMapping("/Main")
 	public ModelAndView main(ModelAndView mav, HttpSession session) {
-//		System.out.println(session.getAttribute("manager"));
 		session.getAttribute("manager");
 		mav.setViewName("main/main");
+		return mav;
+	}
+	@RequestMapping("/Managerlogin1")
+	public void managerlogin( HttpServletResponse response, HttpServletRequest req, HttpSession session, Model model) throws IOException {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		System.out.println(paramMap);
+		paramMap = ysi.managerlogin(paramMap);
+		session.setAttribute("manager", paramMap);
+		HttpUtil.sendResponceToJson(response, paramMap);
+		
+		System.out.println(paramMap);
+		if(paramMap == null){
+			response.sendRedirect("/yumyum/Managerlogin");
+			model.addAttribute("msg","관리자님 로그인에 실패 하였습니다.");
+		} else{
+			response.sendRedirect("/yumyum/Main");
+			model.addAttribute("msg","관리자님 환영 합니다.");
+		}
+	}
+	@RequestMapping("/logout")
+	public ModelAndView logout(ModelAndView mav, HttpSession session) {
+		session.invalidate();
+		mav.setViewName("redirect:/Main");
 		return mav;
 	}
 	
@@ -109,22 +131,38 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/ReInput")
-	public ModelAndView reinput(ModelAndView mav) {
-		mav.setViewName("/ReInput");
-		return mav;
-	}
+	   public ModelAndView reinput(ModelAndView mav, HttpSession session, Model model) {
+	        HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+	          HashMap<String, Object> rstMap = new HashMap<String, Object>();
+	          rstMap.put("EMAIL", user.get("EMAIL"));
+	      mav.setViewName("/ReInput");
+	        System.out.println(session.getAttribute("user"));
+	         System.out.println(rstMap);
+	         model.addAttribute("EMAIL",user.get("EMAIL"));
+	      return mav;
+	   }
 
 	@RequestMapping("/BoardView")
-	public ModelAndView boardview(ModelAndView mav) {
-		mav.setViewName("/BoardView");
-		return mav;
-	}
+	   public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model,HttpServletRequest req) {
+	      HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+	      HashMap<String, Object> rstMap = new HashMap<String, Object>();
+	      mav.setViewName("/ReInput");
+	      System.out.println(session.getAttribute("user"));
+
+	      req.setAttribute("EMAIL", user.get("EMAIL"));
+	      model.addAttribute("EMAIL",user.get("EMAIL"));
+	      mav.setViewName("/BoardView");
+
+
+	      return mav;
+	   }
 
 	@RequestMapping("/Review")
 	public ModelAndView review(ModelAndView mav, HttpSession session) {
-		System.out.println(session.getAttribute("user"));
-		mav.setViewName("/Review");
-		return mav;
+		session.getAttribute("user");
+	      System.out.println(session.getAttribute("user"));
+	      mav.setViewName("/Review");
+	      return mav;
 	}
 
 	@RequestMapping("/BestReview")
@@ -197,29 +235,7 @@ public class yumyumController {
 		mav.setViewName("/Managerlogin");
 		return mav;
 	}
-	@RequestMapping("/Managerlogin1")
-	public void managerlogin( HttpServletResponse response, HttpServletRequest req, HttpSession session) throws IOException {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		System.out.println(paramMap);
-		paramMap = ysi.managerlogin(paramMap);
-		session.setAttribute("manager", paramMap);
-		HttpUtil.sendResponceToJson(response, paramMap);
-		
-		System.out.println(paramMap);
-		if(paramMap == null){
-			response.sendRedirect("/yumyum/Managerlogin");
-//			System.out.println("로그인 실패실패 컨트롤러");
-		} else{
-			response.sendRedirect("/yumyum/Main");
-//			System.out.println("로그인 성공성공 컨트롤러");
-		}
-	}
-	@RequestMapping("/logout")
-	public ModelAndView logout(ModelAndView mav, HttpSession session) {
-		session.invalidate();
-		mav.setViewName("redirect:/Main");
-		return mav;
-	}
+	
 	// 파일 업로드
 			@RequestMapping("/upload")
 			public void imgUpload(MultipartHttpServletRequest req, @RequestParam HashMap<String,Object> paramMap,HttpServletResponse res) {

@@ -107,62 +107,44 @@ $(document).ready(function(){
 		    * enctype : 전송되는 데이터 형식
 		    * multipart/form-data : 파일이나 이미지를 서버로 전송 -->
 			<form class="form-horizontal inputform" id="writeform" name="writeform" enctype="multipart/form-data" accept-charset="utf-8"  method="post">
-			<!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
-				<div class="form-group">
-					<label for="subject" class="col-xs-6 control-label">제목</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="id" class="col-xs-6 control-label">아이디</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="ID" name="ID" placeholder="아이디를 입력하세요">
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label for="name" class="col-xs-6 control-label">이름</label>
-					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne"
-							id="WRITER" name="WRITER" placeholder="이름을 입력하세요">
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label for="password" class="col-xs-6 control-label">비밀번호</label>
-					<div class="col-xs-6">
-						<input type="password" class="form-control inputformne"
-							id="PASSWD" name="PASSWD" placeholder="비밀번호를 입력하세요">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="TYPE" class="col-xs-6 control-label">분류</label>
-				    <!-- 스크롤바 사용 -->
-				
-				</div>
-				<div class="form-group">
-					<label for="cont" class="col-xs-6 control-label">내용</label>
-					<div class="col-xs-6">
-						<textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="25" cols="100"></textarea>
-					</div>
-				</div>
-				<!-- <div class="form-group">
-					<label for="File" class="col-xs-6 control-label">사진 첨부</label>
-					<div class="col-xs-6">
-						<input type="file" id="file" name="file" multiple="multiple" class="form-control">
-					</div>
-				</div> -->
-				<div class="form-group writbtn3-1">
-					<div class="col-xs-3">
-						<button type="button" class="btn text-white bg-redred writbtn3"
-							onclick="location.href='javascript:history.go(-1)'">목록</button>
-						<button type="button" class="btn btn-default text-white bg-redred writbtn3" id="write">작성</button>
-					</div>
-				</div>
-			</form>
+         <!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
+            
+           <input type="hidden" id="type" name="type" value="${param.type}">
+               <div class="form-group">
+               <label for="name" class="col-xs-6 control-label"></label>
+               <div class="col-xs-6">
+                  <input type="text" class="form-control inputformne hide"
+                     id="WRITER" name="WRITER" value="${EMAIL}">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="EMAIL" class="col-xs-6 control-label"></label>
+               <div class="col-xs-6">
+                  <input type="hidden" class="form-control inputformne"
+                     id="EMAIL" name="EMAIL" value="<%=request.getParameter("user")%>" placeholder="EMAIL 입력하세요">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="subject" class="col-xs-6 control-label">제목</label>
+               <div class="col-xs-6">
+                  <input type="text" class="form-control inputformne"
+                     id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="cont" class="col-xs-6 control-label">내용</label>
+               <div class="col-xs-6">
+                  <textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="300" cols="100"></textarea>
+               </div>
+            </div>
+            <div class="form-group writbtn3-1">
+               <div class="col-xs-3">
+                  <button type="button" class="btn text-white bg-redred writbtn3"
+                     onclick="location.href='javascript:history.go(-1)'">목록</button>
+                  <button type="button" class="btn btn-default text-white bg-redred writbtn3" id="write">작성</button>
+               </div>
+            </div>
+         </form>
 		</div>
 	</div>
 	<!-- Footer -->

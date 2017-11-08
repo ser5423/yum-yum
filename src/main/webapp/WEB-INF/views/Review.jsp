@@ -81,9 +81,9 @@
 	            modal += '<div id="modalimagesize">';
 	            modal += '<p>';
 	            if(data1[i].IMAGE != ""){
-	         	   modal += '<img src="/yumyum/resources/img/'  + data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
+	         	   modal += '<a href="#' + data1[i].NO + '"><img src="/yumyum/resources/img/'  + data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
 	            }else {
-	         	   modal += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+	         	   modal += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
 	            }
 	            modal += '</p>';
 	            modal += '</div>';
@@ -104,7 +104,7 @@
 		           }
 				tag += '<div class="card-body">';
 				tag += '<h4 class="card-title">';
-				tag += '<a href="#"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
+				tag += '<a href="#' + data1[i].NO + '"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
 				tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
 				tag += '</div>';
@@ -120,12 +120,10 @@
 			$("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
 			for (var i = 0; i < paging; i++) {
 
-				$("#ul")
-						.append(
-								"<li class='page-item'>"
-										+ "<a class='page-link' href='#'"
-										+ (i + 1) + ">"
-										+ (i + 1) + "</a></li>");
+				$("#ul").append("<li class='page-item'>"
+					+ "<a class='page-link' href='#'"
+					+ (i + 1) + ">"
+					+ (i + 1) + "</a></li>");
 			}
 
 			$("#ul a").eq(page - 1);
@@ -241,29 +239,29 @@
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
 				<form>
-					<div class="card my-4 ">
-						<h5 class="card-header bg-redred text-white">Search</h5>
-						<div class="card-body">
-							<div class="input-group">
-								<select id="keyField" name="keyField"
-									class="box form-control inputformne">
-									<option value="ALL">전체</option>
-									<option value="WRITER">이름</option>
-									<option value="TITLE">제목</option>
-								</select>
-								<!-- 				                <option value="">내용</option> -->
-								<span class="input-group-btn"> <!-- 								<button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->
-									<input type="text" size="16" name="KeyWord" id="KeyWord"
-									value="${keyWord}" class="form-control"
-									placeholder="Search for..."> <input
-									class="btn btn-default text-white bg-redred writbtn3"
-									type="submit" value="검색"> <input type="hidden"
-									name="page" value="0">
-								</span>
-							</div>
-						</div>
-					</div>
-				</form>
+               <div class="card my-4 ">
+                  <h5 class="card-header bg-redred text-white">Search</h5>
+                  <div class="card-body">
+                     <div class="input-group">
+                        <select id="keyField" name="keyField"
+                           class="box form-control inputformne">
+                           <option value="ALL">전체</option>
+                           <option value="WRITER">이름</option>
+                           <option value="TITLE">제목</option>
+                        </select>
+                        <!--                             <option value="">내용</option> -->
+                        <span class="input-group-btn"> <!--                         <button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->
+                           <input type="text" size="16" name="KeyWord" id="KeyWord"
+                           value="${keyWord}" class="form-control"
+                           placeholder="Search for..."> <input
+                           class="btn btn-default text-white bg-redred writbtn3"
+                           type="submit" value="검색"> <input type="hidden"
+                           name="page" value="0">
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </form>
 				<div class="writbtn2">
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='ReInput'">글쓰기</button>
              <% if(session.getAttribute("user") == null) {%>  

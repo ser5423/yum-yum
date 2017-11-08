@@ -83,14 +83,14 @@ $(document).ready(function(){
                tag += '</div>';
                tag += '</div>';
                $(".hanyena").append(tag);
-               if(EMAIL == board.NAME) {
+//                if(EMAIL == board.NAME) {
                   
-            }else{
-               $('#update').hide();
-                $('#cancel').hide();
-                   $('#delete').hide();
+//             }else{
+//                $('#update').hide();
+//                 $('#cancel').hide();
+//                    $('#delete').hide();
                   
-            }
+//             }
             
             }
  

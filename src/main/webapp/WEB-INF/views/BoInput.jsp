@@ -52,6 +52,7 @@ $(document).ready(function(){
             });
     })
 });
+
 </script>
 </head>
 <body>
@@ -117,17 +118,17 @@ $(document).ready(function(){
                </div>
             </div>
             <div class="form-group">
-               <label for="subject" class="col-xs-6 control-label">제목</label>
-               <div class="col-xs-6">
-                  <input type="text" class="form-control inputformne"
-                     id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
-               </div>
-            </div>
-            <div class="form-group">
                <label for="EMAIL" class="col-xs-6 control-label"></label>
                <div class="col-xs-6">
                   <input type="hidden" class="form-control inputformne"
                      id="EMAIL" name="EMAIL" value="<%=request.getParameter("user")%>" placeholder="EMAIL 입력하세요">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="subject" class="col-xs-6 control-label">제목</label>
+               <div class="col-xs-6">
+                  <input type="text" class="form-control inputformne"
+                     id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
                </div>
             </div>
             <div class="form-group">
@@ -143,13 +144,7 @@ $(document).ready(function(){
             <div class="form-group">
                <label for="cont" class="col-xs-6 control-label">내용</label>
                <div class="col-xs-6">
-                  <textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="25" cols="100"></textarea>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="File" class="col-xs-6 control-label">사진 첨부</label>
-               <div class="col-xs-6">
-                  <input type="file" id="file" name="file" multiple="multiple" class="form-control">
+                  <textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="300" cols="100"></textarea>
                </div>
             </div>
             <div class="form-group writbtn3-1">

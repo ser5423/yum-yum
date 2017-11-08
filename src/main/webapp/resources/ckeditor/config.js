@@ -46,4 +46,7 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	// 파일 업로드되는 주소 지정
 	config.filebrowserUploadUrl = '/yumyum/upload';
+	
+	config.resize_minHeight = 600;
+	config.resize_maxHeight = 1000;
 };
