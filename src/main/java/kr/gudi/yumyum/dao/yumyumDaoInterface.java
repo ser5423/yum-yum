@@ -50,4 +50,6 @@ public interface yumyumDaoInterface {
 
 	// review insert
 	public int reinput(HashMap<String, Object> paramMap);
+
+	public int recommendup(HashMap<String, Object> param);
 }

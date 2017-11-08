@@ -36,4 +36,6 @@ public interface YumyumServiceInterface {
 
 	// reviewinsert부분
 	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, HttpServletRequest req);
+
+	public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req);
 }

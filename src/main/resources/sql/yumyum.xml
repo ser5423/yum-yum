@@ -22,6 +22,10 @@
 	<select id="BoardSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
       select count(*) as tot from board where TYPE = #{type} and DEL_YN='N'
    </select>
+   
+   <update id="recommendup" parameterType="hashmap" >
+       update REVIEW set RECOMMEND = RECOMMEND + 1 where NO = #{NO}
+    </update>
 	
 	<select id="reviewSelectOne" parameterType="hashmap" resultType="hashmap">
 		select  *, DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD

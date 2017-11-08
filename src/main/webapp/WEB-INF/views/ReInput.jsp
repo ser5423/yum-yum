@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+   String EMAIL = (String) request.getAttribute("EMAIL"); 
+   String EMAILmanager = (String) request.getAttribute("EMAILmanager");    
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +24,8 @@
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
 $(document).ready(function(){
+	var EMAIL='<%=EMAIL%>';
+	var EMAILmanager = '<%=EMAILmanager%>';
 	$("#write").on("click", function(){
               
 		 // #writeform의 모든 값을 가져온다
@@ -113,7 +119,6 @@ $(document).ready(function(){
 			<form class="form-horizontal inputform" id="writeform" name="writeform" enctype="multipart/form-data" accept-charset="utf-8"  method="post">
          <!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
             
-           <input type="hidden" id="type" name="type" value="${param.type}">
                <div class="form-group">
                <label for="name" class="col-xs-6 control-label"></label>
                <div class="col-xs-6">

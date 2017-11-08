@@ -91,6 +91,8 @@ public class YumyumService implements YumyumServiceInterface {
 		map.put("VIEWCNT", ydi.VIEWCNT(paramMap));
 		return map;
 	}
+	   
+
 
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
@@ -226,5 +228,24 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 		return rstMap;
 	}
+	@Override
+	   public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req) {
+
+		   HashMap<String, Object> rstMap = new HashMap<String, Object>();
+			int rstInsertCnt = ydi.recommendup(param);
+			rstMap.put("rstInsertCnt", rstInsertCnt);
+
+			if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
+
+				rstMap.put("data", "추천 되었습니다.");
+//				rstMap.put("move", "/yumyum/Review");
+
+			} else {
+				rstMap.put("data", "추천에 실패하였습니다.");
+//				rstMap.put("move", "/yumyum/Main");
+
+			}
+			return rstMap;
+	   }
 
 }

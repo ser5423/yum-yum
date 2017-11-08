@@ -32,6 +32,19 @@
 	height: 46px;
 
 }
+#cardne2 {
+	width: 100%;
+	margin-left : 45%;
+	padding: 5px;
+	overflow: hidden;
+	text-overflow: clip;
+	display: inline-block;
+	
+	white-space: normal;
+	line-height: 1.2;
+	height: 46px;
+
+}
 /* modal부분에 ... 부분에 준 값 상세 */
 #plusbtn {
 	margin-left: 85%;

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -60,6 +61,7 @@ public class yumyumController {
 
 	@RequestMapping("/Board")
 	public ModelAndView board(ModelAndView mav, HttpSession session) {
+		session.getAttribute("manager");
 		session.getAttribute("user");
 		mav.setViewName("/Board");
 		return mav;
@@ -80,10 +82,8 @@ public class yumyumController {
 
 	@RequestMapping("/BoInput")
 	public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("manager");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
 		if (user == null) {
 			model.addAttribute("EMAIL", "");
@@ -139,21 +139,28 @@ public class yumyumController {
 
 	@RequestMapping("/ReInput")
 	public ModelAndView reinput(ModelAndView mav, HttpSession session, Model model) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("user");
-		HashMap<String, Object> rstMap = new HashMap<String, Object>();
-		rstMap.put("EMAIL", user.get("EMAIL"));
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+
+		if (user == null) {
+			model.addAttribute("EMAIL", "");
+		} else {
+			model.addAttribute("EMAIL", user.get("EMAIL"));
+
+		}
+		if (manager == null) {
+			model.addAttribute("EMAILmanager", "");
+		} else {
+			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
+		}
 		mav.setViewName("/ReInput");
-		model.addAttribute("EMAIL", user.get("EMAIL"));
 		return mav;
 	}
 
 	@RequestMapping("/BoardView")
 	public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model, HttpServletRequest req) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("manager");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
 		if (user == null) {
 			model.addAttribute("EMAIL", "");
@@ -174,6 +181,7 @@ public class yumyumController {
 
 	@RequestMapping("/Review")
 	public ModelAndView review(ModelAndView mav, HttpSession session) {
+		session.getAttribute("manager");
 		session.getAttribute("user");
 		mav.setViewName("/Review");
 		return mav;
@@ -196,6 +204,9 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
 	}
+	
+  
+
 
 	@RequestMapping("/TokenCheck")
 	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
@@ -207,8 +218,7 @@ public class yumyumController {
 
 	@RequestMapping("/GetNaverId")
 	public void getNaverId(HttpServletResponse resp, HttpSession session) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (user == null) {
 			map.put("state", 0);
@@ -293,13 +303,18 @@ public class yumyumController {
 
 	// 리뷰 데이터 입력
 	@RequestMapping("/ReInput_Data")
-	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
-			MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
+	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
 		HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
 		HttpUtil.sendResponceToJson(response, rstMap);
 
 	}
+	
+	  @RequestMapping("/recommendup")
+	    public void recommendup(HttpServletRequest req, HttpServletResponse resp, @RequestParam HashMap<String, Object> paramMap){
+	      HashMap<String, Object> rstMap = ysi.recommendup(paramMap, req);
+	      HttpUtil.sendResponceToJson(resp, rstMap);
+	   }
 
 }

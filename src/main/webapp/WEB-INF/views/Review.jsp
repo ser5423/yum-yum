@@ -75,6 +75,7 @@
 	            modal += '<div class="modal-content">';
 	            modal += '<div class="modal-header">';
 	            modal += '<h4 class="modal-title" id="myModalLabel">'  + data1[i].TITLE +  '</h4>';
+	            modal += '<h4 class="modal-title" id="myModalLabel">'  + data1[i].RECOMMEND +  '</h4>';
 	            modal += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 	            modal += '</div>';
 	            modal += '<div class="modal-body reviewmodal">';
@@ -107,10 +108,30 @@
 				tag += '<a href="#' + data1[i].NO + '"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
 				tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
+				tag += '<div id="cardne2" class="card-text"><button id="recommendup" class="btn btn-default text-white bg-redred writbtn3" value="'+data1[i].NO+'">추천</button><div class="btn btn-default text-white bg-redred writbtn3">'  + data1[i].RECOMMEND +  '</div></div>';
 				tag += '</div>';
 				tag += '</div>';
 				tag += '</div>';
 				$(".container .row .col-md-8").prepend(tag);
+				
+				 $("#recommendup").on("click",function(){
+					 $.ajax({
+				        	url: "${pageContext.request.contextPath}/recommendup",
+				        	cache : false,
+				        	data :{
+				        		"NO":$(this).val()
+				        	},
+				        	type : "POST",
+				        	success : function(data) 
+				            { // 성공 시 	메세지 및 이동할주소
+				            	alert(data.data);
+				            	//새로고침
+				            	window.location.reload(true);
+				       		},error : function(req,data) {
+				       			alert(data.data);
+				       		}
+				        });
+                  });
 			}
 
 		}
@@ -265,8 +286,7 @@
                </div>
             </form>
 				<div class="writbtn2">
-            <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='ReInput'">글쓰기</button>
-             <% if(session.getAttribute("user") == null) {%>  
+             <% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%>  
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='ReInput">글쓰기</button> 
              <% } else { %> 
              <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='ReInput'">글쓰기</button> 
