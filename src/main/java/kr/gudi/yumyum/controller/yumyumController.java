@@ -143,19 +143,26 @@ public class yumyumController {
 	   }
 
 	@RequestMapping("/BoardView")
-	   public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model,HttpServletRequest req) {
-	      HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-	      HashMap<String, Object> rstMap = new HashMap<String, Object>();
-	      mav.setViewName("/ReInput");
-	      System.out.println(session.getAttribute("user"));
+    public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model,HttpServletRequest req) {
+       HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+       HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
-	      req.setAttribute("EMAIL", user.get("EMAIL"));
-	      model.addAttribute("EMAIL",user.get("EMAIL"));
-	      mav.setViewName("/BoardView");
+       if(user == null){
+          model.addAttribute("EMAIL", "");
+       }else{
+          model.addAttribute("EMAIL",user.get("EMAIL"));
+       }
+       
+       if(manager == null){
+          model.addAttribute("EMAILmanager", "");
+       }else{
+          model.addAttribute("EMAILmanager",manager.get("EMAIL"));
+       }
+       
+       mav.setViewName("/BoardView");
 
-
-	      return mav;
-	   }
+       return mav;
+    }
 
 	@RequestMapping("/Review")
 	public ModelAndView review(ModelAndView mav, HttpSession session) {
@@ -282,4 +289,7 @@ public class yumyumController {
 				HttpUtil.sendResponceToJson(response, rstMap);
 				
 			}
+			
+			
+			
 }

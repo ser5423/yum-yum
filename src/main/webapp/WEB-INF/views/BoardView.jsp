@@ -3,6 +3,7 @@
 <%
    String NO = request.getParameter("NO");
    String EMAIL = (String) request.getAttribute("EMAIL"); 
+   String EMAILmanager = (String) request.getAttribute("EMAILmanager"); 
    if (NO == null) {
       response.sendRedirect("Main");
    }
@@ -83,14 +84,18 @@ $(document).ready(function(){
                tag += '</div>';
                tag += '</div>';
                $(".hanyena").append(tag);
-//                if(EMAIL == board.NAME) {
+               
+               var el = '<%=EMAILmanager%>';
+               if(EMAIL == board.NAME || el != '') {
                   
-//             }else{
-//                $('#update').hide();
-//                 $('#cancel').hide();
-//                    $('#delete').hide();
+               }else{
+               
+               
+               $('#update').hide();
+                $('#cancel').hide();
+                   $('#delete').hide();
                   
-//             }
+            }
             
             }
  

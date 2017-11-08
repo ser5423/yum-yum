@@ -58,16 +58,21 @@ public class YumyumService implements YumyumServiceInterface {
 	   }
 
 	   // Review부분
-	      @Override
-	      public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap) {
-	         HashMap<String, Object> map = new HashMap<String, Object>();
-	         String text = "리뷰";
-	         map.put("list", ydi.reviewSelectOne(paramMap));
-	         map.put("text1", text);
-	         map.put("ToT", ydi.reviewSelectOneTotCnt(paramMap));
-	         System.out.println(map);
-	         return map;
-	      }
+	   @Override
+       public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap) {
+           HashMap<String, Object> map = new HashMap<String, Object>();
+           String text = "";
+           if (("0").equals(paramMap.get("RECOMMEND"))) {
+              text = "리뷰";
+           } else if (("1").equals(paramMap.get("RECOMMEND"))) {
+              text = "우수리뷰";
+           }
+          map.put("list", ydi.reviewSelectOne(paramMap));
+          map.put("text1", text);
+          map.put("ToT", ydi.reviewSelectOneTotCnt(paramMap));
+          System.out.println(map);
+          return map;
+       }
 
 	      // bestReview부분
 	      @Override
