@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +23,6 @@ import kr.gudi.util.BoardFile;
 import kr.gudi.util.HttpUtil;
 import kr.gudi.yumyum.service.YumyumServiceInterface;
 
-
 @Controller
 public class yumyumController {
 
@@ -38,33 +35,31 @@ public class yumyumController {
 		mav.setViewName("main/main");
 		return mav;
 	}
+
 	@RequestMapping("/Managerlogin1")
-	public void managerlogin( HttpServletResponse response, HttpServletRequest req, HttpSession session, Model model) throws IOException {
+	public void managerlogin(HttpServletResponse response, HttpServletRequest req, HttpSession session, Model model)
+			throws IOException {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		System.out.println(paramMap);
 		paramMap = ysi.managerlogin(paramMap);
 		session.setAttribute("manager", paramMap);
 		HttpUtil.sendResponceToJson(response, paramMap);
-		
-		System.out.println(paramMap);
-		if(paramMap == null){
+
+		if (paramMap == null) {
 			response.sendRedirect("/yumyum/Managerlogin");
-			model.addAttribute("msg","관리자님 로그인에 실패 하였습니다.");
-		} else{
+		} else {
 			response.sendRedirect("/yumyum/Main");
-			model.addAttribute("msg","관리자님 환영 합니다.");
 		}
 	}
+
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mav, HttpSession session) {
 		session.invalidate();
 		mav.setViewName("redirect:/Main");
 		return mav;
 	}
-	
+
 	@RequestMapping("/Board")
 	public ModelAndView board(ModelAndView mav, HttpSession session) {
-		System.out.println(session.getAttribute("user"));
 		session.getAttribute("user");
 		mav.setViewName("/Board");
 		return mav;
@@ -83,38 +78,40 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, ysi.BoardViewSelectOne(paramMap));
 	}
 
-	 @RequestMapping("/BoInput")
-	   public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
-	       HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-	       HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+	@RequestMapping("/BoInput")
+	public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("manager");
 
-	       if(user == null){
-	          model.addAttribute("EMAIL", "");
-	       }else{
-	          model.addAttribute("EMAIL",user.get("EMAIL"));
-	       }
-	       
-	       if(manager == null){
-	          model.addAttribute("EMAILmanager", "");
-	       }else{
-	          model.addAttribute("EMAILmanager",manager.get("EMAIL"));
-	       }
-	       model.addAttribute("EMAIL",user.get("EMAIL"));
-	       model.addAttribute("EMAILmanager",manager.get("EMAIL"));
-	       mav.setViewName("/BoInput");
-	       return mav;
-	   }
+		if (user == null) {
+			model.addAttribute("EMAIL", "");
+		} else {
+			model.addAttribute("EMAIL", user.get("EMAIL"));
+
+		}
+		if (manager == null) {
+			model.addAttribute("EMAILmanager", "");
+		} else {
+			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
+		}
+
+		mav.setViewName("/BoInput");
+		return mav;
+	}
 
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
-		@RequestMapping("/BoInput_Data")
-		public void insert(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req,
-				@RequestParam Map<String, Object> paramMapa) {
-			HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-			
-			List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
-			HashMap<String, Object> rstMap = ysi.insert(paramMap,req);
-			HttpUtil.sendResponceToJson(response, rstMap);
-		}
+	@RequestMapping("/BoInput_Data")
+	public void insert(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
+			MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+
+		List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+		HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
+		HttpUtil.sendResponceToJson(response, rstMap);
+	}
+
 	@RequestMapping("/Manager")
 	public ModelAndView manager(ModelAndView mav) {
 		mav.setViewName("/Manager");
@@ -141,45 +138,45 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/ReInput")
-	   public ModelAndView reinput(ModelAndView mav, HttpSession session, Model model) {
-	        HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-	          HashMap<String, Object> rstMap = new HashMap<String, Object>();
-	          rstMap.put("EMAIL", user.get("EMAIL"));
-	      mav.setViewName("/ReInput");
-	        System.out.println(session.getAttribute("user"));
-	         System.out.println(rstMap);
-	         model.addAttribute("EMAIL",user.get("EMAIL"));
-	      return mav;
-	   }
+	public ModelAndView reinput(ModelAndView mav, HttpSession session, Model model) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		rstMap.put("EMAIL", user.get("EMAIL"));
+		mav.setViewName("/ReInput");
+		model.addAttribute("EMAIL", user.get("EMAIL"));
+		return mav;
+	}
 
 	@RequestMapping("/BoardView")
-    public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model,HttpServletRequest req) {
-       HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-       HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+	public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model, HttpServletRequest req) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("manager");
 
-       if(user == null){
-          model.addAttribute("EMAIL", "");
-       }else{
-          model.addAttribute("EMAIL",user.get("EMAIL"));
-       }
-       
-       if(manager == null){
-          model.addAttribute("EMAILmanager", "");
-       }else{
-          model.addAttribute("EMAILmanager",manager.get("EMAIL"));
-       }
-       
-       mav.setViewName("/BoardView");
+		if (user == null) {
+			model.addAttribute("EMAIL", "");
+		} else {
+			model.addAttribute("EMAIL", user.get("EMAIL"));
+		}
 
-       return mav;
-    }
+		if (manager == null) {
+			model.addAttribute("EMAILmanager", "");
+		} else {
+			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
+		}
+
+		mav.setViewName("/BoardView");
+
+		return mav;
+	}
 
 	@RequestMapping("/Review")
 	public ModelAndView review(ModelAndView mav, HttpSession session) {
 		session.getAttribute("user");
-	      System.out.println(session.getAttribute("user"));
-	      mav.setViewName("/Review");
-	      return mav;
+		mav.setViewName("/Review");
+		return mav;
 	}
 
 	@RequestMapping("/BestReview")
@@ -203,7 +200,6 @@ public class yumyumController {
 	@RequestMapping("/TokenCheck")
 	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		System.out.println(paramMap);
 		paramMap = ysi.tokenCheck(paramMap);
 		session.setAttribute("user", paramMap);
 		HttpUtil.sendResponceToJson(response, paramMap);
@@ -211,95 +207,99 @@ public class yumyumController {
 
 	@RequestMapping("/GetNaverId")
 	public void getNaverId(HttpServletResponse resp, HttpSession session) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		if(user == null){
+		if (user == null) {
 			map.put("state", 0);
-		}else{
+		} else {
 			map.put("EMAIL", user.get("EMAIL"));
 			map.put("state", 1);
 		}
-		
+
 		HttpUtil.sendResponceToJson(resp, map);
 	}
 
 	// update부분
 	@RequestMapping("/BoUpdate_Data")
-	public void update(HttpServletResponse response, HttpServletRequest req,@RequestParam Map<String, Object> paramMapa) {
+	public void update(HttpServletResponse response, HttpServletRequest req,
+			@RequestParam Map<String, Object> paramMapa) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HashMap<String, Object> rstMap = ysi.update(paramMap, req);
 
 		HttpUtil.sendResponceToJson(response, rstMap);
 	}
-	//delete부분
-	   @RequestMapping("/BoDelete_Data")
-	   public void delete(HttpServletResponse response, HttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
-	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-	      HashMap<String, Object> rstMap = ysi.delete(paramMap,req);
-	      
-	      HttpUtil.sendResponceToJson(response, rstMap);
-	   }
+
+	// delete부분
+	@RequestMapping("/BoDelete_Data")
+	public void delete(HttpServletResponse response, HttpServletRequest req,
+			@RequestParam Map<String, Object> paramMapa) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		HashMap<String, Object> rstMap = ysi.delete(paramMap, req);
+
+		HttpUtil.sendResponceToJson(response, rstMap);
+	}
+
 	@RequestMapping("/Recipemodal_Data")
 	public void Recipemodal(HttpServletResponse response, HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.Recipemodal(paramMap));
 	}
+
 	@RequestMapping("/Managerlogin")
 	public ModelAndView Managerlogin(ModelAndView mav, HttpSession session) {
-		System.out.println(session.getAttribute("manager"));
 		session.getAttribute("manager");
-		System.out.println("manager");
 		mav.setViewName("/Managerlogin");
 		return mav;
 	}
-	
-	// 파일 업로드
-			@RequestMapping("/upload")
-			public void imgUpload(MultipartHttpServletRequest req, @RequestParam HashMap<String,Object> paramMap,HttpServletResponse res) {
-						
-				List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
-			
-				PrintWriter printWriter = null;
-				try {
-					res.setHeader("charset", "utf-8");
-					res.setCharacterEncoding("utf-8");
-					// 화면에 찍기
-					printWriter = res.getWriter();
-					// ck에서 지정된 약속
-	/*				<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>*/
-					// 몇건, 이미지주소, 결과메세지 반환
-					printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
-		                    +paramMap.get("CKEditorFuncNum")
-		                    + ",'"
-		                    + req.getContextPath()+ files.get(0).getPath()
-		                    + "','이미지를 업로드 하였습니다.'"
-		                    + ")</script>");
-					// flush() : 파일 남아 있는거 보내라 (마저보내라)
-					printWriter.flush();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} finally {
-					try {
-						if (printWriter != null) {
-							printWriter.close();
-						}
-					} catch (Exception e2) {}
-				}
 
+	// 파일 업로드
+	@RequestMapping("/upload")
+	public void imgUpload(MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap,
+			HttpServletResponse res) {
+
+		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
+
+		PrintWriter printWriter = null;
+		try {
+			res.setHeader("charset", "utf-8");
+			res.setCharacterEncoding("utf-8");
+			// 화면에 찍기
+			printWriter = res.getWriter();
+			// ck에서 지정된 약속
+			/*
+			 * <script
+			 * type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(
+			 * '콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>
+			 */
+			// 몇건, 이미지주소, 결과메세지 반환
+			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+					+ paramMap.get("CKEditorFuncNum") + ",'" + req.getContextPath() + files.get(0).getPath()
+					+ "','이미지를 업로드 하였습니다.'" + ")</script>");
+			// flush() : 파일 남아 있는거 보내라 (마저보내라)
+			printWriter.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (printWriter != null) {
+					printWriter.close();
+				}
+			} catch (Exception e2) {
 			}
-			
-			
-			// 리뷰 데이터 입력
-			@RequestMapping("/ReInput_Data")
-			public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req,
-					@RequestParam Map<String, Object> paramMapa) {
-				HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-				List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
-				HashMap<String, Object> rstMap = ysi.reinput(paramMap,req);
-				HttpUtil.sendResponceToJson(response, rstMap);
-				
-			}
-			
-			
-			
+		}
+
+	}
+
+	// 리뷰 데이터 입력
+	@RequestMapping("/ReInput_Data")
+	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
+			MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
+		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+		List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+		HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
+		HttpUtil.sendResponceToJson(response, rstMap);
+
+	}
+
 }

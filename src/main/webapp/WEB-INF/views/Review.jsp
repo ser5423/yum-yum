@@ -160,13 +160,11 @@
 	            },
 	            datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
 	         }).done(function(d) { // 비동기식 데이터 가져오기
-	            console.log(d);
 	            data1 = d.list;
 	            totCnt = d.ToT.tot;
 	            createHtml(); // 화면에 표현하기 위하여 함수 호출 
 	            getData(); // 페이지 링크 표현하기 우하여 함수 호출
 	            var text = d.text1;
-	            console.log(text);
 	            $(".container h1").text(text);
 	            $(".breadcrumb li").eq(1).text(text);
 	         });

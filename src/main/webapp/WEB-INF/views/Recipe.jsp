@@ -101,9 +101,6 @@ $(document).ready(function(){
       var paging = totCnt / viewRow;
       $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
       for(var i = 0; i < paging; i++){
-         console.log(totCnt);
-         console.log(viewRow);
-         console.log(paging); 
          $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
       }   
    
@@ -136,7 +133,6 @@ $(document).ready(function(){
             "type" : type ,"start":start, "viewRow":viewRow
          }, datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
       }).done(function(d){ // 비동기식 데이터 가져오기
-         console.log(d);
          data1 = d.list;
          totCnt = d.ToT.tot;
          createHtml(); // 화면에 표현하기 위하여 함수 호출 

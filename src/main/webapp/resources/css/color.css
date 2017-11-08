@@ -154,7 +154,7 @@
 }
 /* manager page 안에서 내용 보여줄 공간 값 */
 #managertable {
-	height: 500px;
+	height: 50%;
 	border-radius: 1em;
 	padding: 5px;
 	border: 1em;

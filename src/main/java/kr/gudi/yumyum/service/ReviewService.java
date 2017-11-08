@@ -24,7 +24,6 @@ public class ReviewService implements ReviewServiceInterface {
 		map.put("list", ydi.reviewSelectOne(paramMap));
 		map.put("text1", text);
 		map.put("ToT", ydi.reviewSelectOneTotCnt(paramMap));
-		System.out.println(map);
 		return map;
 	}
 
@@ -32,8 +31,7 @@ public class ReviewService implements ReviewServiceInterface {
 	public HashMap<String, Object> boardList(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", ydi.reviewSelectOne(paramMap));
-		System.out.println(map);
 		return map;
 	}
-	
+
 }

@@ -55,9 +55,9 @@ $(document).ready(function(){
              $(".hanyena").empty(); 
                var tag = "";
                //2017-10-31 조건비교 자동으로 파라미터 NO를 넣어주어 업데이트시 게시글을 where 하기 위한 용도 , display
-               tag += '<input type="hidden" id="NO" name="NO" value="${param.NO}">'
+               tag += '<input type="hidden" id="NO" name="NO" value="${param.NO}">';
                //2017-10-31 수정화면 구분하기 위해 display 0:게시글 화면 1:수정화면 (jquery 이벤트에서만 사용함 파라미터 의미 X)
-               tag += '<input type="hidden" id="display" name="display" value="0">'
+               tag += '<input type="hidden" id="display" name="display" value="0">';
                //2017-10-31 무슨게시판인지 구분해주는 파라미터 (필수) ajax 결과값중 return 값으로 url이 있기 떄문에 필요함
                tag += '<input type="hidden" id="type" name="type" value="${param.type}">';
                
@@ -70,7 +70,7 @@ $(document).ready(function(){
                if(board.NAME != ("")){
                    tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : ' + board.NAME + '</label>';
                    } else {
-                   	tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : admin</label>';
+                      tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : admin</label>';
                    }
                //2017-10-31 NAME 추가함.
                tag += '<input type="text" class="form-control inputformne" id="NAME" name="NAME" placeholder="이름을 입력하세요" style="display:none" value="'+board.NAME+'">'
@@ -116,6 +116,7 @@ $(document).ready(function(){
    var type = $('#update').val();
    
    if(type == "submit") {
+     $("#CONT").text(CKEDITOR.instances['CONT'].getData());
       var form = $('#updateform').serialize();
       $.ajax({
          url : "BoUpdate_Data",
@@ -132,6 +133,8 @@ $(document).ready(function(){
       });
    }
    if(display =="none") {
+      var CONT = $("#CONT").text();
+      
       //2017-10-31 수정화면일때 TITLE,NAME,CONT를 보여줌
       //인풋
       $('#TITLE').css("display","block");
@@ -151,31 +154,40 @@ $(document).ready(function(){
       //2017-10-31 수정화면일때 취소 버튼 생성 block로 하면 css 꺠지기 때문에 빈값으로 처리
       $('#cancel').css("display","");
       $('#delete').css("display","none");
-
-
-   } else if(display == "block") {
-      //2017-10-31 원상복구일때 TITLE,NAME,CONT를 가림
-      $('#TITLE').css("display","none");
-      $('#NAME').css("display","none");
-      $('#CONT').css("display","none");
-
-
-      //2017-10-31 원상복구일때 기존 게시글 보여주는 제목,이름, 내용을 보여줌
-      $('#viewtitle').css("display","block");
-      $('#viewname').css("display","block");
-      $('#managertable').css("display","block");
-
-      //2017-10-31 원상복구일때 display 인풋 type:hidden value로 0을 지정
-      $('#display').val(0);
       
-      //2017-10-31 원상복구일때 update 버튼을 submit하는 것을 방지하기위해 value:button 지정
-      $('#update').val("button");
+      $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+          if (CKEDITOR.instances['CONT']) {
+              CKEDITOR.instances['CONT'].destroy();
+          }
+          CKEDITOR.replace('CONT', {customConfig: '/yumyum/resources/js/config.js'});
+          CKEDITOR.instances['CONT'].setData(CONT);
+      });
 
-   } else {
-      // 걍쓴것
-      $('#display').val(2);
-      alert('오류발생');
    }
+//    else if(display == "block") {
+//       //2017-10-31 원상복구일때 TITLE,NAME,CONT를 가림
+//       $('#TITLE').css("display","none");
+//       $('#NAME').css("display","none");
+//       $('#CONT').css("display","none");
+
+
+//       //2017-10-31 원상복구일때 기존 게시글 보여주는 제목,이름, 내용을 보여줌
+//       $('#viewtitle').css("display","block");
+//       $('#viewname').css("display","block");
+//       $('#managertable').css("display","block");
+
+//       //2017-10-31 원상복구일때 display 인풋 type:hidden value로 0을 지정
+//       $('#display').val(0);
+      
+//       //2017-10-31 원상복구일때 update 버튼을 submit하는 것을 방지하기위해 value:button 지정
+//       $('#update').val("button");
+
+//    } 
+//    else {
+//       // 걍쓴것
+//       $('#display').val(2);
+//       alert('오류발생');
+//    }
 })
 
    //2017-10-31 취소버튼 이벤트 실행할 경우 게시글 원상복구
@@ -263,11 +275,7 @@ $(document).ready(function(){
                      <a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
                   </div>
                </li>
-               <% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%> 
-            		<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
-         		<% } else { %>
-         			<li><a id="navbarDropdownBlog" class="nav-link hide" href="Modallogin">login</a></li>
-            	<% } %>
+               <li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
             </ul>
          </div>
       </div>

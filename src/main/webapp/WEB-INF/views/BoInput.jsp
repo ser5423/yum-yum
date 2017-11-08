@@ -27,33 +27,39 @@
 $(document).ready(function(){
 	var EMAIL='<%=EMAIL%>';
 	var EMAILmanager = '<%=EMAILmanager%>';
-	console.log(EMAILmanager);
+	$.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+        if (CKEDITOR.instances['CONT']) {
+            CKEDITOR.instances['CONT'].destroy();
+        }
+        CKEDITOR.replace('CONT', {customConfig: '/yumyum/resources/js/config.js'});
+    });   
+   
    $("#write").on("click",function(){
               
         // #writeform의 모든 값을 가져온다
          var formData = $('#writeform')[0];
         
       // ck자체 들어가 있는 java script 언어
- 		var ckeditor = CKEDITOR.instances.CONT.getData();
- 		$('#CONT').val(ckeditor);
- 		
- 	  	var data = new FormData(formData);
- 	  
- 	  	$.ajax({
-        	url: "BoInput_Data",
-        	cache : false,
-        	processData : false,
-        	contentType : false,
-        	data : data,
-        	type : "POST",
-        	success : function(data) 
-            { // 성공 시 	메세지 및 이동할주소
-            	alert(data.data);
-            	location.href= data.move;
-       		},error : function(req,data) {
-       			alert(data.data);
-            	location.href= data.move;
-       		}
+       var ckeditor = CKEDITOR.instances['CONT'].getData();
+       $('#CONT').val(ckeditor);
+       
+         var data = new FormData(formData);
+      
+         $.ajax({
+           url: "BoInput_Data",
+           cache : false,
+           processData : false,
+           contentType : false,
+           data : data,
+           type : "POST",
+           success : function(data) 
+            { // 성공 시    메세지 및 이동할주소
+               alert(data.data);
+               location.href= data.move;
+             },error : function(req,data) {
+                alert(data.data);
+               location.href= data.move;
+             }
             });
     })
 });
@@ -119,10 +125,6 @@ $(document).ready(function(){
          <form class="form-horizontal inputform" id="writeform" name="writeform">
          <!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
             <input type="hidden" id="type" name="type" value="${param.type}">
-               
-               
-               
-               
                <div class="form-group">
                <label for="name" class="col-xs-6 control-label"></label>
                <div class="col-xs-6">

@@ -11,7 +11,6 @@
       select count(*) as tot from recipe where TYPE = #{type}
    </select>
 	
-	
 	<select	id="BoardSelectList" parameterType="hashmap" resultType="hashmap">
 		select * from board
 	</select>
@@ -122,11 +121,8 @@
        update board set VIEWCNT = VIEWCNT + 1 where NO = #{NO}
      </update>
      
-     
       <!-- review insert -->
      <insert id="reviewinsert"	parameterType="hashmap">
 		insert into REVIEW (TITLE, WRITER,UPLOAD, CONT) values (#{TITLE},#{WRITER},now(),#{CONT})
 	 </insert>
-     
-     
 </mapper>

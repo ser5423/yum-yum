@@ -27,12 +27,10 @@ public interface yumyumDaoInterface {
 
 	// update부분
 	public int update(HashMap<String, Object> paramMap);
-	
+
 	public HashMap<String, Object> Recipemodal(HashMap<String, Object> paramMap);
 
 	public int delete(HashMap<String, Object> paramMap);
-	
-//	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> BoardSelectOneTotCnt(HashMap<String, Object> paramMap);
 
@@ -47,9 +45,9 @@ public interface yumyumDaoInterface {
 	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
 
 	public int boinputEmail(HashMap<String, Object> paramMap);
-	
+
 	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
 
-	//review insert
+	// review insert
 	public int reinput(HashMap<String, Object> paramMap);
 }

@@ -12,11 +12,11 @@ import kr.gudi.util.HttpUtil;
 
 @Controller
 public class ReviewController {
-	
+
 	@RequestMapping("/boardList")
-	public void boardList(HttpServletRequest req, HttpServletResponse resp){
+	public void boardList(HttpServletRequest req, HttpServletResponse resp) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		HttpUtil.sendResponceToJson(resp, map);
 	}
 }
