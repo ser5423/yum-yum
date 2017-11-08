@@ -60,7 +60,11 @@
 							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
 						</div>
 					</li>
-					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
+					<% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%> 
+            		<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
+         		<% } else { %>
+         			<li><a id="navbarDropdownBlog" class="nav-link hide" href="Modallogin">login</a></li>
+            	<% } %>
 				</ul>
 			</div>
 		</div>

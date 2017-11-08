@@ -99,13 +99,8 @@ public class yumyumController {
 	       }else{
 	          model.addAttribute("EMAILmanager",manager.get("EMAIL"));
 	       }
-	       
-//	       HashMap<String, Object> rstMap = new HashMap<String, Object>();
-//	       rstMap.put("EMAIL", user.get("EMAIL"));
-//	       rstMap.put("EMAILmanager", manager.get("EMAIL"));
-//	      
-//	       model.addAttribute("EMAIL",user.get("EMAIL"));
-//	       model.addAttribute("EMAILmanager",manager.get("EMAIL"));
+	       model.addAttribute("EMAIL",user.get("EMAIL"));
+	       model.addAttribute("EMAILmanager",manager.get("EMAIL"));
 	       mav.setViewName("/BoInput");
 	       return mav;
 	   }

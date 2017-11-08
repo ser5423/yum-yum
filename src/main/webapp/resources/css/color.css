@@ -246,3 +246,6 @@
 	text-decoration: none;
 	hover: text-decoration:none;
 }
+span{
+	font-weight:bold;
+}
