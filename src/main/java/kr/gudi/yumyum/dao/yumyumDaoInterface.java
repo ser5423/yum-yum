@@ -49,4 +49,7 @@ public interface yumyumDaoInterface {
 	public int boinputEmail(HashMap<String, Object> paramMap);
 	
 	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
+
+	//review insert
+	public int reinput(HashMap<String, Object> paramMap);
 }

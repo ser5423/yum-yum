@@ -11,6 +11,7 @@
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
@@ -25,20 +26,29 @@ $(document).ready(function(){
    $("#write").on("click",function(){
               
         // #writeform의 모든 값을 가져온다
-         var formData = $('#writeform').serialize();
-         $.ajax({
-               url: "BoInput_Data",
-               type : "POST",
-               data : formData,
-               success : function(data) 
-                { // 성공 시    메세지 및 이동할주소
-                  alert(data.data);
-                  location.href= data.move;
-                 },error : function(req,data) {
-                    alert(data.data);
-                   location.href= data.move;
-                    
-                 }
+         var formData = $('#writeform')[0];
+        
+      // ck자체 들어가 있는 java script 언어
+ 		var ckeditor = CKEDITOR.instances.CONT.getData();
+ 		$('#CONT').val(ckeditor);
+ 		
+ 	  	var data = new FormData(formData);
+ 	  
+ 	  	$.ajax({
+        	url: "BoInput_Data",
+        	cache : false,
+        	processData : false,
+        	contentType : false,
+        	data : data,
+        	type : "POST",
+        	success : function(data) 
+            { // 성공 시 	메세지 및 이동할주소
+            	alert(data.data);
+            	location.href= data.move;
+       		},error : function(req,data) {
+       			alert(data.data);
+            	location.href= data.move;
+       		}
             });
     })
 });
@@ -114,12 +124,6 @@ $(document).ready(function(){
                </div>
             </div>
             <div class="form-group">
-               <label for="password" class="col-xs-6 control-label">비밀번호</label>
-               <div class="col-xs-6">
-                  <input type="password" class="form-control inputformne"
-                     id="PASSWD" name="PASSWD" placeholder="비밀번호를 입력하세요">
-               </div>
-            </div><div class="form-group">
                <label for="EMAIL" class="col-xs-6 control-label"></label>
                <div class="col-xs-6">
                   <input type="hidden" class="form-control inputformne"
@@ -139,7 +143,7 @@ $(document).ready(function(){
             <div class="form-group">
                <label for="cont" class="col-xs-6 control-label">내용</label>
                <div class="col-xs-6">
-                  <textarea id="CONT" name="CONT" class="form-control col-xs-12" rows="25" cols="100"></textarea>
+                  <textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="25" cols="100"></textarea>
                </div>
             </div>
             <div class="form-group">

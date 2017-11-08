@@ -125,5 +125,9 @@ public class yumyumDao implements yumyumDaoInterface {
 	@Override
 	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap) {
 		return session.selectOne(NS + "boinputEmailCheck", paramMap);
+	}
+	@Override
+	public int reinput(HashMap<String, Object> paramMap) {
+		return session.insert(NS + "reviewinsert", paramMap);
 	}	
 }

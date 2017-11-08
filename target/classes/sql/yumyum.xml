@@ -74,8 +74,8 @@
 	</select>
 
 	<insert	id="insert"	parameterType="hashmap">
-		insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT) values
-		(#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT})
+		insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT, PATH, IMAGE) values
+		(#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT},#{PATH}, #{FILENAME})
 	</insert>
 	
 	<update	id="delete"	parameterType="hashmap">
@@ -121,4 +121,12 @@
 	 <update id="VIEWCNT" parameterType="hashmap" >
        update board set VIEWCNT = VIEWCNT + 1 where NO = #{NO}
      </update>
+     
+     
+      <!-- review insert -->
+     <insert id="reviewinsert"	parameterType="hashmap">
+		insert into REVIEW (TITLE, WRITER,UPLOAD, CONT) values (#{TITLE},#{WRITER},now(),#{CONT})
+	 </insert>
+     
+     
 </mapper>

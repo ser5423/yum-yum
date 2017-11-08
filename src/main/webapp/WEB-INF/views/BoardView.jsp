@@ -70,9 +70,6 @@ $(document).ready(function(){
                //2017-10-31 NAME 추가함.
                tag += '<input type="text" class="form-control inputformne" id="NAME" name="NAME" placeholder="이름을 입력하세요" style="display:none" value="'+board.NAME+'">'
                tag += '</div>';
-               tag += '<div class="form-group" style="text-align: right;">';
-               tag += '<label for="viewip" class="col-xs-6 control-label">ip : 192.168.***.***</label>';
-               tag += '</div>';
                tag += '<div class="form-group">';
                var cont = "없다."
                if(board.CONT){
@@ -291,13 +288,10 @@ $(document).ready(function(){
       
          <div class="form-group writbtn3-1">
             <div class="col-xs-3">
-               <button type="button" class="btn text-white bg-redred writbtn3"
-                  onclick="location.href='javascript:history.go(-1)'">목록</button>
-          
+               <button type="button" class="btn text-white bg-redred writbtn3" onclick="location.href='javascript:history.go(-1)'">목록</button>
                <button type="button" id="update" class="btn btn-default text-white bg-redred writbtn3" value="button">수정</button>  
                <button type="button" id="cancel" class="btn btn-default text-white bg-redred writbtn3" style="display:none">취소</button>
                <button type="submit" id="delete" class="btn btn-default text-white bg-redred writbtn3">삭제</button>
-            
             </div>
          </div>
       </form>

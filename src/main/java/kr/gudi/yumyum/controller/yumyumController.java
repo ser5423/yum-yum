@@ -1,7 +1,9 @@
 package kr.gudi.yumyum.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,8 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.gudi.util.BoardFile;
 import kr.gudi.util.HttpUtil;
 import kr.gudi.yumyum.service.YumyumServiceInterface;
 
@@ -69,41 +74,15 @@ public class yumyumController {
 	   }
 
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
-	@RequestMapping("/BoInput_Data")
-	public void insert(HttpServletResponse response, HttpServletRequest req,
-			@RequestParam Map<String, Object> paramMapa) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		System.out.println(paramMap);
-
-		// ysi.insert(paramMap) : 입력받은 데이터(paramMap) 서비스로 보내기
-		// rstMap : 리턴된 값 받는 곳
-		HashMap<String, Object> rstMap = ysi.insert(paramMap);
-		// rstCnt: 삽입 된 갯수 => DB에 삽입이 되었는지 안되었는지 확인하기 위해
-		// rstInsertCnt: 서비스에서 리턴된 값
-		int rstCnt = (int) rstMap.get("rstInsertCnt");
-		// rstCNt 삽입 된 갯수야 ... . 갯수는 0 , 1 즉 , 0은 실패 1은 성공이야 .. 조건은 0보다 작거나 같으면
-		// 실패 0보다 크면 성공.
-		if (rstCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
-			/**
-			 * @param data:
-			 *            알림 메시지
-			 * @param :
-			 *            이동할 주소
-			 */
-			rstMap.put("data", "글작성이 완료되었습니다.");
-			rstMap.put("move", req.getContextPath() + "/Board?type=" + paramMap.get("TYPE"));
-
-		} else {
-			rstMap.put("data", "글작성이 실패하였습니다.");
-			rstMap.put("move", req.getContextPath() + "/Main");
-
+		@RequestMapping("/BoInput_Data")
+		public void insert(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req,
+				@RequestParam Map<String, Object> paramMapa) {
+			HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+			
+			List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+			HashMap<String, Object> rstMap = ysi.insert(paramMap,req);
+			HttpUtil.sendResponceToJson(response, rstMap);
 		}
-		HttpUtil.sendResponceToJson(response, rstMap);
-		// jsp -> 데이터 글작성 했다던가 ? -> 데이터 전송 -> 컨트롤러 -> db -> return Map -> json
-		// 변환을 해 ->
-		// jsp 다시 받음.
-	}
-
 	@RequestMapping("/Manager")
 	public ModelAndView manager(ModelAndView mav) {
 		mav.setViewName("/Manager");
@@ -241,4 +220,50 @@ public class yumyumController {
 		mav.setViewName("redirect:/Main");
 		return mav;
 	}
+	// 파일 업로드
+			@RequestMapping("/upload")
+			public void imgUpload(MultipartHttpServletRequest req, @RequestParam HashMap<String,Object> paramMap,HttpServletResponse res) {
+						
+				List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
+			
+				PrintWriter printWriter = null;
+				try {
+					res.setHeader("charset", "utf-8");
+					res.setCharacterEncoding("utf-8");
+					// 화면에 찍기
+					printWriter = res.getWriter();
+					// ck에서 지정된 약속
+	/*				<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>*/
+					// 몇건, 이미지주소, 결과메세지 반환
+					printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+		                    +paramMap.get("CKEditorFuncNum")
+		                    + ",'"
+		                    + req.getContextPath()+ files.get(0).getPath()
+		                    + "','이미지를 업로드 하였습니다.'"
+		                    + ")</script>");
+					// flush() : 파일 남아 있는거 보내라 (마저보내라)
+					printWriter.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if (printWriter != null) {
+							printWriter.close();
+						}
+					} catch (Exception e2) {}
+				}
+
+			}
+			
+			
+			// 리뷰 데이터 입력
+			@RequestMapping("/ReInput_Data")
+			public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req,
+					@RequestParam Map<String, Object> paramMapa) {
+				HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+				List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+				HashMap<String, Object> rstMap = ysi.reinput(paramMap,req);
+				HttpUtil.sendResponceToJson(response, rstMap);
+				
+			}
 }

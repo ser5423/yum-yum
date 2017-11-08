@@ -138,10 +138,24 @@ public class YumyumService implements YumyumServiceInterface {
 
 	// insert부분
 	@Override
-	public HashMap<String, Object> insert(HashMap<String, Object> paramMap) {
+	public HashMap<String, Object> insert(HashMap<String, Object> paramMap, HttpServletRequest req) {
 		HashMap<String, Object> rstMap = new HashMap<String, Object>();
 		int rstInsertCnt = ydi.insert(paramMap);
 		rstMap.put("rstInsertCnt", rstInsertCnt);
+		
+		
+		// rstInsertCnt 삽입 된 갯수, 갯수는 0 , 1  => 즉 , 0은 실패 1은 성공, 조건은 0보다 작거나 같으면
+	   // 실패 0보다 크면 성공.
+		if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
+			
+			rstMap.put("data", "글작성이 완료되었습니다.");
+			rstMap.put("move", req.getContextPath() + "/Board?type=" + paramMap.get("TYPE"));
+
+		} else {
+			rstMap.put("data", "글작성이 실패하였습니다.");
+			rstMap.put("move", req.getContextPath() + "/Main");
+
+		}
 		return rstMap;
 	}
 
@@ -203,6 +217,25 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 
 		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, HttpServletRequest req) {
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		int rstInsertCnt = ydi.reinput(paramMap);
+		rstMap.put("rstInsertCnt", rstInsertCnt);
+	
+		if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
+			
+			rstMap.put("data", "글작성이 완료되었습니다.");
+			rstMap.put("move", req.getContextPath() + "/Review");
+
+		} else {
+			rstMap.put("data", "글작성이 실패하였습니다.");
+			rstMap.put("move", req.getContextPath() + "/Main");
+
+		}
+		return rstMap;
 	}
 
 	

@@ -23,7 +23,7 @@ public interface YumyumServiceInterface {
 	
 
 	// insert부분
-	public HashMap<String, Object> insert(HashMap<String, Object> paramMap);
+	public HashMap<String, Object> insert(HashMap<String, Object> paramMap, HttpServletRequest req);
 
 	public HashMap<String, Object> update(HashMap<String, Object> paramMap, HttpServletRequest req);
 	
@@ -36,4 +36,7 @@ public interface YumyumServiceInterface {
     public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap);
 
 	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
+
+	 //reviewinsert부분
+    public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, HttpServletRequest req);
 }

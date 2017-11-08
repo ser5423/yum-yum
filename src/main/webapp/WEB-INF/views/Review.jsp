@@ -264,6 +264,14 @@
 						</div>
 					</div>
 				</form>
+				<div class="writbtn2">
+            <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='ReInput'">글쓰기</button>
+             <% if(session.getAttribute("user") == null) {%>  
+            <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='ReInput">글쓰기</button> 
+             <% } else { %> 
+             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='ReInput'">글쓰기</button> 
+             <% } %> 
+             </div>
 			</div>
 
 		</div>

@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Yum - Yum</title>
+<title>Food Factory</title>
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
@@ -18,10 +18,41 @@
 
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#write").on("click", function(){
+              
+		 // #writeform의 모든 값을 가져온다
+		var formData = $('#writeform')[0];
+	
+		// ck자체 들어가 있는 java script 언어
+		var ckeditor = CKEDITOR.instances.CONT.getData();
+		$('#CONT').val(ckeditor);
+		
+	  	var data = new FormData(formData);
+	  
+		$.ajax({
+        	url: "ReInput_Data",
+        	cache : false,
+        	processData : false,
+        	contentType : false,
+        	data : data,
+        	type : "POST",
+        	success : function(data) 
+            { // 성공 시 	메세지 및 이동할주소
+            	alert(data.data);
+            	location.href= data.move;
+       		},error : function(req,data) {
+       			alert(data.data);
+            	location.href= data.move;
+       		}
+        });
+    })
+});
+</script>
 </head>
 <body>
-<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
+	<!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="Main">Yum - Yum</a>
@@ -72,48 +103,63 @@
 		</ul>
 		<!--       <h1 class="mt-4 mb-3">Create Page</h1> -->
 		<div class="row">
-			<form class="form-horizontal inputform">
+		<!--* 파일업로드를 위해 enctype="multipart/form-data"  
+		    * enctype : 전송되는 데이터 형식
+		    * multipart/form-data : 파일이나 이미지를 서버로 전송 -->
+			<form class="form-horizontal inputform" id="writeform" name="writeform" enctype="multipart/form-data" accept-charset="utf-8"  method="post">
+			<!-- type을 보내주는 이유는 디비 삽입 후 성공 하였을때 게시판목록으로보낸다 했는데 어느 게시판을 보낼지 모르니깐.. -->
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">제목</label>
+					<label for="subject" class="col-xs-6 control-label">제목</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="글 제목을 입력하세요">
+						<input type="text" class="form-control inputformne"
+							id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-xs-6 control-label">작성자</label>
+					<label for="id" class="col-xs-6 control-label">아이디</label>
 					<div class="col-xs-6">
-						<input type="text" class="form-control inputformne" id="inputEmail3" placeholder="작성자 이름을 입력하세요">
+						<input type="text" class="form-control inputformne"
+							id="ID" name="ID" placeholder="아이디를 입력하세요">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="name" class="col-xs-6 control-label">이름</label>
+					<div class="col-xs-6">
+						<input type="text" class="form-control inputformne"
+							id="WRITER" name="WRITER" placeholder="이름을 입력하세요">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="password" class="col-xs-6 control-label">비밀번호</label>
+					<div class="col-xs-6">
+						<input type="password" class="form-control inputformne"
+							id="PASSWD" name="PASSWD" placeholder="비밀번호를 입력하세요">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">비밀번호</label>
-					<div class="col-xs-6">
-						<input type="password" class="form-control inputformne" id="inputPassword3" placeholder="비밀번호를 입력하세요">
-					</div>
+					<label for="TYPE" class="col-xs-6 control-label">분류</label>
+				    <!-- 스크롤바 사용 -->
+				
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">내용</label>
+					<label for="cont" class="col-xs-6 control-label">내용</label>
 					<div class="col-xs-6">
-						<textarea class="form-control col-xs-12" rows="25" cols="100"></textarea>
+						<textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="25" cols="100"></textarea>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">파일첨부</label>
+				<!-- <div class="form-group">
+					<label for="File" class="col-xs-6 control-label">사진 첨부</label>
 					<div class="col-xs-6">
-						<input type="file" id="File" class="form-control">
+						<input type="file" id="file" name="file" multiple="multiple" class="form-control">
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-xs-6 control-label">대표
-						사진 첨부</label>
-					<div class="col-xs-6">
-						<input type="file" id="File" class="form-control">
-					</div>
-				</div>
+				</div> -->
 				<div class="form-group writbtn3-1">
 					<div class="col-xs-3">
-						<button type="button" class="btn text-white bg-redred writbtn3" onclick="location.href='Review'">목록</button>
-						<button type="submit" class="btn btn-default text-white bg-redred writbtn3">작성</button>
+						<button type="button" class="btn text-white bg-redred writbtn3"
+							onclick="location.href='javascript:history.go(-1)'">목록</button>
+						<button type="button" class="btn btn-default text-white bg-redred writbtn3" id="write">작성</button>
 					</div>
 				</div>
 			</form>
