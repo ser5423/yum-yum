@@ -46,7 +46,11 @@ $(document).ready(function(){
          tag += '<tr>';
             tag += '<a href ="/BoardView">';
             tag += '<td>' + data1[i].TITLE + '</td>';
-            tag += '<td>' + data1[i].NAME + '</td>';
+            if(data1[i].NAME != ("")){
+            	tag += '<td>' + data1[i].NAME + '</td>';
+            } else {
+            	tag += '<td>admin</td>'; 
+            }
             tag += '<td>' + data1[i].UPLOAD2 + '</td>';
             tag += '<td>' + data1[i].VIEWCNT + '</td>';
             tag += '</a>';

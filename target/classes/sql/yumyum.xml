@@ -74,8 +74,8 @@
 	</select>
 
 	<insert	id="insert"	parameterType="hashmap">
-		insert into board (TYPE, TITLE, NAME, ID, PASSWD, UPLOAD, CONT, PATH, IMAGE) values
-		(#{TYPE},#{TITLE},#{NAME},#{ID},#{PASSWD}, now(),#{CONT},#{PATH}, #{FILENAME})
+		insert into board (TYPE, TITLE, NAME, UPLOAD, CONT, PATH, IMAGE) values
+		(#{TYPE},#{TITLE},#{NAME}, now(),#{CONT},#{PATH}, #{FILENAME})
 	</insert>
 	
 	<update	id="delete"	parameterType="hashmap">

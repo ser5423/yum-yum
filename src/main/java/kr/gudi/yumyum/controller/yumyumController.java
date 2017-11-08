@@ -86,13 +86,28 @@ public class yumyumController {
 	 @RequestMapping("/BoInput")
 	   public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
 	       HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-	       HashMap<String, Object> rstMap = new HashMap<String, Object>();
-	       rstMap.put("EMAIL", user.get("EMAIL"));
-	      mav.setViewName("/BoInput");
-	      System.out.println(session.getAttribute("user"));
-	      System.out.println(rstMap);
-	      model.addAttribute("EMAIL",user.get("EMAIL"));
-	      return mav;
+	       HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+
+	       if(user == null){
+	          model.addAttribute("EMAIL", "");
+	       }else{
+	          model.addAttribute("EMAIL",user.get("EMAIL"));
+	       }
+	       
+	       if(manager == null){
+	          model.addAttribute("EMAILmanager", "");
+	       }else{
+	          model.addAttribute("EMAILmanager",manager.get("EMAIL"));
+	       }
+	       
+//	       HashMap<String, Object> rstMap = new HashMap<String, Object>();
+//	       rstMap.put("EMAIL", user.get("EMAIL"));
+//	       rstMap.put("EMAILmanager", manager.get("EMAIL"));
+//	      
+//	       model.addAttribute("EMAIL",user.get("EMAIL"));
+//	       model.addAttribute("EMAILmanager",manager.get("EMAIL"));
+	       mav.setViewName("/BoInput");
+	       return mav;
 	   }
 
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분

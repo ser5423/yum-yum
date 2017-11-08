@@ -67,7 +67,11 @@ $(document).ready(function(){
                tag += '<input type="text" class="form-control inputformne" id="TITLE" name="TITLE" placeholder="글 제목을 입력하세요" style="display:none;" value="'+board.TITLE+'">'
                tag += '</div>';
                tag += '<div class="form-group">';
-               tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : ' + board.NAME + '</label>';
+               if(board.NAME != ("")){
+                   tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : ' + board.NAME + '</label>';
+                   } else {
+                   	tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : admin</label>';
+                   }
                //2017-10-31 NAME 추가함.
                tag += '<input type="text" class="form-control inputformne" id="NAME" name="NAME" placeholder="이름을 입력하세요" style="display:none" value="'+board.NAME+'">'
                tag += '</div>';
