@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -30,6 +30,9 @@ public class yumyumController {
 	@Autowired
 	YumyumServiceInterface ysi;
 
+	private static final Logger logger = Logger.getLogger(yumyumController.class);
+
+	
 	@RequestMapping("/Main")
 	public ModelAndView main(ModelAndView mav, HttpSession session) {
 		session.getAttribute("manager");
@@ -81,22 +84,31 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/BoInput")
-	public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+	public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model,
+			@RequestParam HashMap<String, Object> paramMap) {
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("manager");
 
 		if (user == null) {
 			model.addAttribute("EMAIL", "");
 		} else {
 			model.addAttribute("EMAIL", user.get("EMAIL"));
-
 		}
+
 		if (manager == null) {
 			model.addAttribute("EMAILmanager", "");
 		} else {
 			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
 		}
 
+		// HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		// rstMap.put("EMAIL", user.get("EMAIL"));
+		// rstMap.put("EMAILmanager", manager.get("EMAIL"));
+		//
+		// model.addAttribute("EMAIL",user.get("EMAIL"));
+		// model.addAttribute("EMAILmanager",manager.get("EMAIL"));
 		mav.setViewName("/BoInput");
 		return mav;
 	}
@@ -138,29 +150,27 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/ReInput")
-	public ModelAndView reinput(ModelAndView mav, HttpSession session, Model model) {
+	public ModelAndView reinput(HttpServletRequest req, ModelAndView mav, HttpSession session, Model model, @RequestParam HashMap<String, Object> paramMap) {
+		
 		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
-		if (user == null) {
-			model.addAttribute("EMAIL", "");
-		} else {
-			model.addAttribute("EMAIL", user.get("EMAIL"));
-
-		}
-		if (manager == null) {
-			model.addAttribute("EMAILmanager", "");
-		} else {
-			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
-		}
+		
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		rstMap.put("EMAIL", user.get("EMAIL"));
+		
 		mav.setViewName("/ReInput");
+		System.out.println(session.getAttribute("user"));
+		System.out.println(rstMap);
+		model.addAttribute("EMAIL", user.get("EMAIL"));
 		return mav;
 	}
 
 	@RequestMapping("/BoardView")
 	public ModelAndView boardview(ModelAndView mav, HttpSession session, Model model, HttpServletRequest req) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("manager");
 
 		if (user == null) {
 			model.addAttribute("EMAIL", "");
@@ -199,14 +209,12 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, ysi.reviewSelectOne(paramMap));
 	}
 
+
 	@RequestMapping("/bestReview_Data")
 	public void bestReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
 	}
-	
-  
-
 
 	@RequestMapping("/TokenCheck")
 	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
@@ -218,7 +226,8 @@ public class yumyumController {
 
 	@RequestMapping("/GetNaverId")
 	public void getNaverId(HttpServletResponse resp, HttpSession session) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
+				.getAttribute("user");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (user == null) {
 			map.put("state", 0);
@@ -267,9 +276,12 @@ public class yumyumController {
 	@RequestMapping("/upload")
 	public void imgUpload(MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap,
 			HttpServletResponse res) {
+		HashMap<String, Object> rstMap = ysi.fileupload(paramMap, req);
 
-		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
+		List<BoardFile> files = (List<BoardFile>) rstMap.get("file");
 
+		logger.info("##########################################\n" + files
+				+ "\n#############################################");
 		PrintWriter printWriter = null;
 		try {
 			res.setHeader("charset", "utf-8");
@@ -278,14 +290,13 @@ public class yumyumController {
 			printWriter = res.getWriter();
 			// ck에서 지정된 약속
 			/*
-			 * <script
-			 * type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(
-			 * '콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>
+			 * <script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction('콜백의
+			 * 식별 ID 값', '파일의 URL', '전송완료 메시지')</script>
 			 */
 			// 몇건, 이미지주소, 결과메세지 반환
 			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
-					+ paramMap.get("CKEditorFuncNum") + ",'" + req.getContextPath() + files.get(0).getPath()
-					+ "','이미지를 업로드 하였습니다.'" + ")</script>");
+					+ paramMap.get("CKEditorFuncNum") + ",'" + req.getContextPath() + files.get(0).getPath() + "','"
+					+ rstMap.get("msg") + "'" + ")</script>");
 			// flush() : 파일 남아 있는거 보내라 (마저보내라)
 			printWriter.flush();
 		} catch (IOException e) {
@@ -301,20 +312,20 @@ public class yumyumController {
 
 	}
 
+
 	// 리뷰 데이터 입력
 	@RequestMapping("/ReInput_Data")
-	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
+		MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
 		HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
 		HttpUtil.sendResponceToJson(response, rstMap);
-
 	}
 	
-	  @RequestMapping("/recommendup")
-	    public void recommendup(HttpServletRequest req, HttpServletResponse resp, @RequestParam HashMap<String, Object> paramMap){
-	      HashMap<String, Object> rstMap = ysi.recommendup(paramMap, req);
-	      HttpUtil.sendResponceToJson(resp, rstMap);
-	   }
+	@RequestMapping("/recommendup")
+	public void recommendup(HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> paramMap) {
+		HashMap<String, Object> rstMap = ysi.recommendup(paramMap, req);
+		HttpUtil.sendResponceToJson(resp, rstMap);
+	}
 
 }

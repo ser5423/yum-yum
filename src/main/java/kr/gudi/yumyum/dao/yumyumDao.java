@@ -137,4 +137,16 @@ public class yumyumDao implements yumyumDaoInterface {
 	public int recommendup(HashMap<String, Object> param) {
 		return session.update(NS + "recommendup", param);
 	}
+	
+	@Override
+	public int fileupload(HashMap<String, Object> paramMap) {
+		return session.insert(NS + "fileupload", paramMap);
+	}
+
+	@Override
+	public int boardCntSelectOne(HashMap<String, Object> paramMap) {
+		return session.selectOne(NS+"boardCntSelectOne" ,paramMap);
+	}
+	
+	
 }

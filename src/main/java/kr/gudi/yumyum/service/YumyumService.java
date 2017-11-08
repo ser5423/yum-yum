@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.gudi.util.BoardFile;
+import kr.gudi.util.HttpUtil;
 import kr.gudi.yumyum.dao.yumyumDaoInterface;
 
 @Service
@@ -16,6 +20,9 @@ public class YumyumService implements YumyumServiceInterface {
 	@Autowired
 	yumyumDaoInterface ydi;
 
+	
+	private static final Logger logger = Logger.getLogger(YumyumService.class);
+	
 	@Override
 	public HashMap<String, Object> recipeSelectOne(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -211,13 +218,16 @@ public class YumyumService implements YumyumServiceInterface {
 	}
 
 	@Override
-	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, HttpServletRequest req) {
+	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
 		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
+		paramMap.put("file", files.get(0));
 		int rstInsertCnt = ydi.reinput(paramMap);
+		
 		rstMap.put("rstInsertCnt", rstInsertCnt);
-
+		
 		if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
-
+			
 			rstMap.put("data", "글작성이 완료되었습니다.");
 			rstMap.put("move", req.getContextPath() + "/Review");
 
@@ -228,6 +238,8 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 		return rstMap;
 	}
+	
+	
 	@Override
 	   public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req) {
 
@@ -247,5 +259,57 @@ public class YumyumService implements YumyumServiceInterface {
 			}
 			return rstMap;
 	   }
+	
+	// 파일업로드
+	@Override
+	public HashMap<String,Object> fileupload(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
+		logger.info(paramMap);
+		// 컨트롤러  -> 서비스 호출 -> 서비스에서  로직처리 ( 프로그램 )  -> 다오 데이터 보내서 디비에 삽입 -> 서비스로 결과 리턴 -> 
+		// 파일 업로드..
+		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
+		
+		
+		HashMap<String, Object> rstMap = new HashMap<String,Object>();
+		int rstSuccessCnt = 0;
+		int rstFailureCnt = 0;
+		String rstMsg = "";
+		
+		for(BoardFile b : files) {
+			paramMap.put("file", b);
+			int rstCnt = ydi.fileupload(paramMap);
+			
+			//DB Insert 값이 0보다크면 성공 했으므로 성공 카운트 1증가
+			if(rstCnt > 0) {
+				rstSuccessCnt++;
+
+			//DB Insert 값이 1보다 작으면 실패 했으므로 실패 카운트 1증가
+			} else if(rstCnt < 0) {
+				rstFailureCnt++;
+			
+			//DB 그 이외에는 버려
+			} else {}
+		}
+		
+		if(rstSuccessCnt == files.size()) {
+			rstMsg = "파일 업로드가 성공적으로 완료 되었습니다." + files.size()+"개";
+		} else if(rstFailureCnt < 0) {
+			rstMsg = "파일 업로드가 부분적으로 완료 되었습니다." + "\n 성공 : "+rstSuccessCnt +"\n 실패 : "+rstFailureCnt;
+		} else if(rstFailureCnt == files.size()){
+			rstMsg = "파일 업로드가 실패하였습니다.";
+		}
+		
+		rstMap.put("file", files);
+		rstMap.put("msg", rstMsg);
+		return rstMap;
+	}
+
+	@Override
+	public int boardCntSelectOne(HashMap<String, Object> paramMap) {
+		List<BoardFile> files = HttpUtil.fileUpload((MultipartHttpServletRequest)paramMap.get("req"), "board", null);
+		
+		paramMap.put("file", files.get(0));
+		return ydi.boardCntSelectOne(paramMap);
+	}
+	
 
 }

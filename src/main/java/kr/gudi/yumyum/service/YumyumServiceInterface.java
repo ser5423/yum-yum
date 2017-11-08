@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 public interface YumyumServiceInterface {
 	public HashMap<String, Object> recipeSelectOne(HashMap<String, Object> paramMap);
 
@@ -35,7 +37,11 @@ public interface YumyumServiceInterface {
 	public HashMap<String, Object> boinputEmailCheck(HashMap<String, Object> paramMap);
 
 	// reviewinsert부분
-	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, HttpServletRequest req);
+	public HashMap<String, Object> reinput(HashMap<String, Object> paramMap, MultipartHttpServletRequest req);
 
 	public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req);
+
+	int boardCntSelectOne(HashMap<String, Object> paramMap);
+
+	HashMap<String, Object> fileupload(HashMap<String, Object> paramMap, MultipartHttpServletRequest req);
 }

@@ -75,14 +75,13 @@
 	            modal += '<div class="modal-content">';
 	            modal += '<div class="modal-header">';
 	            modal += '<h4 class="modal-title" id="myModalLabel">'  + data1[i].TITLE +  '</h4>';
-	            modal += '<h4 class="modal-title" id="myModalLabel">'  + data1[i].RECOMMEND +  '</h4>';
 	            modal += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 	            modal += '</div>';
 	            modal += '<div class="modal-body reviewmodal">';
 	            modal += '<div id="modalimagesize">';
 	            modal += '<p>';
 	            if(data1[i].IMAGE != ""){
-	         	   modal += '<a href="#' + data1[i].NO + '"><img src="/yumyum/resources/img/'  + data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
+	         	   modal += '<a href="#' + data1[i].NO + '"><img src="${pageContext.request.contextPath}'  +data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
 	            }else {
 	         	   modal += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
 	            }
@@ -99,16 +98,15 @@
 				tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
 				tag += '<div class="card h-100">';
 				if(data1[i].IMAGE != ""){
-		              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+		              tag += '<a href="#' + data1[i].NO + '"><img style="width:3z00px;height:300px;" class="card-img-top" src="${pageContext.request.contextPath}'+ data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
 		           }else {
-		              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+		              tag += '<a href="#' + data1[i].NO + '"><img style="width:300px;height:300px;" class="card-img-top" src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
 		           }
 				tag += '<div class="card-body">';
 				tag += '<h4 class="card-title">';
 				tag += '<a href="#' + data1[i].NO + '"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
 				tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
-				tag += '<div id="cardne2" class="card-text"><button id="recommendup" class="btn btn-default text-white bg-redred writbtn3" value="'+data1[i].NO+'">추천</button><div class="btn btn-default text-white bg-redred writbtn3">'  + data1[i].RECOMMEND +  '</div></div>';
 				tag += '</div>';
 				tag += '</div>';
 				tag += '</div>';

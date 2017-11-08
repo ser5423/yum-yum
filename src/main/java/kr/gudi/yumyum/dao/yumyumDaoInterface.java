@@ -52,4 +52,8 @@ public interface yumyumDaoInterface {
 	public int reinput(HashMap<String, Object> paramMap);
 
 	public int recommendup(HashMap<String, Object> param);
+
+	public int boardCntSelectOne(HashMap<String, Object> paramMap);
+
+	public int fileupload(HashMap<String, Object> paramMap);
 }

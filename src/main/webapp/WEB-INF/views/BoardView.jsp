@@ -159,8 +159,10 @@ $(document).ready(function(){
           if (CKEDITOR.instances['CONT']) {
               CKEDITOR.instances['CONT'].destroy();
           }
-          CKEDITOR.replace('CONT', {customConfig: '/yumyum/resources/js/config.js'});
-          CKEDITOR.instances['CONT'].setData(CONT);
+          CKEDITOR.replace('CONT', {
+        	  customConfig: '/yumyum/resources/js/config.js',
+        	  filebrowserUploadUrl: '${pageContext.request.contextPath}/upload'
+          });
       });
 
    }
@@ -199,10 +201,11 @@ $(document).ready(function(){
       $('#cancel').css("display","none");
       $('#TITLE').css("display","none");
       $('#NAME').css("display","none");
+      CKEDITOR.instances['CONT'].destroy();
       $('#CONT').css("display","none");
+      $('#managertable').css("display","block");
       $('#viewtitle').css("display","block");
       $('#viewname').css("display","block");
-      $('#managertable').css("display","block");
    })
    
    

@@ -27,12 +27,15 @@
 $(document).ready(function(){
 	var EMAIL='<%=EMAIL%>';
 	var EMAILmanager = '<%=EMAILmanager%>';
-	$.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
         if (CKEDITOR.instances['CONT']) {
             CKEDITOR.instances['CONT'].destroy();
         }
-        CKEDITOR.replace('CONT', {customConfig: '/yumyum/resources/js/config.js'});
-    });   
+        CKEDITOR.replace('CONT', {
+      	  customConfig: '/yumyum/resources/js/config.js',
+      	  filebrowserUploadUrl: '${pageContext.request.contextPath}/upload'
+        });
+    });  
    
    $("#write").on("click",function(){
               

@@ -127,6 +127,20 @@
      
       <!-- review insert -->
      <insert id="reviewinsert"	parameterType="hashmap">
-		insert into REVIEW (TITLE, WRITER,UPLOAD, CONT) values (#{TITLE},#{WRITER},now(),#{CONT})
+		insert into REVIEW (TITLE, WRITER,UPLOAD, CONT, IMAGE) values (#{TITLE},#{WRITER},now(),#{CONT},#{file.path})
 	 </insert>
+	 
+     <insert id="fileupload" parameterType="hashmap">
+		INSERT INTO
+	
+		boardfile(shortname,filename,filepath,del_YN)
+	
+		VALUES(#{file.shortname},#{file.orgfilename},#{file.path},'N')
+     </insert>
+     
+     <select id="boardCntSelectOne" parameterType="hashmap" resultType="int">
+     	SELECT MAX(no)+1 
+     	FROM REVIEW
+     </select>
+     
 </mapper>

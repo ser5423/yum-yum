@@ -14,7 +14,6 @@
 <script src="/yumyum/resources/js/jquery.min.js"></script>
 <script src="/yumyum/resources/js/popper.min.js"></script>
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
@@ -26,6 +25,15 @@
 $(document).ready(function(){
 	var EMAIL='<%=EMAIL%>';
 	var EMAILmanager = '<%=EMAILmanager%>';
+    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+        if (CKEDITOR.instances['CONT']) {
+            CKEDITOR.instances['CONT'].destroy();
+        }
+        CKEDITOR.replace('CONT', {
+      	  customConfig: '/yumyum/resources/js/config.js',
+      	  filebrowserUploadUrl: '${pageContext.request.contextPath}/upload'
+        });
+    });
 	$("#write").on("click", function(){
               
 		 // #writeform의 모든 값을 가져온다
@@ -146,6 +154,14 @@ $(document).ready(function(){
                   <textarea id="CONT" name="CONT" class="ckeditor form-control col-xs-12" rows="300" cols="100"></textarea>
                </div>
             </div>
+            
+            <div class="form-group">
+               <label for="cont" class="col-xs-6 control-label"><b>메인썸네일 이미지</b></label>
+               <div class="col-xs-6">
+                  <input type="file" id="file" name="file" class="form-control col-xs-12" />
+                </div>
+            </div>
+            
             <div class="form-group writbtn3-1">
                <div class="col-xs-3">
                   <button type="button" class="btn text-white bg-redred writbtn3"
