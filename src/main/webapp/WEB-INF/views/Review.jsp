@@ -69,16 +69,44 @@
 		function createHtml() { // ul(부모) 태그 속에 li(자식) 태그 넣기 위한 함수
 			$(".container .row .col-md-8").empty();
 			for (var i = 0; i < data1.length; i++) {
+				var modal = "";
+	            modal += '<div class="modal fade" id="' + data1[i].NO + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+	            modal += '<div class="modal-dialog">';
+	            modal += '<div class="modal-content">';
+	            modal += '<div class="modal-header">';
+	            modal += '<h4 class="modal-title" id="myModalLabel">'  + data1[i].TITLE +  '</h4>';
+	            modal += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+	            modal += '</div>';
+	            modal += '<div class="modal-body reviewmodal">';
+	            modal += '<div id="modalimagesize">';
+	            modal += '<p>';
+	            if(data1[i].IMAGE != ""){
+	         	   modal += '<img src="/yumyum/resources/img/'  + data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
+	            }else {
+	         	   modal += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+	            }
+	            modal += '</p>';
+	            modal += '</div>';
+	            modal += '<p class="modalradius">'   + data1[i].CONT +  '<br><button type="button" id="navershop" class="btn btn-default text-white yellowgreen writbtn3"style="cursor: pointer">네이버 쇼핑</button></p></p>';
+	            modal += '</div>';
+	            modal += '</div>';
+	            modal += '</div>';
+	            modal += '</div>';
+	            $(".mmmodalRecipe").prepend(modal);
+				
 				var tag = "";
 				tag += '<div class="col-md-4-2 col-sm-6-2  portfolio-item">';
 				tag += '<div class="card h-100">';
-				tag += '<a href="#"><img class="card-img-top"src="/yumyum/resources/img/manager.jpg" data-toggle="modal"data-target=""></a>';
+				if(data1[i].IMAGE != ""){
+		              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+		           }else {
+		              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+		           }
 				tag += '<div class="card-body">';
 				tag += '<h4 class="card-title">';
-				tag += '<a href="#">' + data1[i].TITLE + '</a>';
+				tag += '<a href="#"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
-				tag += '<p id="cardne" class="card-text">'
-						+ data1[i].WRITER + '</p>';
+				tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
 				tag += '</div>';
 				tag += '</div>';
 				tag += '</div>';
@@ -243,6 +271,10 @@
 		<ul id="ul" class="pagination justify-content-center">
 
 		</ul>
+		
+	</div>
+	<div class="mmmodalRecipe">
+		
 	</div>
 	<!-- Footer -->
 	<footer class="py-4 bg-redred">

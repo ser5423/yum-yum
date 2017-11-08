@@ -2,9 +2,11 @@
    pageEncoding="UTF-8"%>
 <%
    String NO = request.getParameter("NO");
+   String EMAIL = (String) request.getAttribute("EMAIL"); 
    if (NO == null) {
       response.sendRedirect("Main");
    }
+   
 %>
 <!DOCTYPE html>
 <html>
@@ -30,6 +32,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript">
+var EMAIL='<%=EMAIL%>';
+
 $(document).ready(function(){
    function getData(){
       
@@ -82,11 +86,22 @@ $(document).ready(function(){
                tag += '</div>';
                tag += '</div>';
                $(".hanyena").append(tag);
+               if(EMAIL == board.NAME) {
+                  
+            }else{
+               $('#update').hide();
+                $('#cancel').hide();
+                   $('#delete').hide();
+                  
             }
+            
+            }
+ 
          })
       }
    getData();
-   
+  
+  
    //update부분
    $('#update').click(function(){
       // 2017-10-31 0이면 NONE 1이면 DISPLAY
@@ -156,7 +171,7 @@ $(document).ready(function(){
       alert('오류발생');
    }
 })
-   
+
    //2017-10-31 취소버튼 이벤트 실행할 경우 게시글 원상복구
    $('#cancel').click(function() {
    //2017-10-31 0이면 NONE 1이면 DISPLAY
@@ -176,7 +191,7 @@ $(document).ready(function(){
    //delete부분
    $('#delete').click(function(){
    
-	  var type = $('#delete').val();
+     var type = $('#delete').val();
       var form = $('#updateform').serialize();
       $.ajax({
          url : "BoDelete_Data",
@@ -193,61 +208,61 @@ $(document).ready(function(){
       });
 
    })
+   
 })
    
 
    
-               
-         
+      
 </script>
 
 </head>
 <body>
    <!-- 상단 제목 및 각 버튼 있는 fixed 부분 -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="Main">Yum - Yum</a>
-			<!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
-			<button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> Recipe </a>
-						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
-							<a class="dropdown-item" href="/yumyum/Review">리뷰</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-							<!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
-						</div>
-					</li>
-					<li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- nav 끝 -->
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-redred fixed-top">
+      <div class="container">
+         <a class="navbar-brand" href="Main">Yum - Yum</a>
+         <!-- width값 992 이하 일 경우 나타나는 메뉴버튼 -->
+         <button class="navbar-toggler navbar-toggler-right" type="button" style="cursor: pointer" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false"> Recipe </a>
+                  <div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Review </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                     <a class="dropdown-item" href="/yumyum/BestReview">우수 리뷰</a>
+                     <a class="dropdown-item" href="/yumyum/Review">리뷰</a>
+                  </div>
+               </li>
+               <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Board </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                     <!-- aria-labelledby를 사용하면 어떤 요소의 레이블로서 DOM에 있는 다른 요소의 ID를 지정할 수 있습니다. -->
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=no">공지사항</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a>
+                  </div>
+               </li>
+               <li><a id="navbarDropdownBlog" class="nav-link" href="Modallogin">login</a></li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+   <!-- nav 끝 -->
    <div class="container">
       <ul id="ul-gray">
          <li><p id="pont-sizea" class="col-xs-6">View</p></li>
@@ -278,12 +293,13 @@ $(document).ready(function(){
             <div class="col-xs-3">
                <button type="button" class="btn text-white bg-redred writbtn3"
                   onclick="location.href='javascript:history.go(-1)'">목록</button>
+          
                <button type="button" id="update" class="btn btn-default text-white bg-redred writbtn3" value="button">수정</button>  
                <button type="button" id="cancel" class="btn btn-default text-white bg-redred writbtn3" style="display:none">취소</button>
                <button type="submit" id="delete" class="btn btn-default text-white bg-redred writbtn3">삭제</button>
+            
             </div>
          </div>
-
       </form>
       </div>
    </div>

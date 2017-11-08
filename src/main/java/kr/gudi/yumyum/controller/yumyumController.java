@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,30 +56,17 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, ysi.BoardViewSelectOne(paramMap));
 	}
 
-	@RequestMapping("/BoInput")
-	public ModelAndView boinput(ModelAndView mav, HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-//		paramMap = ysi.boinputEmailCheck(paramMap);
-//		session.setAttribute("EMAIL", paramMap);
-//		
-//		if(user == null){
-//			map.put("state", 0);
-//		}else{
-//			map.put("EMAIL", user.get("EMAIL"));
-//			map.put("state", 1);
-//			System.out.println(map);
-//		}
-		session.getAttribute("user");
-		System.out.println(session.getAttribute("user"));
-		map.put("EMAIL", user.get("EMAIL"));
-		System.out.println(user.get("EMAIL"));
-		mav.setViewName("/BoInput");
-		
-		HttpUtil.sendResponceToJson(resp, map);
-		return mav;
-	}
+	 @RequestMapping("/BoInput")
+	   public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model) {
+	       HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+	       HashMap<String, Object> rstMap = new HashMap<String, Object>();
+	       rstMap.put("EMAIL", user.get("EMAIL"));
+	      mav.setViewName("/BoInput");
+	      System.out.println(session.getAttribute("user"));
+	      System.out.println(rstMap);
+	      model.addAttribute("EMAIL",user.get("EMAIL"));
+	      return mav;
+	   }
 
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
 	@RequestMapping("/BoInput_Data")
