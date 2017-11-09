@@ -79,15 +79,8 @@
 	            modal += '</div>';
 	            modal += '<div class="modal-body reviewmodal">';
 	            modal += '<div id="modalimagesize">';
-	            modal += '<p>';
-	            if(data1[i].IMAGE != ""){
-	         	   modal += '<a href="#' + data1[i].NO + '"><img src="${pageContext.request.contextPath}'  +data1[i].IMAGE + '" class="img-responsive card-img-top" id="modalimagesize2">';
-	            }else {
-	         	   modal += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
-	            }
-	            modal += '</p>';
 	            modal += '</div>';
-	            modal += '<p class="modalradius">'   + data1[i].CONT +  '<br><button type="button" id="navershop" class="btn btn-default text-white yellowgreen writbtn3"style="cursor: pointer">네이버 쇼핑</button></p></p>';
+	            modal += '<p>'   + data1[i].CONT +  '</p>';
 	            modal += '</div>';
 	            modal += '</div>';
 	            modal += '</div>';
