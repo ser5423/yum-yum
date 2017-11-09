@@ -99,7 +99,8 @@
 				tag += '<h4 class="card-title">';
 				tag += '<a href="#' + data1[i].NO + '"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
-				tag += '<p id="cardne" class="card-text">' + data1[i].WRITER + '</p>';
+				tag += '<div id="cardne1" class="card-text">' + data1[i].WRITER + '</div>';
+				tag += '<div id="cardne2" class="card-text"><button id="recommendup" class="btn btn-default text-white bg-redred writbtn3" value="' +data1[i].NO+ '">추천</button><div class="btn btn-default text-white bg-redred writbtn3">' + data1[i].RECOMMEND + '</div></div>';
 				tag += '</div>';
 				tag += '</div>';
 				tag += '</div>';
