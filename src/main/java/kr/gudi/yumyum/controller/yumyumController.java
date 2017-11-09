@@ -152,27 +152,27 @@ public class yumyumController {
 		
 		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
 		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
-
-		
+//
+//		
 		HashMap<String, Object> rstMap = new HashMap<String, Object>();
-		
-		if (user == null) {
-			model.addAttribute("EMAIL", "");
-		} else {
-			model.addAttribute("EMAIL", user.get("EMAIL"));
-		}
-
+//		
+//		if (user == null) {
+//			model.addAttribute("EMAIL", "");
+//		} else {
+//			model.addAttribute("EMAIL", user.get("EMAIL"));
+//		}
+//
 		if (manager == null) {
 			model.addAttribute("EMAILmanager", "");
 		} else {
 			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
 		}
 		
-		rstMap.put("EMAIL", user.get("EMAIL"));
+//		rstMap.put("EMAIL", user.get("EMAIL"));
 		
 		mav.setViewName("/ReInput");
-		System.out.println(session.getAttribute("user"));
-		System.out.println(rstMap);
+//		System.out.println(session.getAttribute("user"));
+//		System.out.println(rstMap);
 		return mav;
 	}
 

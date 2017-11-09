@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%
-   String EMAIL = (String) request.getAttribute("EMAIL"); 
-   String EMAILmanager = (String) request.getAttribute("EMAILmanager");    
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +22,6 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	var EMAIL='<%=EMAIL%>';
-	var EMAILmanager = '<%=EMAILmanager%>';
     $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
         if (CKEDITOR.instances['CONT']) {
             CKEDITOR.instances['CONT'].destroy();
