@@ -13,7 +13,7 @@ var id = request.getParameter("token");
 <body>
 	<script type="text/javascript">
 		var naver_id_login = new naver_id_login("5pRw5lS7lYqvs0xHnEv4",
-				"http://localhost:9090/yumyum/resources/html/callback.html");
+				"http://gdj7.gudi.kr/yumyum/resources/html/callback.html");
 		var result = "";
 		// 접근 토큰 값 출력
 // 		alert(naver_id_login.oauthParams.access_token);
@@ -34,7 +34,7 @@ var id = request.getParameter("token");
 					"NAME": naver_id_login.getProfileData('name')
 			};
 // 			console.log(data);
-			$.ajax({type:"post", url:"http://localhost:9090/yumyum/TokenCheck",data:data, datatype : "json"}).done(function(result){
+			$.ajax({type:"post", url:"http://gdj7.gudi.kr/yumyum/TokenCheck",data:data, datatype : "json"}).done(function(result){
 				console.log(result);
 				if(result.state == 1){
 					alert("회원 가입을 축하드립니다.");
