@@ -86,10 +86,8 @@ public class yumyumController {
 	@RequestMapping("/BoInput")
 	public ModelAndView boinput(ModelAndView mav, HttpSession session, Model model,
 			@RequestParam HashMap<String, Object> paramMap) {
-		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("user");
-		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session
-				.getAttribute("manager");
+		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
 		if (user == null) {
 			model.addAttribute("EMAIL", "");
@@ -153,15 +151,28 @@ public class yumyumController {
 	public ModelAndView reinput(HttpServletRequest req, ModelAndView mav, HttpSession session, Model model, @RequestParam HashMap<String, Object> paramMap) {
 		
 		HashMap<String, HashMap<String, Object>> user = (HashMap<String, HashMap<String, Object>>) session.getAttribute("user");
+		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
 		
 		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		
+		if (user == null) {
+			model.addAttribute("EMAIL", "");
+		} else {
+			model.addAttribute("EMAIL", user.get("EMAIL"));
+		}
+
+		if (manager == null) {
+			model.addAttribute("EMAILmanager", "");
+		} else {
+			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
+		}
+		
 		rstMap.put("EMAIL", user.get("EMAIL"));
 		
 		mav.setViewName("/ReInput");
 		System.out.println(session.getAttribute("user"));
 		System.out.println(rstMap);
-		model.addAttribute("EMAIL", user.get("EMAIL"));
 		return mav;
 	}
 
