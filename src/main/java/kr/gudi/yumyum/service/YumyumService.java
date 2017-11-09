@@ -208,10 +208,10 @@ public class YumyumService implements YumyumServiceInterface {
 		map = ydi.managerlogin(paramMap);
 		if (map == null) {
 			manager.put("msg", "로그인 실패");
-			manager.put("link", "http://localhost:9090/yumyum/Managerlogin");
+			manager.put("link", "http://gdj7.gudi.kr/yumyum/Managerlogin");
 		} else {
 			manager.put("msg", "로그인 성공");
-			manager.put("link", "http://localhost:9090/yumyum/Main");
+			manager.put("link", "http://gdj7.gudi.kr/yumyum/Main");
 		}
 
 		return map;
