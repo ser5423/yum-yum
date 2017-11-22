@@ -22,6 +22,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	
     $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
         if (CKEDITOR.instances['CONT']) {
             CKEDITOR.instances['CONT'].destroy();
@@ -33,7 +34,7 @@ $(document).ready(function(){
     });  
    
    $("#write").on("click",function(){
-              
+	   
         // #writeform의 모든 값을 가져온다
          var formData = $('#writeform')[0];
         
@@ -43,6 +44,7 @@ $(document).ready(function(){
        
          var data = new FormData(formData);
       
+		if($("#TITLE").val()!="" && $("#CONT").val()!=""){
          $.ajax({
            url: "BoInput_Data",
            cache : false,
@@ -58,7 +60,18 @@ $(document).ready(function(){
                 alert(data.data);
                location.href= data.move;
              }
-            });
+         });
+  
+         }else{
+        	 if($("#TITLE").val()==null){
+        		 alert("제목을 입력하세요");
+        	 } else if($("#CONT").val()==null){
+        		 alert("내용을 입력하세요");
+        	 } else{
+        		 alert("제목 또는 내용 입력하세요");
+        	 }
+         }
+           
     })
 });
 
@@ -80,10 +93,10 @@ $(document).ready(function(){
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false"> Recipe </a>
                   <div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
                   </div>
                </li>
                <li class="nav-item dropdown">
@@ -153,6 +166,11 @@ $(document).ready(function(){
                 <!-- 스크롤바 사용 -->
                <div class="col-xs-6">
                   <select id="TYPE" name="TYPE" class="box form-control inputformne">
+                  <% if(session.getAttribute("manager") == null) {%> 
+           				<option class="hide" value="no" <%if(request.getParameter("type").equalsIgnoreCase("no")) { %>selected="selected"<%}%>>공지사항</option>
+         		  <% } else { %>
+            			<option value="no" <%if(request.getParameter("type").equalsIgnoreCase("no")) { %>selected="selected"<%}%>>공지사항</option>
+            	  <% } %>
                         <option value="fr" <%if(request.getParameter("type").equalsIgnoreCase("fr")) { %>selected="selected"<%}%>>자유게시판</option>
                         <option value="qa" <%if(request.getParameter("type").equalsIgnoreCase("qa")) { %>selected="selected"<%}%>>QnA</option>
                      </select> 

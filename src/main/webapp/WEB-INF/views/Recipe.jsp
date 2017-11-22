@@ -70,9 +70,9 @@ $(document).ready(function(){
            tag += '<div class="col-lg-6 portfolio-item">';
            tag += '<div class="card h-100">';
            if(data1[i].IMAGE != ""){
-              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
+              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/' + type + '/' + data1[i].IMAGE + '" data-toggle="modal" data-target=#' + data1[i].NO + '></a>';
            }else {
-              tag += '<a href="#' + data1[i].NO + '"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
+              tag += '<a href="#"><img class="card-img-top" src="/yumyum/resources/img/manager.jpg"></a>';
            }
            tag += '<div class="card-body">';
            tag += '<h4 class="card-title">';
@@ -132,7 +132,8 @@ $(document).ready(function(){
          data : {
             "type" : type ,"start":start, "viewRow":viewRow
          }, datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
-      }).done(function(d){ // 비동기식 데이터 가져오기
+      }).done(function(result){ // 비동기식 데이터 가져오기
+    	  d = JSON.parse(result);
          data1 = d.list;
          totCnt = d.ToT.tot;
          createHtml(); // 화면에 표현하기 위하여 함수 호출 
@@ -167,10 +168,10 @@ $(document).ready(function(){
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">

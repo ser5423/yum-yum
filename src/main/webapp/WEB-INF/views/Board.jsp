@@ -59,12 +59,39 @@ $(document).ready(function(){
       }
  
    } 
+    $("form").on("submit", function(event) { // 예나는 돼?
+        event.preventDefault();
+        if ($("#KeyWord").val() == "") {
+           var text = "";
+           if ($("#keyField").val() == "TITLE") {
+              text = "제목";
+           } else if ($("#keyField").val() == "WRITER") {
+              text = "이름";
+           }
+           alert(text + "에 대한 검색어를 입력하세요.");
+           $("#KeyWord").focus();
+           return;
+        }
+        initData();
+     });
+
+     $("#keyField").change(function() {
+        if ($(this).val() == "ALL") {
+           $("#KeyWord").attr("disabled", true);
+           $("#check").attr("disabled", true);
+           $("#KeyWord").val("");
+           initData();
+        } else {
+           $("#KeyWord").attr("disabled", false);
+           $("#check").attr("disabled", false);
+        }
+     });
 
    function getData(){
       var paging = totCnt / viewRow;
       $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
       for(var i = 0; i < paging; i++){
-         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
+         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#"+ (i + 1) + "'>" + (i + 1) + "</a></li>");
       }   
    
       
@@ -103,17 +130,22 @@ $(document).ready(function(){
          // 이미 받은거를 버리고 새로, 기본설정은 true!
          cache : false,
          data : {
-            "type" : type ,"start":start, "viewRow":viewRow
+            "type" : type ,"start":start, "viewRow":viewRow,
+            "keyField" : $("#keyField").val(),
+            "KeyWord" : $("#KeyWord").val()
          }, datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
-      }).done(function(d){ // 비동기식 데이터 가져오기
-         data1 = d.list;
-         totCnt = d.ToT.tot;
-         createHtml(); // 화면에 표현하기 위하여 함수 호출 
-         getData(); // 페이지 링크 표현하기 우하여 함수 호출
-         var board = d.Board;
+      }).done(function(result){ // 비동기식 데이터 가져오기
+    	  d = JSON.parse(result);
+          data1 = d.list;
+          totCnt = d.ToT.tot;
+          createHtml(); // 화면에 표현하기 위하여 함수 호출 
+          getData(); // 페이지 링크 표현하기 우하여 함수 호출
+          var board = d.Board;
 
-         $(".container h1").text(board);
-         $(".breadcrumb li").eq(1).text(board);
+          $(".container h1").text(board);
+          $(".breadcrumb li").eq(1).text(board);
+      }).fail(function(d){
+    	  alert("fail");
       });
    }
    initData();
@@ -136,10 +168,10 @@ $(document).ready(function(){
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false"> Recipe </a>
                   <div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
                   </div>
                </li>
                <li class="nav-item dropdown">
@@ -184,6 +216,30 @@ $(document).ready(function(){
          <li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Board?type=fr">자유게시판</a></li>
          <li class="listyle"><a class="libtn" href="${pageContext.request.contextPath }/Board?type=qa">QnA</a></li>
       </ul>
+      <form>
+               <div class="card my-4 ">
+                  <h5 class="card-header bg-redred text-white">Search</h5>
+                  <div class="card-body ">
+                     <div class="input-group ">
+                        <select id="keyField" name="keyField"
+                           class="box form-control inputformne">
+                           <option value="ALL">전체</option>
+                           <option value="WRITER">이름</option>
+                           <option value="TITLE">제목</option>
+                        </select>
+                        <!--                             <option value="">내용</option> -->
+                        <span class="input-group-btn input-group2"> <!--                         <button class="btn btn-default text-white bg-redred writbtn3" type="submit">Go!</button> -->
+                           <input type="text" size="16" name="KeyWord" id="KeyWord"
+                           value="${keyWord}" class="form-control"
+                           placeholder="Search for..."> <input
+                           class="btn btn-default text-white bg-redred writbtn3"
+                           type="submit" value="검색"> <input type="hidden"
+                           name="page" value="0">
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </form>
       <!-- 게시판 메인 부분 -->
       <div class="row">
          <table class="table table-hover ">

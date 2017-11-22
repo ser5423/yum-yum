@@ -168,10 +168,10 @@ public class YumyumService implements YumyumServiceInterface {
 		int rstUpdateCnt = ydi.update(paramMap);
 		if (rstUpdateCnt > 0) {
 			rstMap.put("msg", "글수정이 완료되었습니다.");
-			rstMap.put("move", req.getContextPath() + "/BoardView?NO=" + paramMap.get("NO"));
+			rstMap.put("move", req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
 		} else {
 			rstMap.put("msg", "글수정을 실패하였습니다.");
-			rstMap.put("move", req.getContextPath() + "/BoardView?NO=" + paramMap.get("NO"));
+			rstMap.put("move", req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
 
 		}
 		return rstMap;

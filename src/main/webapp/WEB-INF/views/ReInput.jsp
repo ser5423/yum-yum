@@ -50,6 +50,7 @@ $(document).ready(function(){
         	cache : false,
         	processData : false,
         	contentType : false,
+        	enctype: 'multipart/form-data',
         	data : data,
         	type : "POST",
         	success : function(data) 
@@ -81,10 +82,10 @@ $(document).ready(function(){
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">

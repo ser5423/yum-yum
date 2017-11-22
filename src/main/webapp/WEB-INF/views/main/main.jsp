@@ -36,10 +36,10 @@
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> Recipe </a>
 						<div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
@@ -370,10 +370,10 @@
 			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
 			<div id="navbarDropdownBlog" class="nav-link reviewmodal managerbtn">
 				<% if(session.getAttribute("manager") == null) {%> 
-            		<a class="managerbtn" href="Managerlogin" >Manager Login</a>
+            		<a class="managerbtn" href="/yumyum/Managerlogin" >Manager Login</a>
          		<% } else { %>
          			<a id="logout" class="managerbtn" href="logout">Manager Logout</a>
-            		<a class="managerbtn hide" href="Managerlogin" >Manager Login</a>
+            		<a class="managerbtn hide" href="/yumyum/Managerlogin" >Manager Login</a>
             	<% } %>
 			</div>
 		</div>

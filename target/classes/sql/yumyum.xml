@@ -16,8 +16,16 @@
 	</select>
 	
 	<select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
-		select *, DATE_FORMAT(UPLOAD,'%X-%m-%d') as UPLOAD2 from board where TYPE = #{type} and DEL_YN='N' ORDER BY NO DESC limit ${start}, ${viewRow} 
-	</select>
+      select *, DATE_FORMAT(UPLOAD,'%X-%m-%d') as UPLOAD2 from board 
+      where TYPE = #{type} and DEL_YN='N' 
+      <if test="keyField == 'TITLE'">  
+               and TITLE like '%${KeyWord}%'  
+          </if>   
+           <if test="keyField == 'WRITER'">  
+             and NAME like '%${KeyWord}%'  
+          </if>  
+          ORDER BY NO DESC limit ${start}, ${viewRow} 
+   </select>
 	
 	<select id="BoardSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
       select count(*) as tot from board where TYPE = #{type} and DEL_YN='N'
@@ -43,7 +51,7 @@
           <if test="keyField == 'WRITER'">
           	and WRITER like '%${KeyWord}%'
           </if>
-          limit ${start}, ${viewRow}
+          ORDER BY NO DESC limit ${start}, ${viewRow}
 	</select>
 	
 	<select id="reviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
@@ -56,12 +64,13 @@
       <if test="RECOMMEND == 1">
       	and RECOMMEND <![CDATA[ >= ]]> 20
       </if>
+      
    </select>
 
-	<select	id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
-		 select *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
-      from REVIEW where RECOMMEND >= 20 limit ${start}, ${viewRow}
-	</select>
+<!-- 	<select	id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap"> -->
+<!-- 		 select *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD -->
+<!--       from REVIEW where RECOMMEND >= 20 ORDER BY NO DESC limit ${start}, ${viewRow} -->
+<!-- 	</select> -->
 	
 	<select id="bestreviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
       select count(*) as tot from REVIEW where RECOMMEND >= 20
@@ -80,6 +89,11 @@
 		insert into board (TYPE, TITLE, NAME, UPLOAD, CONT, PATH, IMAGE) values
 		(#{TYPE},#{TITLE},#{NAME}, now(),#{CONT},#{PATH}, #{FILENAME})
 	</insert>
+	
+	<update	id="update"	parameterType="hashmap">
+		update board set TYPE=#{type}, TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT},UPLOAD=now()
+		where NO = #{NO}
+	</update>
 	
 	<update	id="delete"	parameterType="hashmap">
 		update board set DEL_YN = 'D' where NO = #{NO}
@@ -113,10 +127,7 @@
 		where access_token = #{access_token}
 	</update>
 	
-	<update	id="update"	parameterType="hashmap">
-		update board set TITLE=#{TITLE}, NAME=#{NAME},CONT=#{CONT},UPLOAD=now()
-		where NO = #{NO}
-	</update>
+	
 	
 	<select id="managerlogin" parameterType="hashmap" resultType="hashmap">
 		select * from Manager where ID = #{ID} and PW = #{PW}

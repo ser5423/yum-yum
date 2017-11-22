@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%
    String NO = request.getParameter("NO");
+	String type = request.getParameter("type");
    String EMAIL = (String) request.getAttribute("EMAIL"); 
    String EMAILmanager = (String) request.getAttribute("EMAILmanager"); 
    if (NO == null) {
@@ -46,7 +47,8 @@ $(document).ready(function(){
          data : {"NO" : NO},
          datetype : "json",
       }).done(function(result) {
-         var board = result.boardview;
+    	  d = JSON.parse(result);
+         var board = d.boardview;
          // 값이 안들어왔을 때 예외처리
          if(board == null){
                location.href = "Main";
@@ -73,7 +75,8 @@ $(document).ready(function(){
                       tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : admin</label>';
                    }
                //2017-10-31 NAME 추가함.
-               tag += '<input type="text" class="form-control inputformne" id="NAME" name="NAME" placeholder="이름을 입력하세요" style="display:none" value="'+board.NAME+'">'
+//                tag += '<label for="viewname" id="viewname" class="col-xs-6 control-label">작성자 : ' + board.NAME + '</label>'
+			   tag += '<input type="text" class="form-control inputformne" id="viewname" name="NAME" placeholder="이름을 입력하세요" style="display:none" value="'+board.NAME+'">'
                tag += '</div>';
                tag += '<div class="form-group">';
                var cont = "없다."
@@ -254,10 +257,10 @@ $(document).ready(function(){
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false"> Recipe </a>
                   <div id="recipeset" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF">한식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF">일식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF">중식</a>
-                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF">양식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=KF#">한식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=JF#">일식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=CF#">중식</a>
+                     <a class="dropdown-item" href="${pageContext.request.contextPath }/Recipe?type=EF#">양식</a>
                   </div>
                </li>
                <li class="nav-item dropdown">

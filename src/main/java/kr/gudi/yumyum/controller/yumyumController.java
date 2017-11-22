@@ -41,7 +41,7 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/Managerlogin1")
-	public void managerlogin(HttpServletResponse response, HttpServletRequest req, HttpSession session, Model model)
+	public ModelAndView managerlogin(ModelAndView mav, HttpServletResponse response, HttpServletRequest req, HttpSession session, Model model)
 			throws IOException {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		paramMap = ysi.managerlogin(paramMap);
@@ -53,6 +53,7 @@ public class yumyumController {
 		} else {
 			response.sendRedirect("/yumyum/Main");
 		}
+		return HttpUtil.makeHashToJsonModelAndView(ysi.managerlogin(paramMap));
 	}
 
 	@RequestMapping("/logout")
@@ -71,16 +72,16 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/Board1_Data")
-	public void selectBoard(HttpServletResponse response, HttpServletRequest req) {
+	public ModelAndView selectBoard(HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.BoardSelectOne(paramMap));
+		return HttpUtil.makeHashToJsonModelAndView(ysi.BoardSelectOne(paramMap));
 	}
 
 	// board에 입력된 자료 클릭 시 보이는 부분
 	@RequestMapping("/BoardView_Data")
-	public void selectBoardView(HttpServletResponse response, HttpServletRequest req) {
+	public ModelAndView selectBoardView( HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.BoardViewSelectOne(paramMap));
+		return HttpUtil.makeHashToJsonModelAndView(ysi.BoardViewSelectOne(paramMap));
 	}
 
 	@RequestMapping("/BoInput")
@@ -142,9 +143,9 @@ public class yumyumController {
 	}
 
 	@RequestMapping("/RE_Data")
-	public void selectItem(HttpServletResponse response, HttpServletRequest req) {
+	public ModelAndView selectItem(HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.recipeSelectOne(paramMap));
+		return HttpUtil.makeHashToJsonModelAndView(ysi.recipeSelectOne(paramMap));
 	}
 
 	@RequestMapping("/ReInput")

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,70 +20,70 @@
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
-	$(window).on("load", function() {
-		$('#managerlogin').modal('show');
+   $(window).on("load", function() {
+      $('#managerlogin').modal('show');
 
-		$("form").on("submit", function(event) {
-			var ID = $("#ID").val();
-			var PW = $("#PW").val();
-			if (ID == "") {
-				alert("아이디를 입력하세요.");
-				$("#ID").focus(); // 입력포커스 이동
-				return; // 함수 종료
-			}
-			if (PW == "") {
-				alert("비밀 번호를 입력하세요.");
-				$("#PW").focus();
-				return;
-			}
-			document.form1.action = "${path}/yumyum/Managerlogin1"
+      $("form").on("submit", function(event) {
+         var ID = $("#ID").val();
+         var PW = $("#PW").val();
+         if (ID == "") {
+            alert("아이디를 입력하세요.");
+            $("#ID").focus(); // 입력포커스 이동
+            return; // 함수 종료
+         }
+         if (PW == "") {
+            alert("비밀 번호를 입력하세요.");
+            $("#PW").focus();
+            return;
+         }
+         document.form1.action = "${path}/yumyum/Managerlogin1"
 
-			document.form1.submit();
-		});
+         document.form1.submit();
+      });
 
-	});
+   });
 </script>
 
 </head>
 <body>
-	<div class="container ">
-		<div class="row ">
-			<img id="modalloginimage" class="card-img-top" src="/yumyum/resources/img/modalimage.jpg">
-			<!-- Modal -->
-			<div class="modal fade" id="managerlogin" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content managerlogin">
-						<div class="modal-header">
-							<h4 class="modal-title">Manager Login</h4>
-							<button type="button" class="close" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'" data-dismiss="modal">&times;</button>
-						</div>
-						<div class="modal-body">
-							<form name="form1" id="managermodallogin" class="form-horizontal inputform" method="post">
-								<div class="form-group">
-									<label class="col-xs-6 control-label">ID</label>
-									<div class="col-xs-6">
-										<input type="text" class="form-control inputformne2" id="ID" name="ID" placeholder="아이디를 입력하세요">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-xs-6 control-label">Password</label>
-									<div class="col-xs-6">
-										<input type="password" class="form-control inputformne2" id="PW" name="PW" placeholder="비밀번호를 입력하세요">
-									</div>
-								</div>
-								<div class="form-group writbtn3-1">
-									<div class="col-xs-3">
-										<button type="submit"
-											class="btn btn-default text-white bg-redred writbtn3">Login</button>
-										<button type="button" class="btn btn-default text-white bg-redred writbtn3" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'">Main</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+   <div class="container ">
+      <div class="row ">
+         <img id="modalloginimage" class="card-img-top" src="/yumyum/resources/img/modalimage.jpg">
+         <!-- Modal -->
+         <div class="modal fade" id="managerlogin" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content managerlogin">
+                  <div class="modal-header">
+                     <h4 class="modal-title">Manager Login</h4>
+                     <button type="button" class="close" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                     <form name="form1" id="managermodallogin" class="form-horizontal inputform" method="post">
+                        <div class="form-group">
+                           <label class="col-xs-6 control-label">ID</label>
+                           <div class="col-xs-6">
+                              <input type="text" class="form-control inputformne2" id="ID" name="ID" placeholder="아이디를 입력하세요">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="col-xs-6 control-label">Password</label>
+                           <div class="col-xs-6">
+                              <input type="password" class="form-control inputformne2" id="PW" name="PW" placeholder="비밀번호를 입력하세요">
+                           </div>
+                        </div>
+                        <div class="form-group writbtn3-1">
+                           <div class="col-xs-3">
+                              <button type="submit"
+                                 class="btn btn-default text-white bg-redred writbtn3">Login</button>
+                              <button type="button" class="btn btn-default text-white bg-redred writbtn3" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'">Main</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
 </html>
