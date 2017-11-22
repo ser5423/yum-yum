@@ -83,7 +83,7 @@
             
 
             
-            alert(domainUrl);
+//             alert(domainUrl);
             naver_id_login.setDomain(domainUrl);
             naver_id_login.setState(state);
             naver_id_login.setPopup();
