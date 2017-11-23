@@ -99,7 +99,16 @@
 				tag += '<h4 class="card-title">';
 				tag += '<a href="#' + data1[i].NO + '"data-toggle="modal" data-target=#' + data1[i].NO + '>' + data1[i].TITLE + '</a>';
 				tag += '</h4>';
-				tag += '<div id="cardne1" class="card-text">' + data1[i].WRITER + '</div>';
+				if(data1[i].WRITER != ("")){
+					tag += '<div id="cardne1" class="card-text">' + data1[i].WRITER + '</div>';
+	            } else {
+	            	tag += '<div id="cardne1" class="card-text">admin</div>'; 
+	            }
+				
+				
+				
+				
+				
 				tag += '<div id="cardne2" class="card-text"><button id="recommendup" class="btn btn-default text-white bg-redred writbtn3" value="' +data1[i].NO+ '">추천</button><div class="btn btn-default text-white bg-redred writbtn3">' + data1[i].RECOMMEND + '</div></div>';
 				tag += '</div>';
 				tag += '</div>';
@@ -236,7 +245,7 @@
 	<!-- 게시판 -->
 	<div class="container">
 		<ul id="ul-gray">
-			<li><a id="pont-sizea" href="Review">Review</a></li>
+			<li><p id="pont-sizea" class="col-xs-6">Review</p></li>
 		</ul>
 		<h1 class="mt-4 mb-3"></h1>
 		<ol class="breadcrumb">

@@ -20,9 +20,8 @@ public class YumyumService implements YumyumServiceInterface {
 	@Autowired
 	yumyumDaoInterface ydi;
 
-	
 	private static final Logger logger = Logger.getLogger(YumyumService.class);
-	
+
 	@Override
 	public HashMap<String, Object> recipeSelectOne(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -98,8 +97,6 @@ public class YumyumService implements YumyumServiceInterface {
 		map.put("VIEWCNT", ydi.VIEWCNT(paramMap));
 		return map;
 	}
-	   
-
 
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
@@ -168,10 +165,12 @@ public class YumyumService implements YumyumServiceInterface {
 		int rstUpdateCnt = ydi.update(paramMap);
 		if (rstUpdateCnt > 0) {
 			rstMap.put("msg", "글수정이 완료되었습니다.");
-			rstMap.put("move", req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
+			rstMap.put("move",
+					req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
 		} else {
 			rstMap.put("msg", "글수정을 실패하였습니다.");
-			rstMap.put("move", req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
+			rstMap.put("move",
+					req.getContextPath() + "/BoardView?type=" + paramMap.get("type") + "&NO=" + paramMap.get("NO"));
 
 		}
 		return rstMap;
@@ -206,13 +205,13 @@ public class YumyumService implements YumyumServiceInterface {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HashMap<String, Object> manager = new HashMap<String, Object>();
 		map = ydi.managerlogin(paramMap);
-		if (map == null) {
-			manager.put("msg", "로그인 실패");
-			manager.put("link", "http://gdj7.gudi.kr/yumyum/Managerlogin");
-		} else {
-			manager.put("msg", "로그인 성공");
-			manager.put("link", "http://gdj7.gudi.kr/yumyum/Main");
-		}
+		// if (map == null) {
+		// map.put("msg", "로그인 실패");
+		// map.put("link", "http://localhost:9090/yumyum/Managerlogin");
+		// } else {
+		// map.put("msg", "로그인 성공");
+		// map.put("link", "http://localhost:9090/yumyum/Main");
+		// }
 
 		return map;
 	}
@@ -223,11 +222,11 @@ public class YumyumService implements YumyumServiceInterface {
 		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
 		paramMap.put("file", files.get(0));
 		int rstInsertCnt = ydi.reinput(paramMap);
-		
+
 		rstMap.put("rstInsertCnt", rstInsertCnt);
-		
+
 		if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
-			
+
 			rstMap.put("data", "글작성이 완료되었습니다.");
 			rstMap.put("move", req.getContextPath() + "/Review");
 
@@ -238,66 +237,66 @@ public class YumyumService implements YumyumServiceInterface {
 		}
 		return rstMap;
 	}
-	
-	
+
 	@Override
-	   public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req) {
+	public HashMap<String, Object> recommendup(HashMap<String, Object> param, HttpServletRequest req) {
 
-		   HashMap<String, Object> rstMap = new HashMap<String, Object>();
-			int rstInsertCnt = ydi.recommendup(param);
-			rstMap.put("rstInsertCnt", rstInsertCnt);
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
+		int rstInsertCnt = ydi.recommendup(param);
+		rstMap.put("rstInsertCnt", rstInsertCnt);
 
-			if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
+		if (rstInsertCnt > 0) { // msg , say, data, item, 직관적인 단어들 사요
 
-				rstMap.put("data", "추천 되었습니다.");
-//				rstMap.put("move", "/yumyum/Review");
+			rstMap.put("data", "추천 되었습니다.");
+			// rstMap.put("move", "/yumyum/Review");
 
-			} else {
-				rstMap.put("data", "추천에 실패하였습니다.");
-//				rstMap.put("move", "/yumyum/Main");
+		} else {
+			rstMap.put("data", "추천에 실패하였습니다.");
+			// rstMap.put("move", "/yumyum/Main");
 
-			}
-			return rstMap;
-	   }
-	
+		}
+		return rstMap;
+	}
+
 	// 파일업로드
 	@Override
-	public HashMap<String,Object> fileupload(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
+	public HashMap<String, Object> fileupload(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
 		logger.info(paramMap);
-		// 컨트롤러  -> 서비스 호출 -> 서비스에서  로직처리 ( 프로그램 )  -> 다오 데이터 보내서 디비에 삽입 -> 서비스로 결과 리턴 -> 
+		// 컨트롤러 -> 서비스 호출 -> 서비스에서 로직처리 ( 프로그램 ) -> 다오 데이터 보내서 디비에 삽입 -> 서비스로 결과
+		// 리턴 ->
 		// 파일 업로드..
 		List<BoardFile> files = HttpUtil.fileUpload(req, "board", null);
-		
-		
-		HashMap<String, Object> rstMap = new HashMap<String,Object>();
+
+		HashMap<String, Object> rstMap = new HashMap<String, Object>();
 		int rstSuccessCnt = 0;
 		int rstFailureCnt = 0;
 		String rstMsg = "";
-		
-		for(BoardFile b : files) {
+
+		for (BoardFile b : files) {
 			paramMap.put("file", b);
 			int rstCnt = ydi.fileupload(paramMap);
-			
-			//DB Insert 값이 0보다크면 성공 했으므로 성공 카운트 1증가
-			if(rstCnt > 0) {
+
+			// DB Insert 값이 0보다크면 성공 했으므로 성공 카운트 1증가
+			if (rstCnt > 0) {
 				rstSuccessCnt++;
 
-			//DB Insert 값이 1보다 작으면 실패 했으므로 실패 카운트 1증가
-			} else if(rstCnt < 0) {
+				// DB Insert 값이 1보다 작으면 실패 했으므로 실패 카운트 1증가
+			} else if (rstCnt < 0) {
 				rstFailureCnt++;
-			
-			//DB 그 이외에는 버려
-			} else {}
+
+				// DB 그 이외에는 버려
+			} else {
+			}
 		}
-		
-		if(rstSuccessCnt == files.size()) {
-			rstMsg = "파일 업로드가 성공적으로 완료 되었습니다." + files.size()+"개";
-		} else if(rstFailureCnt < 0) {
-			rstMsg = "파일 업로드가 부분적으로 완료 되었습니다." + "\n 성공 : "+rstSuccessCnt +"\n 실패 : "+rstFailureCnt;
-		} else if(rstFailureCnt == files.size()){
+
+		if (rstSuccessCnt == files.size()) {
+			rstMsg = "파일 업로드가 성공적으로 완료 되었습니다." + files.size() + "개";
+		} else if (rstFailureCnt < 0) {
+			rstMsg = "파일 업로드가 부분적으로 완료 되었습니다." + "\n 성공 : " + rstSuccessCnt + "\n 실패 : " + rstFailureCnt;
+		} else if (rstFailureCnt == files.size()) {
 			rstMsg = "파일 업로드가 실패하였습니다.";
 		}
-		
+
 		rstMap.put("file", files);
 		rstMap.put("msg", rstMsg);
 		return rstMap;
@@ -305,11 +304,10 @@ public class YumyumService implements YumyumServiceInterface {
 
 	@Override
 	public int boardCntSelectOne(HashMap<String, Object> paramMap) {
-		List<BoardFile> files = HttpUtil.fileUpload((MultipartHttpServletRequest)paramMap.get("req"), "board", null);
-		
+		List<BoardFile> files = HttpUtil.fileUpload((MultipartHttpServletRequest) paramMap.get("req"), "board", null);
+
 		paramMap.put("file", files.get(0));
 		return ydi.boardCntSelectOne(paramMap);
 	}
-	
 
 }

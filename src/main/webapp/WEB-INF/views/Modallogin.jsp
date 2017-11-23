@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
    $(window).on("load", function() {
+	  $('#myModal').modal({backdrop: 'static', keyboard: false});
       $('#myModal').modal('show');
       
    });
@@ -83,7 +84,6 @@
             
 
             
-//             alert(domainUrl);
             naver_id_login.setDomain(domainUrl);
             naver_id_login.setState(state);
             naver_id_login.setPopup();

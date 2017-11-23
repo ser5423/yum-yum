@@ -21,8 +21,9 @@
 <link rel="stylesheet" href="/yumyum/resources/css/modern-business.css">
 <script type="text/javascript">
    $(window).on("load", function() {
+      $('#managerlogin').modal({backdrop: 'static', keyboard: false});
       $('#managerlogin').modal('show');
-
+      
       $("form").on("submit", function(event) {
          var ID = $("#ID").val();
          var PW = $("#PW").val();
@@ -55,7 +56,7 @@
                <div class="modal-content managerlogin">
                   <div class="modal-header">
                      <h4 class="modal-title">Manager Login</h4>
-                     <button type="button" class="close" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'" data-dismiss="modal">&times;</button>
+                     <button type="button" class="close" style="cursor: pointer" onclick="location.href='/yumyum/Main'" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
                      <form name="form1" id="managermodallogin" class="form-horizontal inputform" method="post">
@@ -75,7 +76,7 @@
                            <div class="col-xs-3">
                               <button type="submit"
                                  class="btn btn-default text-white bg-redred writbtn3">Login</button>
-                              <button type="button" class="btn btn-default text-white bg-redred writbtn3" style="cursor: pointer" onclick="location.href='javascript:history.go(-1)'">Main</button>
+                              <button type="button" class="btn btn-default text-white bg-redred writbtn3" style="cursor: pointer" onclick="location.href='/yumyum/Main'">Main</button>
                            </div>
                         </div>
                      </form>

@@ -32,6 +32,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
    var type='<%=type%>';
+//    var url = $(location).attr('search');
 
 
    var data1 = []; // 데이터 담을 배열 변수 선언
@@ -144,11 +145,26 @@ $(document).ready(function(){
 
           $(".container h1").text(board);
           $(".breadcrumb li").eq(1).text(board);
-      }).fail(function(d){
+      })
+      .fail(function(d){
     	  alert("fail");
       });
    }
    initData();
+   
+//    console.log(url);
+//    if(url == "?type=qa"){
+// 	      location.href="${pageContext.request.contextPath }/Board?type=qa";
+// 	      continue;
+// 	   }else if(url == "?type=no") {
+// 	      location.href="${pageContext.request.contextPath }/Board?type=no"; 
+// 	      continue;
+// 	   }else if(url == "?type=fr"){
+// 	      location.href="${pageContext.request.contextPath }/Board?type=fr";  
+// 	      continue;
+// 	   } else {
+// 	      location.href="${pageContext.request.contextPath }/Main";   
+// 	   }
 });   
 </script>
 </head>
@@ -204,7 +220,7 @@ $(document).ready(function(){
    <!-- nav 끝 -->
    <div class="container">
       <ul id="ul-gray">
-         <li><a id="pont-sizea" href="Board">Board</a></li>
+         <li><p id="pont-sizea" class="col-xs-6">Board</p></li>
       </ul>
       <h1 class="mt-4 mb-3"></h1>
       <ol class="breadcrumb">
@@ -255,12 +271,17 @@ $(document).ready(function(){
 
             </tbody>
          </table>
-         <div class="writbtn2">
+                 <div class="writbtn2">
+<!--           일반로그인 세션이 없거나 매니저 세션 없을 때 글쓰기 버튼 보이지 않게 -->
          <% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%> 
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>
-         <% } else { %>
+<!--           일반로그인 세션이 있지만 매니저 세션 없을 때 type=no일 때 글쓰기 버튼 보이지 않게 -->         
+         <% } else if((session.getAttribute("manager") == null && session.getAttribute("user") != null) && ("no").equals(type) ){%> 
+            <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3 hide" onclick="location.href='Board?type=${param.type}'">글쓰기</button>
+<!--           일반로그인 세션이 있거나 매니저 세션 있을 때 글쓰기 버튼 보이지 않게 -->         
+         <% } else {%>
             <button id="writebtn" type="button" class="btn btn-default text-white bg-redred writbtn3" onclick="location.href='BoInput?type=${param.type}'">글쓰기</button>
-            <% } %>
+         <% } %>
          </div>
       </div>
 

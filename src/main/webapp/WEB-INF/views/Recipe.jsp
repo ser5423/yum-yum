@@ -30,6 +30,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
    var type='<%=type%>';
+   var url = $(location).attr('search');
 
    var data1 = []; // 데이터 담을 배열 변수 선언
    var page = 1; // 현재 페이지 값
@@ -101,7 +102,9 @@ $(document).ready(function(){
       var paging = totCnt / viewRow;
       $("#ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
       for(var i = 0; i < paging; i++){
-         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#'"+ (i + 1) + ">" + (i + 1) + "</a></li>");
+         $("#ul").append("<li class='page-item'>"+"<a class='page-link' href='#"+ (i + 1) + "'>" + (i + 1) + "</a></li>");
+         
+         
       }   
    
       
@@ -146,6 +149,18 @@ $(document).ready(function(){
    }
    initData();
    
+   if(url == "?type=KF"){
+	      location.href="${pageContext.request.contextPath }/Recipe?type=KF#";
+	      
+	   }else if(url == "?type=JF") {
+	      location.href="${pageContext.request.contextPath }/Recipe?type=JF#";      
+	   }else if(url == "?type=CF"){
+	      location.href="${pageContext.request.contextPath }/Recipe?type=CF#";      
+	   }else if(url == "?type=EF"){
+	      location.href="${pageContext.request.contextPath }/Recipe?type=EF#";   
+	   }else {
+	      location.href="${pageContext.request.contextPath }/Main";   
+	   }
    
 });   
 
@@ -204,7 +219,7 @@ $(document).ready(function(){
 	<!-- Page Content -->
 	<div class="container">
 		<ul id="ul-gray">
-			<li><a id="pont-sizea" href="Recipe">Recipe</a></li>
+			<li><p id="pont-sizea" class="col-xs-6">Recipe</p></li>
 		</ul>
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3"></h1>

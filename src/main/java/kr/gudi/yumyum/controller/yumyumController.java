@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,9 +50,22 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, paramMap);
 
 		if (paramMap == null) {
+			
+//			model.addAttribute("msg","로그인 실패");
 			response.sendRedirect("/yumyum/Managerlogin");
+//			PrintWriter pw = response.getWriter();
+//			pw.println("<script>alert('로그인이 실패 하였습니다.');</script>");
+//			pw.flush();
+//			pw.close();
+			
+//			model.addAttribute("url","/yumyum/Managerlogin");
 		} else {
 			response.sendRedirect("/yumyum/Main");
+//			PrintWriter pw = ((ServletResponse) req).getWriter();
+//			pw.println("<script language='javascript'>");
+//			pw.println("alet('로그인이 실패 하였습니다.')");
+//			pw.println("</script>");
+//			response.sendRedirect("/yumyum/Managerlogin");
 		}
 		return HttpUtil.makeHashToJsonModelAndView(ysi.managerlogin(paramMap));
 	}
@@ -91,13 +105,13 @@ public class yumyumController {
 		HashMap<String, HashMap<String, Object>> manager = (HashMap<String, HashMap<String, Object>>) session.getAttribute("manager");
 
 		if (user == null) {
-			model.addAttribute("EMAIL", "");
+			model.addAttribute("EMAIL", "admin");
 		} else {
 			model.addAttribute("EMAIL", user.get("EMAIL"));
 		}
 
 		if (manager == null) {
-			model.addAttribute("EMAILmanager", "");
+			model.addAttribute("EMAILmanager", "admin");
 		} else {
 			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
 		}
@@ -163,8 +177,14 @@ public class yumyumController {
 //			model.addAttribute("EMAIL", user.get("EMAIL"));
 //		}
 //
+		if (user == null) {
+			model.addAttribute("EMAIL", "admin");
+		} else {
+			model.addAttribute("EMAIL", user.get("EMAIL"));
+		}
+
 		if (manager == null) {
-			model.addAttribute("EMAILmanager", "");
+			model.addAttribute("EMAILmanager", "admin");
 		} else {
 			model.addAttribute("EMAILmanager", manager.get("EMAIL"));
 		}

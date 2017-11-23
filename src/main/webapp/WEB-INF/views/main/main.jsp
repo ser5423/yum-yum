@@ -14,7 +14,11 @@
 <script src="/yumyum/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
+<script type="text/javascript">
+window.onunload=function(){
+	  window.location.replace(self.location);
+	 }
+</script>
 <link rel="stylesheet" href="/yumyum/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/yumyum/resources/css/color.css">
 
@@ -369,8 +373,12 @@
 		<div class="container">
 			<p class="m-0 text-center text-white">(주) 구디 &copy; 2017-09-11</p>
 			<div id="navbarDropdownBlog" class="nav-link reviewmodal managerbtn">
-				<% if(session.getAttribute("manager") == null) {%> 
+				<% if(session.getAttribute("user") == null && session.getAttribute("manager") == null) {%> 
             		<a class="managerbtn" href="/yumyum/Managerlogin" >Manager Login</a>
+            		
+            		<% } else if(session.getAttribute("user") != null){ %>
+            		<a id="logout" class="managerbtn hide" href="logout">Manager Logout</a>
+            		
          		<% } else { %>
          			<a id="logout" class="managerbtn" href="logout">Manager Logout</a>
             		<a class="managerbtn hide" href="/yumyum/Managerlogin" >Manager Login</a>
