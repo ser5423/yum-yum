@@ -99,6 +99,10 @@
 		update board set DEL_YN = 'D' where NO = #{NO}
 	</update>
 	
+	<select   id="deleteCheck" parameterType="hashmap" resultType="string">
+      select DEL_YN from board where NO = #{NO}
+   </select>
+	
 	<select	id="tokenCheck"	parameterType="hashmap"	resultType="hashmap">
 		select * from NAVERLOGIN where access_token = #{access_token}
 	</select>

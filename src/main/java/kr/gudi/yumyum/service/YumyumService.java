@@ -77,16 +77,6 @@ public class YumyumService implements YumyumServiceInterface {
 		return map;
 	}
 
-	// bestReview부분
-	@Override
-	public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		String text = "우수리뷰";
-		map.put("list", ydi.bestreviewSelectOne(paramMap));
-		map.put("text2", text);
-		map.put("ToT", ydi.bestreviewSelectOneTotCnt(paramMap));
-		return map;
-	}
 
 	// boardview
 	@Override
@@ -138,7 +128,7 @@ public class YumyumService implements YumyumServiceInterface {
 
 	// insert부분
 	@Override
-	public HashMap<String, Object> insert(HashMap<String, Object> paramMap, HttpServletRequest req) {
+	public HashMap<String, Object> insert(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
 		HashMap<String, Object> rstMap = new HashMap<String, Object>();
 		int rstInsertCnt = ydi.insert(paramMap);
 		rstMap.put("rstInsertCnt", rstInsertCnt);
@@ -186,19 +176,27 @@ public class YumyumService implements YumyumServiceInterface {
 	}
 
 	@Override
-	public HashMap<String, Object> delete(HashMap<String, Object> paramMap, HttpServletRequest req) {
-		HashMap<String, Object> rstMap = new HashMap<String, Object>();
-		int rstUpdateCnt = ydi.delete(paramMap);
-		if (rstUpdateCnt > 0) {
-			rstMap.put("msg", "글삭제가 완료되었습니다.");
-			rstMap.put("move", req.getContextPath() + "/Board?type=" + paramMap.get("type"));
-		} else {
-			rstMap.put("msg", "글삭제를 실패하였습니다.");
-			rstMap.put("move", req.getContextPath() + "/BoardView?NO=" + paramMap.get("NO"));
-
-		}
-		return rstMap;
-	}
+	   public HashMap<String, Object> delete(HashMap<String, Object> paramMap) {
+	      HashMap<String, Object> rstMap = new HashMap<String, Object>();
+	      
+	      String delYn = ydi.deleteCheck(paramMap);
+	      
+	      if(("D").equals(delYn)){
+	         rstMap.put("msg", "이미 글삭제 되었습니다.");
+	         rstMap.put("move", "/BoardView?type=" + paramMap.get("type"));
+	      }else {
+	         int rstUpdateCnt = ydi.delete(paramMap);
+	         if (rstUpdateCnt > 0) {
+	            rstMap.put("msg", "글삭제가 완료되었습니다.");
+	            rstMap.put("move", "/Board?type=" + paramMap.get("type"));
+	         } else {
+	            rstMap.put("msg", "글삭제를 실패하였습니다.");
+	            rstMap.put("move", "/BoardView?NO=" + paramMap.get("NO"));
+	         }
+	      }
+	      
+	      return rstMap;
+	   }
 
 	@Override
 	public HashMap<String, Object> managerlogin(HashMap<String, Object> paramMap) {
@@ -309,5 +307,6 @@ public class YumyumService implements YumyumServiceInterface {
 		paramMap.put("file", files.get(0));
 		return ydi.boardCntSelectOne(paramMap);
 	}
+
 
 }

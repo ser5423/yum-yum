@@ -91,6 +91,7 @@ public class yumyumController {
 		return HttpUtil.makeHashToJsonModelAndView(ysi.BoardSelectOne(paramMap));
 	}
 
+
 	// board에 입력된 자료 클릭 시 보이는 부분
 	@RequestMapping("/BoardView_Data")
 	public ModelAndView selectBoardView( HttpServletRequest req) {
@@ -125,17 +126,22 @@ public class yumyumController {
 		mav.setViewName("/BoInput");
 		return mav;
 	}
+//	// 리뷰 데이터 입력
+//	@RequestMapping("/ReInput_Data")
+//	   public ModelAndView reinput(@RequestParam("file") MultipartFile[] file, 
+//	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
+//	      HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
+//	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+//	   }
 
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
 	@RequestMapping("/BoInput_Data")
-	public void insert(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
-			MultipartHttpServletRequest req, @RequestParam Map<String, Object> paramMapa) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-
-		List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
-		HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
-		HttpUtil.sendResponceToJson(response, rstMap);
-	}
+	public ModelAndView insert(@RequestParam("file") MultipartFile[] file, 
+	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
+	      HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
+	      List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+	   }
 
 	@RequestMapping("/Manager")
 	public ModelAndView manager(ModelAndView mav) {
@@ -229,24 +235,17 @@ public class yumyumController {
 		return mav;
 	}
 
-	@RequestMapping("/BestReview")
-	public ModelAndView Bestreview(ModelAndView mav) {
-		mav.setViewName("/Review");
-		return mav;
-	}
-
 	@RequestMapping("/Review_Data")
-	public void ReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
+	public ModelAndView ReviewselectItem(HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.reviewSelectOne(paramMap));
+		return HttpUtil.makeHashToJsonModelAndView(ysi.reviewSelectOne(paramMap));
 	}
-
-
-	@RequestMapping("/bestReview_Data")
-	public void bestReviewselectItem(HttpServletResponse response, HttpServletRequest req) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
-	}
+	
+//	@RequestMapping("/RE_Data")
+//	public ModelAndView selectItem(HttpServletRequest req) {
+//		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+//		return HttpUtil.makeHashToJsonModelAndView(ysi.reviewSelectOne(paramMap));
+//	}
 
 	@RequestMapping("/TokenCheck")
 	public void tokenCheck(HttpServletResponse response, HttpServletRequest req, HttpSession session) {
@@ -281,15 +280,12 @@ public class yumyumController {
 		HttpUtil.sendResponceToJson(response, rstMap);
 	}
 
-	// delete부분
-	@RequestMapping("/BoDelete_Data")
-	public void delete(HttpServletResponse response, HttpServletRequest req,
-			@RequestParam Map<String, Object> paramMapa) {
-		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		HashMap<String, Object> rstMap = ysi.delete(paramMap, req);
-
-		HttpUtil.sendResponceToJson(response, rstMap);
-	}
+	 // delete부분
+	   @RequestMapping("/BoDelete_Data")
+	   public ModelAndView delete(HttpServletResponse response, HttpServletRequest req) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	     return HttpUtil.makeHashToJsonModelAndView(ysi.delete(paramMap));
+	   }
 
 	@RequestMapping("/Recipemodal_Data")
 	public void Recipemodal(HttpServletResponse response, HttpServletRequest req) {
@@ -347,11 +343,11 @@ public class yumyumController {
 
 	// 리뷰 데이터 입력
 	@RequestMapping("/ReInput_Data")
-	public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file,
-		MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
-		HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
-		HttpUtil.sendResponceToJson(response, rstMap);
-	}
+	   public ModelAndView reinput(@RequestParam("file") MultipartFile[] file, 
+	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
+	      HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
+	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+	   }
 	
 	@RequestMapping("/recommendup")
 	public void recommendup(HttpServletRequest req, HttpServletResponse resp,

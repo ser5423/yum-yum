@@ -50,19 +50,6 @@ public class yumyumDao implements yumyumDaoInterface {
 		return session.selectOne(NS + "reviewSelectOneTotCnt", paramMap);
 	}
 
-	// BestReview 부분
-	@Override
-	public List<HashMap<String, Object>> bestreviewSelectOne(HashMap<String, Object> paramMap) {
-		return session.selectList(NS + "bestreviewSelectOne", paramMap);
-
-	}
-
-	// BestReview Paging부분
-	@Override
-	public HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap) {
-		return session.selectOne(NS + "bestreviewSelectOneTotCnt", paramMap);
-	}
-
 	@Override
 	public HashMap<String, Object> tokenCheck(HashMap<String, Object> paramMap) {
 		return session.selectOne(NS + "tokenCheck", paramMap);
@@ -106,6 +93,10 @@ public class yumyumDao implements yumyumDaoInterface {
 		return session.delete(NS + "delete", paramMap);
 
 	}
+	@Override
+	public String deleteCheck(HashMap<String, Object> paramMap){
+	      return session.selectOne(NS + "deleteCheck", paramMap);
+	   }
 
 	@Override
 	public HashMap<String, Object> VIEWCNT(HashMap<String, Object> paramMap) {

@@ -11,8 +11,6 @@ public interface yumyumDaoInterface {
 	// Review 부분
 	public List<HashMap<String, Object>> reviewSelectOne(HashMap<String, Object> paramMap);
 
-	// BestReview 부분
-	public List<HashMap<String, Object>> bestreviewSelectOne(HashMap<String, Object> paramMap);
 
 	// boardview부분
 	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap);
@@ -32,11 +30,12 @@ public interface yumyumDaoInterface {
 
 	public int delete(HashMap<String, Object> paramMap);
 
+	public String deleteCheck(HashMap<String, Object> paramMap);
+	
 	HashMap<String, Object> BoardSelectOneTotCnt(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> reviewSelectOneTotCnt(HashMap<String, Object> paramMap);
 
-	HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap);
 
 	HashMap<String, Object> recipeSelectOneTotCnt(HashMap<String, Object> paramMap);
 

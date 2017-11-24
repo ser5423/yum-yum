@@ -73,164 +73,163 @@ public class HttpUtil {
    }
    
  // 암호화(중복방지)
- 	public static String sha256(String str) {
- 		String SHA = "";
- 		try {
- 			MessageDigest sh = MessageDigest.getInstance("SHA-256");
- 			sh.update(str.getBytes());
- 			byte byteData[] = sh.digest();
- 			StringBuffer sb = new StringBuffer();
- 			for (int i = 0; i < byteData.length; i++) {
- 				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
- 			}
- 			SHA = sb.toString();
- 		} catch (NoSuchAlgorithmException e) {
- 			e.printStackTrace();
- 			SHA = null;
- 		}
- 		System.out.println(SHA.substring(30));
- 		return SHA.substring(30);
- 	}
+    public static String sha256(String str) {
+       String SHA = "";
+       try {
+          MessageDigest sh = MessageDigest.getInstance("SHA-256");
+          sh.update(str.getBytes());
+          byte byteData[] = sh.digest();
+          StringBuffer sb = new StringBuffer();
+          for (int i = 0; i < byteData.length; i++) {
+             sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+          }
+          SHA = sb.toString();
+       } catch (NoSuchAlgorithmException e) {
+          e.printStackTrace();
+          SHA = null;
+       }
+       System.out.println(SHA.substring(30));
+       return SHA.substring(30);
+    }
 
- 	//파일 업로드
- 	public static List<BoardFile> fileUpload(MultipartHttpServletRequest request, String path, String filetype) {
- 		SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
- 		// 모든 업로드된 파일
- 		List<MultipartFile> multipartFile = null;
- 		// 새로추가한것
- 		Iterator<String> iter = request.getFileNames();
- 		String str ="";
- 		List<BoardFile> fileuploadList = new ArrayList<BoardFile>();
- 		
- 		while(iter.hasNext()) {
- 			str = iter.next();
- 			multipartFile = request.getFiles(str);
-	 		// 저장 위치 home 폴더 하위 file 하위 path
-	 		String savefullPath = "";
-	 		String encodeFilename = "";
-	 		String orgFilename = "";
-	 		String shortFilename = "";
-	 		String fileextension = "";
-	 		String today = sf.format(new Date());
-	 		String savefolder = request.getSession().getServletContext().getRealPath("/") + "resources/file/" + path + "/" + today;
-	
-	 		Boolean isExtension = false;
-	 		BoardFile fileUpload = null;
-	 		String[] extension = null;
-	
-	 		// 게시판
-	 		if (path.equalsIgnoreCase("board")) {
-	 			extension = new String[] { "jpg", "png", "gif", "mp3", "wmv", "mkv", "avi", "mp4", "csv", "xls", "xlsx",
-	 					"hwp", "ppt", "pptx", "doc", "zip", "7z", "alz","txt" };
-	 		}
-	
-	
-	 		// File클래스 실제 저장
-	 		File savePath = new File(savefolder);
-	
-	 		// 현재 폴더 경로
-	 		System.out.println(savePath.getAbsolutePath());
-	
-	 		// 없을 경우 자동 생성
-	 		if (!savePath.exists()) {
-	 			savePath.mkdirs();
-	 			System.out.println("폴더가 생성 되었습니다.");
-	 		}
-	
-	 		// 파일 저장
-	 		BufferedOutputStream bos = null;
-	
-	 		// 파일 입력
-	 		if (request != null) {
-	 			// 업로드된 파일 갯수만큼 반복
-	 			for (MultipartFile m : multipartFile) {
-	 				fileUpload = new BoardFile();
-	 				// 파일사이즈가 0이면 파일이 없다고 판단
-	 				if (m.getSize() <= 0) {
-	 					continue;
-	 				}
-	
-	 				orgFilename = m.getOriginalFilename().substring(0, m.getOriginalFilename().lastIndexOf("."));
-	 				fileextension = m.getOriginalFilename().substring(m.getOriginalFilename().lastIndexOf(".") + 1);
-	 				encodeFilename = sha256(orgFilename + System.currentTimeMillis());
-	 				if (m.getOriginalFilename().contains(".")) {
-	 					fileUpload.setOrgfilename(orgFilename);
-	 					fileUpload.setFilename(encodeFilename);
-	 					fileUpload.setShortname(shortName(encodeFilename));
-	 				}
-	
-	 				// 해당 확장자가 일치하지 않은 파일이 있을 경우 해당 파일 업로드 중지
-	 				if (path.equalsIgnoreCase("board")) {
-	 					for (String s : extension) {
-	 						if (fileextension.equalsIgnoreCase(s)) {
-	 							isExtension = true;
-	 							break;
-	 						} else {
-	 							isExtension = false;
-	 						}
-	 					}
-	 				}
-	
-	 				if (!isExtension) {
-	 					continue;
-	 				}
-	
-	 				savefullPath = savefolder + "/" + encodeFilename + "." + fileextension;
-	 				String dbsaveFullPath = "/resources/file/" + path + "/" + today + "/" + encodeFilename + "." + fileextension;
-	 				System.out.println(dbsaveFullPath);
-	 				// 파일 경로 = 저장폴더 + 인코딩된 원본이름 + . + 확장자
-	 				fileUpload.setPath(dbsaveFullPath);
-	
-	 				// 파일 용량 설정
-	 				fileUpload.setSize(m.getSize() + "");
-	 				// 아이피설정1
-	 				fileUpload.setIp(request.getRemoteAddr());
-	 				fileUpload.setType(fileextension);
-	
-	 				// 등록일
-	 				fileUpload.setRegdate(timeStamp());
-	 				fileUpload.setDel_YN("N");
-	 				System.out.println(fileUpload);
-	 				fileuploadList.add(fileUpload);
-	 				try {
-	 					// 암호화 하여 저장
-	 					bos = new BufferedOutputStream(new FileOutputStream(savefullPath));
-	 					bos.write(m.getBytes());
-	 					bos.flush();
-	 					bos.close();
-	 				} catch (IOException e) {
-	 					e.printStackTrace();
-	 				}
-	 			}
-	 		}
- 		}
+    //파일 업로드
+    public static List<BoardFile> fileUpload(MultipartHttpServletRequest request, String path, String filetype) {
+       SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+       // 모든 업로드된 파일
+       List<MultipartFile> multipartFile = null;
+       // 새로추가한것
+       Iterator<String> iter = request.getFileNames();
+       String str ="";
+       List<BoardFile> fileuploadList = new ArrayList<BoardFile>();
+       
+       while(iter.hasNext()) {
+          str = iter.next();
+          multipartFile = request.getFiles(str);
+          // 저장 위치 home 폴더 하위 file 하위 path
+          String savefullPath = "";
+          String encodeFilename = "";
+          String orgFilename = "";
+          String shortFilename = "";
+          String fileextension = "";
+          String today = sf.format(new Date());
+          String savefolder = request.getSession().getServletContext().getRealPath("/") + "/resources/file/" + path + "/" + today;
+   
+          Boolean isExtension = false;
+          BoardFile fileUpload = null;
+          String[] extension = null;
+   
+          // 게시판
+          if (path.equalsIgnoreCase("board")) {
+             extension = new String[] { "jpg", "png", "gif", "mp3", "wmv", "mkv", "avi", "mp4", "csv", "xls", "xlsx",
+                   "hwp", "ppt", "pptx", "doc", "zip", "7z", "alz","txt" };
+          }
+   
+   
+          // File클래스 실제 저장
+          File savePath = new File(savefolder);
+   
+          // 현재 폴더 경로
+          System.out.println(savePath.getAbsolutePath());
+   
+          // 없을 경우 자동 생성
+          if (!savePath.exists()) {
+             savePath.mkdirs();
+             System.out.println("폴더가 생성 되었습니다.");
+          }
+   
+          // 파일 저장
+          BufferedOutputStream bos = null;
+   
+          // 파일 입력
+          if (request != null) {
+             // 업로드된 파일 갯수만큼 반복
+             for (MultipartFile m : multipartFile) {
+                fileUpload = new BoardFile();
+                // 파일사이즈가 0이면 파일이 없다고 판단
+                if (m.getSize() <= 0) {
+                   continue;
+                }
+   
+                orgFilename = m.getOriginalFilename().substring(0, m.getOriginalFilename().lastIndexOf("."));
+                fileextension = m.getOriginalFilename().substring(m.getOriginalFilename().lastIndexOf(".") + 1);
+                encodeFilename = sha256(orgFilename + System.currentTimeMillis());
+                if (m.getOriginalFilename().contains(".")) {
+                   fileUpload.setOrgfilename(orgFilename);
+                   fileUpload.setFilename(encodeFilename);
+                   fileUpload.setShortname(shortName(encodeFilename));
+                }
+   
+                // 해당 확장자가 일치하지 않은 파일이 있을 경우 해당 파일 업로드 중지
+                if (path.equalsIgnoreCase("board")) {
+                   for (String s : extension) {
+                      if (fileextension.equalsIgnoreCase(s)) {
+                         isExtension = true;
+                         break;
+                      } else {
+                         isExtension = false;
+                      }
+                   }
+                }
+   
+                if (!isExtension) {
+                   continue;
+                }
+   
+                savefullPath = savefolder + "/" + encodeFilename + "." + fileextension;
+                String dbsaveFullPath = "/resources/file/" + path + "/" + today + "/" + encodeFilename + "." + fileextension;
+                System.out.println(dbsaveFullPath);
+                // 파일 경로 = 저장폴더 + 인코딩된 원본이름 + . + 확장자
+                fileUpload.setPath(dbsaveFullPath);
+   
+                // 파일 용량 설정
+                fileUpload.setSize(m.getSize() + "");
+                // 아이피설정1
+                fileUpload.setIp(request.getRemoteAddr());
+                fileUpload.setType(fileextension);
+   
+                // 등록일
+                fileUpload.setRegdate(timeStamp());
+                fileUpload.setDel_YN("N");
+                System.out.println(fileUpload);
+                fileuploadList.add(fileUpload);
+                try {
+                   // 암호화 하여 저장
+                   bos = new BufferedOutputStream(new FileOutputStream(savefullPath));
+                   bos.write(m.getBytes());
+                   bos.flush();
+                   bos.close();
+                } catch (IOException e) {
+                   e.printStackTrace();
+                }
+             }
+          }
+       }
 
- 		return fileuploadList;
- 	}
- 	
- 	// 이름짧게해주는거
- 	public static String shortName(String str) {
- 		String shortName = "";
- 		for (int i = 0; i < 6; i++) {
- 			// 최댓값 초과 방지 -2 ( 원래는 -1이 정상 최대길이 6이면 0부터이기 때문에 기본-1해야함)
- 			int random = (int) (Math.random() * str.length()) - 2;
- 			while (random < 0) {
- 				random = (int) (Math.random() * str.length()) - 2;
- 			}
- 			shortName += str.substring(random, random + 1);
- 		}
- 		return shortName;
- 	}
- 	
- 	//시간찍는거
- 	public static String timeStamp() {
- 		long time = System.currentTimeMillis();
- 		String t = String.valueOf(time / 1000);
- 		return t;
+       return fileuploadList;
+    }
+    
+    // 이름짧게해주는거
+    public static String shortName(String str) {
+       String shortName = "";
+       for (int i = 0; i < 6; i++) {
+          // 최댓값 초과 방지 -2 ( 원래는 -1이 정상 최대길이 6이면 0부터이기 때문에 기본-1해야함)
+          int random = (int) (Math.random() * str.length()) - 2;
+          while (random < 0) {
+             random = (int) (Math.random() * str.length()) - 2;
+          }
+          shortName += str.substring(random, random + 1);
+       }
+       return shortName;
+    }
+    
+    //시간찍는거
+    public static String timeStamp() {
+       long time = System.currentTimeMillis();
+       String t = String.valueOf(time / 1000);
+       return t;
  }
 }
    
    
    
    
-
