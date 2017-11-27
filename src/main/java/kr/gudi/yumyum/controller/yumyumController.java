@@ -88,6 +88,7 @@ public class yumyumController {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
 		return HttpUtil.makeHashToJsonModelAndView(ysi.BoardSelectOne(paramMap));
 	}
+	
 
 
 	// board에 입력된 자료 클릭 시 보이는 부분
@@ -236,8 +237,23 @@ public class yumyumController {
 	@RequestMapping("/Review_Data")
 	public ModelAndView ReviewselectItem(HttpServletRequest req) {
 		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
-		return HttpUtil.makeHashToJsonModelAndView(ysi.reviewSelectOne(paramMap));
+		System.out.println(ysi.reviewSelectOne(paramMap));
+		return HttpUtil.makeHashToJsonModelAndView(ysi.reviewSelectOne(paramMap)); 
+		
 	}
+	
+//	@RequestMapping("/bestReview_Data")
+//	   public ModelAndView bestReviewselectItem(HttpServletRequest req) {
+//	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+////	      HttpUtil.sendResponceToJson(response, ysi.bestreviewSelectOne(paramMap));
+//	      return HttpUtil.makeHashToJsonModelAndView(ysi.bestreviewSelectOne(paramMap));
+//	   }
+	
+//	@RequestMapping("/Board1_Data")
+//	public ModelAndView selectBoard(HttpServletRequest req) {
+//		HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+//		return HttpUtil.makeHashToJsonModelAndView(ysi.BoardSelectOne(paramMap));
+//	}
 	
 //	@RequestMapping("/RE_Data")
 //	public ModelAndView selectItem(HttpServletRequest req) {

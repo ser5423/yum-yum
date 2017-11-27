@@ -179,7 +179,8 @@
 	               "KeyWord" : $("#KeyWord").val()
 	            },
 	            datetype : "json" // 파라메터로 사용할 변수 값 객체 넣기
-	         }).done(function(d) { // 비동기식 데이터 가져오기
+	         }).done(function(result) { // 비동기식 데이터 가져오기
+	        	 d = JSON.parse(result);
 	            data1 = d.list;
 	            totCnt = d.ToT.tot;
 	            createHtml(); // 화면에 표현하기 위하여 함수 호출 

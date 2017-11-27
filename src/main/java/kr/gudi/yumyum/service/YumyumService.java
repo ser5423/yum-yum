@@ -71,6 +71,7 @@ public class YumyumService implements YumyumServiceInterface {
 		map.put("list", ydi.reviewSelectOne(paramMap));
 		map.put("text1", text);
 		map.put("ToT", ydi.reviewSelectOneTotCnt(paramMap));
+		System.out.println(map);
 		return map;
 	}
 

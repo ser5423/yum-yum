@@ -17,11 +17,11 @@
 	
 	<select  id="bestreviewSelectOne" parameterType="hashmap" resultType="hashmap">
        select *,DATE_FORMAT(UPLOAD, '%X-%m-%d') as UPLOAD
-      from REVIEW where RECOMMEND >= 20 ORDER BY NO DESC limit ${start}, ${viewRow}
+      from REVIEW where RECOMMEND <![CDATA[ >= ]]> 20 ORDER BY NO DESC limit ${start}, ${viewRow}
    </select>
    
    <select id="bestreviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
-      select count(*) as tot from REVIEW where RECOMMEND >= 20
+      select count(*) as tot from REVIEW where RECOMMEND <![CDATA[ >= ]]> 20
    </select>
 	
 	<select id="BoardSelectOne" parameterType="hashmap" resultType="hashmap">
@@ -81,9 +81,9 @@
 <!--       from REVIEW where RECOMMEND >= 20 ORDER BY NO DESC limit ${start}, ${viewRow} -->
 <!-- 	</select> -->
 	
-	<select id="bestreviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap">
-      select count(*) as tot from REVIEW where RECOMMEND >= 20
-   </select>
+<!-- 	<select id="bestreviewSelectOneTotCnt" parameterType="hashmap" resultType="hashmap"> -->
+<!--       select count(*) as tot from REVIEW where RECOMMEND >= 20 -->
+<!--    </select> -->
 	
 
 	<select id="BoardviewSelectOne" parameterType="hashmap" resultType="hashmap">
