@@ -20,8 +20,6 @@ public class YumyumService implements YumyumServiceInterface {
 	@Autowired
 	yumyumDaoInterface ydi;
 
-	private static final Logger logger = Logger.getLogger(YumyumService.class);
-
 	@Override
 	public HashMap<String, Object> recipeSelectOne(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -259,7 +257,6 @@ public class YumyumService implements YumyumServiceInterface {
 	// 파일업로드
 	@Override
 	public HashMap<String, Object> fileupload(HashMap<String, Object> paramMap, MultipartHttpServletRequest req) {
-		logger.info(paramMap);
 		// 컨트롤러 -> 서비스 호출 -> 서비스에서 로직처리 ( 프로그램 ) -> 다오 데이터 보내서 디비에 삽입 -> 서비스로 결과
 		// 리턴 ->
 		// 파일 업로드..

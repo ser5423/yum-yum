@@ -31,7 +31,6 @@ public class yumyumController {
 	@Autowired
 	YumyumServiceInterface ysi;
 
-	private static final Logger logger = Logger.getLogger(yumyumController.class);
 
 	
 	@RequestMapping("/Main")
@@ -308,8 +307,6 @@ public class yumyumController {
 
 		List<BoardFile> files = (List<BoardFile>) rstMap.get("file");
 
-		logger.info("##########################################\n" + files
-				+ "\n#############################################");
 		PrintWriter printWriter = null;
 		try {
 			res.setHeader("charset", "utf-8");
