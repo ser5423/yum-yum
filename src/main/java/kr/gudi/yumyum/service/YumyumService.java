@@ -303,6 +303,17 @@ public class YumyumService implements YumyumServiceInterface {
 		paramMap.put("file", files.get(0));
 		return ydi.boardCntSelectOne(paramMap);
 	}
+	
+	// bestReview부분
+	   @Override
+	   public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap) {
+	      HashMap<String, Object> map = new HashMap<String, Object>();
+	      String text = "우수리뷰";
+	      map.put("list", ydi.bestreviewSelectOne(paramMap));
+	      map.put("text2", text);
+	      map.put("ToT", ydi.bestreviewSelectOneTotCnt(paramMap));
+	      return map;
+	   }
 
 
 }

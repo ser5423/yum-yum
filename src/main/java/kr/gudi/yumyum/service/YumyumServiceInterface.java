@@ -14,7 +14,9 @@ public interface YumyumServiceInterface {
 	// review부분
 	public HashMap<String, Object> reviewSelectOne(HashMap<String, Object> paramMap);
 
-
+	   // bestreview부분
+	   public HashMap<String, Object> bestreviewSelectOne(HashMap<String, Object> paramMap);
+	
 	// boardview
 	public HashMap<String, Object> BoardViewSelectOne(HashMap<String, Object> paramMap);
 

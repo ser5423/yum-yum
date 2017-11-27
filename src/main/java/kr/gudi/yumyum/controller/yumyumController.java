@@ -351,5 +351,11 @@ public class yumyumController {
 		HashMap<String, Object> rstMap = ysi.recommendup(paramMap, req);
 		HttpUtil.sendResponceToJson(resp, rstMap);
 	}
+	
+	@RequestMapping("/BestReview")
+	   public ModelAndView Bestreview(ModelAndView mav) {
+	      mav.setViewName("/Review");
+	      return mav;
+	   }
 
 }

@@ -20,6 +20,19 @@ public class yumyumDao implements yumyumDaoInterface {
 	public List<HashMap<String, Object>> recipeSelectOne(HashMap<String, Object> paramMap) {
 		return session.selectList(NS + "recipeSelectOne", paramMap);
 	}
+	
+	// BestReview Paging부분
+	   @Override
+	   public HashMap<String, Object> bestreviewSelectOneTotCnt(HashMap<String, Object> paramMap) {
+	      return session.selectOne(NS + "bestreviewSelectOneTotCnt", paramMap);
+	   }
+	
+	// BestReview 부분
+	   @Override
+	   public List<HashMap<String, Object>> bestreviewSelectOne(HashMap<String, Object> paramMap) {
+	      return session.selectList(NS + "bestreviewSelectOne", paramMap);
+
+	   }
 
 	// recipe Paging부분
 	@Override
