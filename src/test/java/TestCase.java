@@ -315,7 +315,7 @@ public class TestCase {
           }
        });
  }    
-    @Test
+//    @Test
     public void boardinsert() throws Exception {
       MockMultipartFile file = new MockMultipartFile("file", "hello.txt", MediaType.TEXT_PLAIN_VALUE, "Hello, World!".getBytes());
        mock.perform(fileUpload("/BoInput_Data")
@@ -338,6 +338,44 @@ public class TestCase {
           }
        });
  } 
+    @Test
+    public void boardViewCnt() throws Exception {
+       mock.perform(get("/BoardView_Data")           // get방식 : get("주소"), post방식 : post("주소") 
+              .param("NO", "1") // paramater값 설정 : .param("key", "value")
+//              .param("TYPE", "fr")
+//              .param("VIEWCNT","189")
+              )
+       .andDo(new ResultHandler() {// 처리 내용을 출력합니다.
+          @Override
+          public void handle(MvcResult arg0) throws Exception {
+             ModelAndView mav = arg0.getModelAndView();
+             Map<String, Object> map = mav.getModel();              
+             
+             String message = map.get("message").toString();
+             JsonParser parser = new JsonParser();
+              JsonElement element = parser.parse(message);
+
+              JsonObject jobject = element.getAsJsonObject(); 
+              System.out.println(jobject);
+//              JsonObject jobject2 = element.getAsJsonObject(); 
+
+                           
+              JsonObject obj = jobject.get("boardview").getAsJsonObject();
+              System.out.println(obj);
+//              int no = obj.get("NO").getAsInt();
+//             assertEquals(1, no);
+             
+             JsonElement str = obj.get("VIEWCNT");
+           System.out.println(obj.get("VIEWCNT"));
+             assertEquals("226", str.toString()); // 조회 수 부분이라 숫자를 계속 해서 1씩 증가 시켜줘야됨
+             
+//             JsonObject obj2 = jobject.get("boardview").getAsJsonObject();
+//              int no2 = obj2.get("VIEWCNT").getAsInt();
+//             assertEquals(189, no2);
+             
+          }
+       });
+ }      
       
    
 }
