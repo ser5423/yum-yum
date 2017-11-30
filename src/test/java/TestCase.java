@@ -338,7 +338,7 @@ public class TestCase {
           }
        });
  } 
-    @Test
+//    @Test
     public void boardViewCnt() throws Exception {
        mock.perform(get("/BoardView_Data")           // get방식 : get("주소"), post방식 : post("주소") 
               .param("NO", "1") // paramater값 설정 : .param("key", "value")

@@ -133,13 +133,23 @@ public class yumyumController {
 //	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
 //	   }
 
+//	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
+//	@RequestMapping("/BoInput_Data")
+//	public ModelAndView insert(@RequestParam("file") MultipartFile[] file, 
+//	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
+//	      HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
+//	      List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
+//	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+//	   }
 	// 글쓰기 화면에 글을 작성시 데이터 입력 부분
 	@RequestMapping("/BoInput_Data")
-	public ModelAndView insert(@RequestParam("file") MultipartFile[] file, 
-	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
-	      HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
+	public void insert(HttpServletResponse response,@RequestParam("file") MultipartFile[] file, 
+	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMapa) {
+	      HashMap<String, Object> paramMap = HttpUtil.getParameterMap(req);
+	      
 	      List<BoardFile> rstBoardFiles = HttpUtil.fileUpload(req, "board", null);
-	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+	      HashMap<String, Object> rstMap = ysi.insert(paramMap, req);
+	      HttpUtil.sendResponceToJson(response, rstMap);
 	   }
 
 	@RequestMapping("/Manager")
@@ -355,11 +365,13 @@ public class yumyumController {
 
 	// 리뷰 데이터 입력
 	@RequestMapping("/ReInput_Data")
-	   public ModelAndView reinput(@RequestParam("file") MultipartFile[] file, 
+	   public void reinput(HttpServletResponse response, @RequestParam("file") MultipartFile[] file, 
 	         MultipartHttpServletRequest req, @RequestParam HashMap<String, Object> paramMap) {
+		
 	      HashMap<String, Object> rstMap = ysi.reinput(paramMap, req);
-	      return HttpUtil.makeHashToJsonModelAndView(rstMap);
+	      HttpUtil.sendResponceToJson(response, rstMap);
 	   }
+	
 	
 	@RequestMapping("/recommendup")
 	public void recommendup(HttpServletRequest req, HttpServletResponse resp,
